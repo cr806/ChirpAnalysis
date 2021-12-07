@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import time
-import json
 import timeit
 import configparser
 from PIL import Image  # , ImageEnhance
