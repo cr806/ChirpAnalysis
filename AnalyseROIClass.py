@@ -2,25 +2,28 @@ import matplotlib.pyplot as plt
 import time
 import json
 import timeit
+import configparser
 from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
 from Functions import ROI, convert_CSV_to_Image
 
-with open('CK_configuration.cfg', 'r') as json_file:
-    config = json.load(json_file)
 
-save_path = repr(config['save_path'])[1:-1]
-save_name = repr(config['save_name'])[1:-1]
+config = configparser.ConfigParser()
+config.read('./CK_configuration.ini')
+print(config)
 
-image_folder = repr(config['image_folder'])[1:-1]
-image_type = repr(config['image_type'])[1:-1]
-image_align = repr(config['image_align'])[1:-1]
-save_figure_filename = repr(config['save_figure_filename'])[1:-1]
+save_path = config['Config']['save_path']
+save_name = config['Config']['save_name']
 
-sleep_time = config['sleep_time']
+image_folder = config['Config']['image_folder']
+image_type = config['Config']['image_type']
+image_align = config['Config']['image_align']
+save_figure_filename = config['Config']['save_figure_filename']
 
-num_of_ROIs = config['num_of_ROIs']
+sleep_time = config['Config'].getfloat('sleep_time')
+
+num_of_ROIs = config['Config'].getint('num_of_ROIs')
 
 roi_array = []
 first_image_processed = []
