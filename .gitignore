@@ -1,0 +1,9 @@
+**/Version01
+**/RawImages
+**/venv
+**/ChristinaData
+**/.vscode
+**/__pycache__
+**/Images
+**/TestScripts
+.DS_Store
