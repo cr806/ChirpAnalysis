@@ -31,13 +31,16 @@ class ROI:
         fig (figure handle):   Used to hold figure data for plotting
         ax (axis handle):      Used to hold axis data for plotting
     """
-    def __init__(self):
+    def __init__(self, angle=None, roi=None, res=None):
         print('Initialising ROI')
         self.im = None
         self.first = True
-        self.roi = ()
-        self.angle = None
+        self.roi = roi
+        self.angle = angle
+        self.res = res
         self.initial_values = [0, 0, 0, 0, 0]
+        if res is not None:
+            self.initial_values = [0, 0, res[0], res[1], 0]
         self.bounds = ([-1000, -100,  0,   0,    0],
                        [1000, 100,  500, 500,  500])
         self.resonance_data = []
@@ -80,25 +83,30 @@ class ROI:
             im (PIL image): Used to store image data
         """
         self.im = im
-        self.first = False
 
-        figure = plt.subplots(1, 2, figsize=(12, 6))
-        image_rotator = ImageProcessor('rotate', figure, self.im)
-        self.angle = image_rotator.get_angle()
-        temp = image_rotator.get_rotated_image()
+        if self.first:
+            if self.angle is None:
+                figure = plt.subplots(1, 2, figsize=(12, 6))
+                image_rotator = ImageProcessor('rotate', figure, self.im)
+                self.angle = image_rotator.get_angle()
 
-        figure = plt.subplots(1, 2, figsize=(12, 6),
-                              gridspec_kw={'width_ratios': [3, 1]})
-        image_cropper = ImageProcessor('crop', figure, temp)
-        self.roi = tuple(image_cropper.get_coords())
-        self.im = image_cropper.get_cropped_image()
+            figure = plt.subplots(1, 2, figsize=(12, 6),
+                                  gridspec_kw={'width_ratios': [3, 1]})
+            if self.roi is None:
+                temp = self.im.rotate(self.angle)
+                image_cropper = ImageProcessor('crop', figure, temp)
+                self.roi = tuple(image_cropper.get_coords())
 
-        figure = plt.subplots(1, 2, figsize=(12, 6))
-        p0 = ImageProcessor('resonance', figure, self.im)
-        # self.set_initial_values(amp=0.2, assym=-100,
-        #                         res=None, gamma=None, off=40)
-        self.initial_values[2] = p0.get_initial_values()[0]
-        self.initial_values[3] = p0.get_initial_values()[1]
+            self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
+                                    self.roi[1][0], self.roi[1][1]))
+            if self.res is None:
+                figure = plt.subplots(1, 2, figsize=(12, 6))
+                p0 = ImageProcessor('resonance', figure, self.im)
+                # self.set_initial_values(amp=0.2, assym=-100,
+                #                         res=None, gamma=None, off=40)
+                self.initial_values[2] = p0.get_initial_values()[0]
+                self.initial_values[3] = p0.get_initial_values()[1]
+            self.first = False
 
     def create_ROI_data(self, im, plot=False):
         """ Method used to create ROI data from full image.
