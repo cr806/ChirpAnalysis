@@ -27,6 +27,12 @@ if config['Data'].getboolean('live_watch'):
         print("No sleep time provided, it is now set to 10 minutes")
         sleep_time = 0
 
+num_of_ROIs = 1
+image_interval = 1.0
+angle = None
+roi_ranges = None
+res_gamma = None
+
 try:
     num_of_ROIs = config['Image'].getint('num_of_ROIs')
     if num_of_ROIs is None:
@@ -51,11 +57,7 @@ try:
             except KeyError:
                 res_gamma = None
 except KeyError:
-    num_of_ROIs = 1
-    image_interval = 1.0
-    angle = None
-    roi_ranges = None
-    res_gamma = None
+    pass
 
 roi_array = []
 for roi in range(num_of_ROIs):
