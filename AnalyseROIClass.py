@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import time
 import timeit
 import configparser
+import json
 from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
@@ -19,31 +20,52 @@ image_type = config['Data']['image_type']
 image_align = config['Data']['image_align']
 save_figure_filename = config['Data']['save_figure_filename']
 
-try:
-    if config['Data'].getboolean('live_watch'):
+if config['Data'].getboolean('live_watch'):
+    try:
         sleep_time = config['Loop'].getfloat('sleep_time')
-except KeyError:
-    print("You have not provided a sleep time, it is now set to 10 minutes")
-    sleep_time = 10
+    except KeyError:
+        print("No sleep time provided, it is now set to 10 minutes")
+        sleep_time = 0
 
-try:
-    num_of_ROIs = config['Image'].getint('num_of_ROIs')
-    image_interval = config['Image'].getfloat('image_interval')
-    if config['Data'].getboolean('initialise_image'):
-        angle = config['Image'].getfloat('image_angle')
-except KeyError:
-    num_of_ROIs = 1
-    image_interval = 1
-    angle = None
+if config['Data'].getboolean('initialise_image'):
+    try:
+        num_of_ROIs = config['Image'].getint('num_of_ROIs')
+        if num_of_ROIs is None:
+            num_of_ROIs = 1
 
-roi_ranges = [None, None]
-res_gamma = [None, None]
+        image_interval = config['Image'].getfloat('image_interval')
+        if image_interval is None:
+            image_interval = 1.0
+
+        if config['Data'].getboolean('initialise_image'):
+            try:
+                angle = config['Image'].getfloat('image_angle')
+            except KeyError:
+                angle = None
+            try:
+                roi_ranges = json.loads(config['Image']['rois'])
+            except KeyError:
+                roi_ranges = None
+            try:
+                res_gamma = json.loads(config['Image']['resonance_gamma'])
+            except KeyError:
+                res_gamma = None
+    except KeyError:
+        num_of_ROIs = 1
+        image_interval = 1.0
+        angle = None
+        roi_ranges = None
+        res_gamma = None
+
 roi_array = []
 for roi in range(num_of_ROIs):
     try:
-        roi_range = roi_ranges[roi]
         r_g = res_gamma[roi]
-    except IndexError:
+    except (IndexError, TypeError):
+        r_g = None
+    try:
+        roi_range = roi_ranges[roi]
+    except (IndexError, TypeError):
         roi_range = None
         r_g = None
     roi_array.append(ROI(angle=angle, roi=roi_range, res=r_g))
@@ -58,7 +80,7 @@ for i in range(1):
 
     image_files = [join(image_folder, f) for f in sorted(to_be_processed)
                    if f[-3:] == image_type]
-    print(i)
+
     # print(to_be_processed)
     # print(image_files)
     # image_files = image_files[:3]
@@ -104,5 +126,6 @@ for i in range(1):
         ax3.set_xlabel('Time (minutes)')
         plt.savefig(save_figure_filename)
 
-    print('Waiting ...')
-    time.sleep(sleep_time * 60)
+    if sleep_time > 0:
+        print('Waiting ...')
+        time.sleep(sleep_time * 60)

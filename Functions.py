@@ -90,9 +90,9 @@ class ROI:
                 image_rotator = ImageProcessor('rotate', figure, self.im)
                 self.angle = image_rotator.get_angle()
 
-            figure = plt.subplots(1, 2, figsize=(12, 6),
-                                  gridspec_kw={'width_ratios': [3, 1]})
             if self.roi is None:
+                figure = plt.subplots(1, 2, figsize=(12, 6),
+                                      gridspec_kw={'width_ratios': [3, 1]})
                 temp = self.im.rotate(self.angle)
                 image_cropper = ImageProcessor('crop', figure, temp)
                 self.roi = tuple(image_cropper.get_coords())
