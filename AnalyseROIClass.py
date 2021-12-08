@@ -27,12 +27,12 @@ if config['Data'].getboolean('live_watch'):
         print("No sleep time provided, it is now set to 10 minutes")
         sleep_time = 0
 
-if config['Data'].getboolean('initialise_image'):
-    try:
-        num_of_ROIs = config['Image'].getint('num_of_ROIs')
-        if num_of_ROIs is None:
-            num_of_ROIs = 1
+try:
+    num_of_ROIs = config['Image'].getint('num_of_ROIs')
+    if num_of_ROIs is None:
+        num_of_ROIs = 1
 
+    if config['Data'].getboolean('initialise_image'):
         image_interval = config['Image'].getfloat('image_interval')
         if image_interval is None:
             image_interval = 1.0
@@ -50,12 +50,12 @@ if config['Data'].getboolean('initialise_image'):
                 res_gamma = json.loads(config['Image']['resonance_gamma'])
             except KeyError:
                 res_gamma = None
-    except KeyError:
-        num_of_ROIs = 1
-        image_interval = 1.0
-        angle = None
-        roi_ranges = None
-        res_gamma = None
+except KeyError:
+    num_of_ROIs = 1
+    image_interval = 1.0
+    angle = None
+    roi_ranges = None
+    res_gamma = None
 
 roi_array = []
 for roi in range(num_of_ROIs):
