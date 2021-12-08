@@ -88,6 +88,7 @@ for i in range(1):
     # image_files = image_files[:3]
     print(f'{len(image_files)} files will now be processed')
 
+    output_err = ''
     for idx, im_path in enumerate(image_files):
         print(f'Processing image {idx}')
 
@@ -109,7 +110,11 @@ for i in range(1):
             roi.set_initial_ROI(im)
             roi.create_ROI_data(im)
             roi.process_ROI()
-            # roi.get_resonance_data(disp=True)
+            r2 = roi.get_resonance_data()[-1]['r2']
+            if r2 < 0.8:
+                output_err = f'{output_err}\n{r2},{idx},{im_path}'
+    with open(join(save_path, f'{save_name}_BAD_R2.csv'), 'a') as f:
+        f.write(output_err)
 
     for idx, roi in enumerate(roi_array):
         roi.save_data(save_path, f'{save_name}_ROI_{idx}')
