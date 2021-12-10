@@ -28,6 +28,7 @@ if config['Data'].getboolean('live_watch'):
         sleep_time = 0
 
 num_of_ROIs = 1
+r2_threshold = 0.8
 image_interval = 1.0
 angle = None
 roi_ranges = None
@@ -37,6 +38,10 @@ try:
     num_of_ROIs = config['Image'].getint('num_of_ROIs')
     if num_of_ROIs is None:
         num_of_ROIs = 1
+
+    r2_threshold = config['Image'].getfloat('r2_threshold')
+    if r2_threshold is None:
+        r2_threshold = 0.8
 
     if config['Data'].getboolean('initialise_image'):
         image_interval = config['Image'].getfloat('image_interval')
@@ -111,7 +116,7 @@ for i in range(1):
             roi.create_ROI_data(im)
             roi.process_ROI()
             r2 = roi.get_resonance_data()[-1]['r2']
-            if r2 < 0.8:
+            if r2 < r2_threshold:
                 output_err = f'{output_err}\n{r2},{idx},{im_path}'
     with open(join(save_path, f'{save_name}_BAD_R2.csv'), 'a') as f:
         f.write(output_err)
