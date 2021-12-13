@@ -55,3 +55,58 @@
 2021-12-13 10:08:36,957 : INFO : Loading data took: 0.001658s
 2021-12-13 10:08:37,029 : INFO : ...Data saved
 2021-12-13 10:08:37,031 : INFO : ...Data saved
+2021-12-13 10:44:49,354 : INFO : __init__(<ROI.ROI object at 0x12385b220>, angle=0.0, roi=[[1507, 104], [1768, 565]], res=[178, 35])
+2021-12-13 10:44:49,355 : INFO : __init__(<ROI.ROI object at 0x12385b1f0>, angle=0.0, roi=[[1514, 752], [1783, 1215]], res=[165, 40])
+2021-12-13 10:44:49,355 : INFO : 50 files processed
+2021-12-13 10:44:49,376 : INFO : Loading data took: -0.0008841s
+2021-12-13 10:44:49,472 : INFO : Loading data took: -0.001045s
+2021-12-13 10:44:49,551 : INFO : Loading data took: 9.837e-05s
+2021-12-13 10:44:49,637 : INFO : Loading data took: -0.0007627s
+2021-12-13 10:44:49,725 : INFO : Loading data took: -0.000792s
+2021-12-13 10:44:49,813 : INFO : Loading data took: 0.0007262s
+2021-12-13 10:44:49,900 : INFO : Loading data took: -0.0004355s
+2021-12-13 10:44:49,985 : INFO : Loading data took: -2.842e-05s
+2021-12-13 10:44:50,071 : INFO : Loading data took: -0.001025s
+2021-12-13 10:44:50,159 : INFO : Loading data took: -0.001383s
+2021-12-13 10:44:50,248 : INFO : Loading data took: -0.001112s
+2021-12-13 10:44:50,335 : INFO : Loading data took: -0.0001377s
+2021-12-13 10:44:50,421 : INFO : Loading data took: -0.0002114s
+2021-12-13 10:44:50,505 : INFO : Loading data took: 0.000416s
+2021-12-13 10:44:50,589 : INFO : Loading data took: -0.001326s
+2021-12-13 10:44:50,676 : INFO : Loading data took: -0.001342s
+2021-12-13 10:44:50,762 : INFO : Loading data took: 0.0005026s
+2021-12-13 10:44:50,849 : INFO : Loading data took: 0.0003286s
+2021-12-13 10:44:50,935 : INFO : Loading data took: -0.0005955s
+2021-12-13 10:44:51,022 : INFO : Loading data took: -0.0007608s
+2021-12-13 10:44:51,110 : INFO : Loading data took: 7.208e-05s
+2021-12-13 10:44:51,198 : INFO : Loading data took: -0.0005773s
+2021-12-13 10:44:51,284 : INFO : Loading data took: 0.0007201s
+2021-12-13 10:44:51,370 : INFO : Loading data took: -0.0001644s
+2021-12-13 10:44:51,457 : INFO : Loading data took: 0.0002853s
+2021-12-13 10:44:51,545 : INFO : Loading data took: -1.466e-05s
+2021-12-13 10:44:51,635 : INFO : Loading data took: 0.0006746s
+2021-12-13 10:44:51,723 : INFO : Loading data took: -0.00108s
+2021-12-13 10:44:51,810 : INFO : Loading data took: -0.0004167s
+2021-12-13 10:44:51,897 : INFO : Loading data took: -0.0008942s
+2021-12-13 10:44:51,985 : INFO : Loading data took: -0.0005494s
+2021-12-13 10:44:52,074 : INFO : Loading data took: -0.0002598s
+2021-12-13 10:44:52,162 : INFO : Loading data took: 0.0001436s
+2021-12-13 10:44:52,252 : INFO : Loading data took: 0.0001291s
+2021-12-13 10:44:52,341 : INFO : Loading data took: -0.001184s
+2021-12-13 10:44:52,423 : INFO : Loading data took: -0.0004593s
+2021-12-13 10:44:52,508 : INFO : Loading data took: -0.0002868s
+2021-12-13 10:44:52,596 : INFO : Loading data took: -0.0001493s
+2021-12-13 10:44:52,684 : INFO : Loading data took: -0.0003914s
+2021-12-13 10:44:52,772 : INFO : Loading data took: -0.0009626s
+2021-12-13 10:44:52,859 : INFO : Loading data took: -0.000129s
+2021-12-13 10:44:52,943 : INFO : Loading data took: 0.0006358s
+2021-12-13 10:44:53,033 : INFO : Loading data took: -0.0007759s
+2021-12-13 10:44:53,121 : INFO : Loading data took: -0.0004508s
+2021-12-13 10:44:53,208 : INFO : Loading data took: -0.0006786s
+2021-12-13 10:44:53,296 : INFO : Loading data took: -0.001072s
+2021-12-13 10:44:53,384 : INFO : Loading data took: -0.0004303s
+2021-12-13 10:44:53,466 : INFO : Loading data took: -4.506e-06s
+2021-12-13 10:44:53,551 : INFO : Loading data took: 0.0003273s
+2021-12-13 10:44:53,639 : INFO : Loading data took: -0.0002699s
+2021-12-13 10:44:53,708 : INFO : ...Data saved
+2021-12-13 10:44:53,709 : INFO : ...Data saved

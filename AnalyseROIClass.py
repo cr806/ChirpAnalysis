@@ -7,7 +7,8 @@ import logging
 from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
-from Functions import ROI, convert_CSV_to_Image
+from Functions import convert_CSV_to_Image
+from ROI import ROI
 
 
 config_filepath = './CK_configuration.ini'
