@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import logging
 from scipy.optimize import curve_fit
 from os.path import join
 from PIL import Image
@@ -32,7 +33,7 @@ class ROI:
         ax (axis handle):      Used to hold axis data for plotting
     """
     def __init__(self, angle=None, roi=None, res=None):
-        print('Initialising ROI')
+        logging.info(f'__init__({self}, angle={angle}, roi={roi}, res={res})')
         self.im = None
         self.first = True
         self.roi = roi
@@ -82,6 +83,7 @@ class ROI:
             Attributes:
             im (PIL image): Used to store image data
         """
+        logging.debug('...set_initial_ROI({self}, {im})')
         self.im = im
 
         if self.first:
@@ -89,6 +91,7 @@ class ROI:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
                 image_rotator = ImageProcessor('rotate', figure, self.im)
                 self.angle = image_rotator.get_angle()
+                logging.debug('Angle correction')
 
             if self.roi is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6),
@@ -96,6 +99,7 @@ class ROI:
                 temp = self.im.rotate(self.angle)
                 image_cropper = ImageProcessor('crop', figure, temp)
                 self.roi = tuple(image_cropper.get_coords())
+                logging.debug('ROI selection')
 
             self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
                                     self.roi[1][0], self.roi[1][1]))
@@ -106,6 +110,7 @@ class ROI:
                 #                         res=None, gamma=None, off=40)
                 self.initial_values[2] = p0.get_initial_values()[0]
                 self.initial_values[3] = p0.get_initial_values()[1]
+                logging.debug('Resonance/Gamma selection')
             self.first = False
 
     def create_ROI_data(self, im, plot=False):
@@ -127,42 +132,46 @@ class ROI:
                             method) is cropped and rotated.
         """
 
+        logging.debug(f'...create_ROI_data({self}, {im}, plot={plot})')
         self.im = im
         temp = self.im.rotate(self.angle)
         (x1, y1), (x2, y2) = self.roi
         self.im = np.array(temp.crop((x1, y1, x2, y2)))
         # self.process_ROI(plot=plot)
 
-    def determine_assym(self, plot=False):
-        """ CURRENTLY NOT REQUIRED BY SETTING INITIAL VALUE TO 0
-            Determine positive or negative assymetry value from initial image.
-            Curve-fit algorithm seems to requires a positive or negative
-            initial guess for the fitting of the Fano function, if the guess
-            is the wrong sign then curve-fit will converge to a "bad" fit
-        """
+    # def determine_assym(self, plot=False):
+    #     """ CURRENTLY NOT REQUIRED BY SETTING INITIAL VALUE TO 0
+    #         Determine positive or negative assymetry value from initial
+    #         image.
+    #         Curve-fit algorithm seems to requires a positive or negative
+    #         initial guess for the fitting of the Fano function, if the guess
+    #         is the wrong sign then curve-fit will converge to a "bad" fit
+    #     """
 
-        self.initial_values[1] = 100
-        self.process_ROI(plot=plot)
-        try:
-            r2pos = self.resonance_data[-1]['r2']
-        except IndexError:
-            r2pos = 0
-        self.initial_values[1] = -100
-        self.process_ROI(plot=plot)
-        try:
-            r2neg = self.resonance_data[-1]['r2']
-        except IndexError:
-            r2neg = 0
-        print(f'Positive r2 -> {r2pos}  Negative r2 -> {r2neg}')
-        if r2pos > r2neg:
-            self.initial_values[1] = 100
-        self.resonance_data = []
+    #     logging.debug(f'...determine_assym({self}, plot={plot})')
+    #     self.initial_values[1] = 100
+    #     self.process_ROI(plot=plot)
+    #     try:
+    #         r2pos = self.resonance_data[-1]['r2']
+    #     except IndexError:
+    #         r2pos = 0
+    #     self.initial_values[1] = -100
+    #     self.process_ROI(plot=plot)
+    #     try:
+    #         r2neg = self.resonance_data[-1]['r2']
+    #     except IndexError:
+    #         r2neg = 0
+    #     print(f'Positive r2 -> {r2pos}  Negative r2 -> {r2neg}')
+    #     if r2pos > r2neg:
+    #         self.initial_values[1] = 100
+    #     self.resonance_data = []
 
     def process_ROI(self, plot=False):
         """ Processes ROI from initial image, first collapsing image into 1D,
             then applies curve_fit algorithm - updating resonance_data with
             the results
         """
+        logging.debug(f'...process_ROI({self}, plot={plot})')
         collapsed_im = self.im.mean(axis=1)
         xdata = np.arange(0, collapsed_im.shape[0], 1)
         initial = np.array(self.initial_values)
@@ -214,6 +223,7 @@ class ROI:
 
         except RuntimeError as e:
             print(f'Curve fitting did not converge: {e}')
+            logging.info(f'Curve fitting did not converge: {e}')
             popt_dict = {'amp': 0,
                          'assym': 0,
                          'res': 0,
@@ -223,6 +233,7 @@ class ROI:
                          'r2': 0}
         except ValueError as e:
             print(f'Curve fitting failed: {e}')
+            logging.info(f'Curve fitting failed: {e}')
             popt_dict = {'amp': 0,
                          'assym': 0,
                          'res': 0,
@@ -248,6 +259,9 @@ class ROI:
             r2 (float):    Required in method call due to results dictionary
                            however, not used in curve-fit algorithm
         """
+        logging.debug(f"""set_initial_values({self}, amp={amp}, assym={assym},
+                         res={res}, gamma={gamma}, off={off}, FWHM={FWHM},
+                         r2={r2})""")
         self.initial_values[0] = amp
         self.initial_values[1] = assym
         self.initial_values[2] = res
@@ -260,6 +274,7 @@ class ROI:
             Return:
             initial_values (list): List of intial calculation values
         """
+        logging.debug(f'...get_inital_values({self})')
         print(self.initial_values)
         return self.initial_values
 
@@ -271,6 +286,7 @@ class ROI:
             path (str): Path to save folder
             name (str): Name of results file
         """
+        logging.debug(f'...save_data({self}, {path}, {name})')
         first = True
         output = ''
         with open(join(path, f'{name}.csv'), 'w') as f:
@@ -296,6 +312,7 @@ class ROI:
         """ Getter method for returning resonance_data list of dictionaries to
             the caller.
         """
+        logging.debug(f'...get_resonance_data({self}, disp={disp})')
         if disp:
             print(self.resonance_data)
         return self.resonance_data
@@ -304,11 +321,13 @@ class ROI:
         """ Getter method for returning ROI details ((x1, y1), (x2, y2)) to the
             caller
         """
+        logging.debug(f'...get_roi({self})')
         return self.roi
 
     def get_im(self):
         """ Getter method to return rotated/cropped image to caller
         """
+        logging.debug(f'...get_im({self})')
         return self.im
 
 
@@ -328,6 +347,7 @@ class ImageProcessor:
         im (PIL image):         Used to hold axis data for plotting
     """
     def __init__(self, mode, figure, im):
+        logging.debug(f'...__init__({self}, {mode}, {figure}, {im})')
         self.mode = mode.lower()
         self.fig, (self.ax1, self.ax2) = figure
         (self.line, ) = self.ax1.plot([0], [0], 'r', linewidth=2)
@@ -339,15 +359,18 @@ class ImageProcessor:
         self.ax1.imshow(self.im)
         self.ax2.axis('off')
         if mode == 'rotate':
+            logging.info('Image rotate')
             self.fig.suptitle(
                 'Rotate: Select two horizontal points \n '
                 'Press <Enter> when finished', fontsize='xx-large')
         elif mode == 'crop':
+            logging.info('Image crop')
             self.fig.suptitle(
                 'Crop: Rectangle select (i.e. select the top-left and '
                 'bottom-right points) around ROI \n '
                 'Press <Enter> when finished', fontsize='xx-large')
         elif mode == 'resonance':
+            logging.info('Image resonance/gamma')
             self.fig.suptitle(
                 'Resonance: Rectangle select (i.e. select the top-left '
                 'and bottom-right points) resonance \n '
@@ -376,6 +399,7 @@ class ImageProcessor:
             the class instance attributes accordingly.  Also forces re-draw of
             figure.
         """
+        logging.debug(f'...mouseClick({self}, {event})')
         if event.inaxes != self.line.axes:
             return
         self.update_fig(event.xdata, event.ydata)
@@ -387,6 +411,7 @@ class ImageProcessor:
         """ Callback function for "Enter" key press event, at which point closes
             figure
         """
+        logging.debug(f'...keyPress({self}, {event})')
         if event.key == 'enter':
             self.line.figure.canvas.mpl_disconnect(self.cidclick)
             self.line.figure.canvas.mpl_disconnect(self.cidkey)
@@ -397,6 +422,7 @@ class ImageProcessor:
         """ Callback function for figure close event event, at which point
             closes figure
         """
+        logging.debug(f'...onClose({self}, {event})')
         self.line.figure.canvas.mpl_disconnect(self.cidclick)
         self.line.figure.canvas.mpl_disconnect(self.cidkey)
         self.fig.canvas.mpl_disconnect(self.cidclose)
@@ -406,6 +432,7 @@ class ImageProcessor:
         """ Connects mouseClick() method to mouse click event of line object.
             Also connects keyPress() method to key press event of line object.
         """
+        logging.debug(f'...connect({self})')
         self.cidclick = (self.line
                          .figure
                          .canvas
@@ -432,6 +459,7 @@ class ImageProcessor:
             x (int): x-position of mouse click event
             y (int): y-position of mouse click event
         """
+        logging.debug(f'...add_data({self}, {x}, {y})')
         if len(self.xs) == 2:
             self.xs = []
             self.ys = []
@@ -454,6 +482,7 @@ class ImageProcessor:
             xdata (int): x-position of mouse click event
             ydata (int): y-position of mouse click event
         """
+        logging.debug(f'...update_fig({self}, {xdata}, {ydata})')
         if len(self.xs) == 1:
             if self.mode == 'rotate':
                 self.angle = np.degrees(np.tan((ydata-self.ys[0]) /
@@ -475,6 +504,7 @@ class ImageProcessor:
     def get_angle(self):
         """ Getter method to return rotation angle to caller
         """
+        logging.debug(f'...get_angle({self})')
         return self.angle
 
     def get_coords(self):
@@ -482,7 +512,9 @@ class ImageProcessor:
             one element in xs list then returns (0, 0) as first point, this
             avoids errors however is not intended use
         """
+        logging.debug(f'...get_coords({self})')
         if len(self.xs) < 2:
+            logging.info('Returning (0,0) as first ROI coordinate')
             return (0, 0), (self.im.size[0], self.im.size[1])
         return zip(self.xs, self.ys)
 
@@ -490,10 +522,12 @@ class ImageProcessor:
         """ Getter method to return initial values to caller, these values come
             from the user selecting the resonance position
         """
+        logging.debug(f'...get_initial_values({self})')
         try:
             return ((self.ys[0]+self.ys[1])/2,
                     np.absolute(self.ys[0]-self.ys[1]))
         except IndexError:
+            logging.info('No ROI coords, returning image data for res/gamma')
             _, height = self.get_cropped_image().size
             return (height/2, height/20)
 
@@ -501,19 +535,24 @@ class ImageProcessor:
         """ Getter method to return rotated image to caller, if this fails
             original image
         """
+        logging.debug(f'...get_rotated_image({self})')
         try:
             return self.im.rotate(self.angle)
         except ValueError:
+            logging.info(
+                'No angle data, returning 0')
             return self.im
 
     def get_cropped_image(self):
         """ Getter method to return cropped image to caller, if this fails
             original image
         """
+        logging.debug(f'...get_cropped_image({self})')
         try:
             return self.im.crop((self.xs[0], self.ys[0],
                                 self.xs[1], self.ys[1]))
         except IndexError:
+            logging.info('No crop data, returning full image')
             return self.im
 
 
@@ -538,5 +577,6 @@ def fano(x, amp, assym, res, gamma, off):
 
 
 def convert_CSV_to_Image(path_to_csv):
+    logging.debug(f'...convert_CSV_to_Image({path_to_csv})')
     data = np.asarray(np.genfromtxt(path_to_csv, delimiter=','))
     return Image.fromarray((data).astype(np.float64))
