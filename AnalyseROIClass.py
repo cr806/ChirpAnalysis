@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import time
 import timeit
 import configparser
@@ -9,10 +10,11 @@ from os import listdir
 from os.path import join
 from Functions import convert_CSV_to_Image
 from ROI import ROI
+# from ROImulti import ROImulti as ROI
 
 
-config_filepath = './CK_configuration.ini'
-log_filepath = 'ChirpAnalysis.log'
+config_filepath = './CK_configuration_multi.ini'
+log_filepath = 'ChirpAnalysis_multi.log'
 
 logging.basicConfig(filename=log_filepath,
                     format='%(asctime)s : %(levelname)s : %(message)s',
@@ -37,13 +39,16 @@ try:
     image_align = config['Data']['image_align']
     save_figure_filename = config['Data']['save_figure_filename']
 
+    sleep_time = 0
+
     if config['Data'].getboolean('live_watch'):
         try:
             sleep_time = config['Loop'].getfloat('sleep_time')
         except KeyError:
-            print("No sleep time provided, it is now set to 10 minutes")
+            print("No sleep time provided, it is now set to 0 minutes")
             logging.info('No sleep time provided')
-            sleep_time = 0
+    else:
+        logging.info('Live watch not requested')
 except KeyError:
     print('Configuration file incorrectly formatted')
     logging.error('No [Data] section provided within configuration file')
@@ -74,22 +79,24 @@ try:
             image_interval = 1.0
             logging.info('No image interval provided')
 
-        if config['Data'].getboolean('initialise_image'):
-            try:
-                angle = config['Image'].getfloat('image_angle')
-            except KeyError:
-                angle = None
-                logging.info('No angle provided')
-            try:
-                roi_ranges = json.loads(config['Image']['rois'])
-            except KeyError:
-                roi_ranges = None
-                logging.info('No ROI coordinates provided')
-            try:
-                res_gamma = json.loads(config['Image']['resonance_gamma'])
-            except KeyError:
-                res_gamma = None
-                logging.info('No resonance/gamma data provided')
+        try:
+            angle = config['Image'].getfloat('image_angle')
+        except KeyError:
+            angle = None
+            logging.info('No angle provided')
+        try:
+            roi_ranges = json.loads(config['Image']['rois'])
+        except KeyError:
+            roi_ranges = None
+            logging.info('No ROI coordinates provided')
+        try:
+            res_gamma = json.loads(config['Image']['resonance_gamma'])
+        except KeyError:
+            res_gamma = None
+            logging.info('No resonance/gamma data provided')
+    else:
+        logging.log('Image initialised interactively')
+
 except KeyError:
     logging.info('No [Image] section provided within configuration file')
 
@@ -147,7 +154,7 @@ for i in range(1):
             roi.set_initial_ROI(im)
             roi.create_ROI_data(im)
             roi.process_ROI()
-            r2 = roi.get_resonance_data()[-1]['r2']
+            r2 = np.mean(roi.get_resonance_data()[-1]['r2'])
             if r2 < r2_threshold:
                 output_err = f'{output_err}\n{r2},{idx},{im_path}'
     with open(join(save_path, f'{save_name}_BAD_R2.csv'), 'a') as f:
@@ -158,11 +165,11 @@ for i in range(1):
         logging.info('...Data saved')
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
-    time_axis = [(y * image_interval) for y in range(len(filenames_old)-1)]
+    time_axis = [(y * image_interval) for y in range(len(filenames_old))]
     for roi in roi_array:
-        res_data = [d['res'] for d in roi.get_resonance_data()]
-        FWHM_data = [d['FWHM'] for d in roi.get_resonance_data()]
-        r2_data = [round(d['r2'], 4) for d in roi.get_resonance_data()]
+        res_data = [np.mean(d['res']) for d in roi.get_resonance_data()]
+        FWHM_data = [np.mean(d['FWHM']) for d in roi.get_resonance_data()]
+        r2_data = [np.mean(d['r2']) for d in roi.get_resonance_data()]
         ax1.plot(time_axis, res_data)
         ax2.plot(time_axis, FWHM_data)
         ax3.plot(time_axis, r2_data)
