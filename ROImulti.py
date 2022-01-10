@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import logging
 from scipy.optimize import curve_fit
-from os.path import join
 from ImageProcessor import ImageProcessor
 
 
@@ -301,35 +300,24 @@ class ROImulti:
         print(self.initial_values)
         return self.initial_values
 
-    def save_data(self, path, name):
-        """ Method for saving results to a file, saves the resonance_data list
-            of dictionaries as a CSV table
-
-            Attributes:
-            path (str): Path to save folder
-            name (str): Name of results file
+    def get_save_data(self):
+        """ Return the results as a formattted list ready for saving.
         """
-        logging.debug(f'...save_data({self}, {path}, {name})')
         first = True
-        output = ''
-        with open(join(path, f'{name}.csv'), 'w') as f:
-            for d in self.resonance_data:
-                text_keys = ''
-                text_vals = ''
-                for k, v in d.items():
-                    text_keys = text_keys + str(k) + ','
-                    text_vals = text_vals + str(v) + ','
-                if first:
-                    output = (f'ROI_x1,ROI_y1,ROI_x2,ROI_y2,Angle,'
-                              f'{text_keys[:-1]}\n')
-                    first = False
-                output = (f'{output}{self.roi[0][0]},{self.roi[0][1]},'
-                          f'{self.roi[1][0]},{self.roi[1][1]},{self.angle},'
-                          f'{text_vals[:-1]}\n')
-            f.write(output[:-1])
+        output = []
 
-        # with open(join(path, f'{name}.json'), 'w') as f:
-        #     f.write(json.dumps(params, indent=4, separators=(',', ': ')))
+        for d in self.resonance_data:
+            text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
+            text_vals = [self.roi[0][0], self.roi[0][1],
+                         self.roi[1][1], self.angle]
+            for k, v in d.items():
+                text_keys.append(k)
+                text_vals.append(v)
+            if first:
+                output.append(text_keys)
+                first = False
+            output.append(text_vals)
+        return output
 
     def get_resonance_data(self, disp=False):
         """ Getter method for returning resonance_data list of dictionaries to

@@ -9,8 +9,8 @@ from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
 from Functions import convert_CSV_to_Image
-from ROI import ROI
-# from ROImulti import ROImulti as ROI
+# from ROI import ROI
+from ROImulti import ROImulti as ROI
 
 
 config_filepath = './CK_configuration_multi.ini'
@@ -130,7 +130,6 @@ for i in range(1):
     print(f'{len(image_files)} files will now be processed')
     logging.info(f'{len(image_files)} files processed')
 
-    output_err = ''
     for idx, im_path in enumerate(image_files):
         print(f'Processing image {idx}')
 
@@ -154,16 +153,29 @@ for i in range(1):
             roi.set_initial_ROI(im)
             roi.create_ROI_data(im)
             roi.process_ROI()
-            r2 = np.mean(roi.get_resonance_data()[-1]['r2'])
-            if r2 < r2_threshold:
-                output_err = f'{output_err}\n{r2},{idx},{im_path}'
-    with open(join(save_path, f'{save_name}_BAD_R2.csv'), 'a') as f:
-        f.write(output_err)
 
+    # Filter and save resulting data to CSV file
     for idx, roi in enumerate(roi_array):
-        roi.save_data(save_path, f'{save_name}_ROI_{idx}')
+        output_raw = roi.get_save_data()
+        header = output_raw[0]
+        output_good = [header]
+        header = header.append('Image Path')
+        output_bad = [header]
+        for d in output_raw[1:]:
+            if np.mean(d[-1]) < r2_threshold:
+                d.append(im_path)
+                output_bad.append(d)
+            else:
+                output_good.append(d)
+        output_good_str = [str(o)[1:-1] for o in output_good]
+        output_bad_str = [str(o)[1:-1] for o in output_bad]
+        with open(join(save_path, f'{save_name}_ROI_{idx}.csv'), 'w') as f:
+            f.write('\n'.join(output_good_str))
+        with open(join(save_path, f'{save_name}_ROI_{idx}_BAD.csv'), 'w') as f:
+            f.write('\n'.join(output_bad_str))
         logging.info('...Data saved')
 
+    # Plot and save data as it is processed
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
     time_axis = [(y * image_interval) for y in range(len(filenames_old))]
     for roi in roi_array:
