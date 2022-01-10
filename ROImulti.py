@@ -30,10 +30,11 @@ class ROImulti:
         ax (axis handle):      Used to hold axis data for plotting
     """
 
-    def __init__(self, angle=None, roi=None, res=None):
+    def __init__(self, subROIs=1, angle=None, roi=None, res=None):
         logging.info(f'__init__({self}, angle={angle}, roi={roi}, res={res})')
         self.im = None
         self.first = True
+        self.subROIs = subROIs
         self.roi = roi
         self.angle = angle
         self.res = res
@@ -45,8 +46,6 @@ class ROImulti:
         self.resonance_data = []
         self.fig = None
         self.ax = None
-
-        self.subROIs = 5
 
     def fano(self, x, amp, assym, res, gamma, off):
         """ Fano function used for curve-fitting

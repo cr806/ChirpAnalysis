@@ -712,3 +712,18 @@
 2022-01-10 13:07:21,148 : INFO : Loading data took: -0.0004923s
 2022-01-10 13:07:21,243 : INFO : Loading data took: 0.0004245s
 2022-01-10 13:07:21,324 : INFO : ...Data saved
+2022-01-10 13:18:28,281 : INFO : Live watch not requested
+2022-01-10 13:18:28,281 : INFO : No image interval provided
+2022-01-10 13:18:28,281 : INFO : No ROI coordinates provided
+2022-01-10 13:18:28,281 : INFO : No resonance/gamma data provided
+2022-01-10 13:18:28,282 : INFO : __init__(<ROImulti.ROImulti object at 0x11b5dd1e0>, angle=None, roi=None, res=None)
+2022-01-10 13:18:28,282 : INFO : 5 files processed
+2022-01-10 13:18:28,305 : INFO : Loading data took: -0.0007079s
+2022-01-10 13:18:28,510 : INFO : Image rotate
+2022-01-10 13:18:29,693 : INFO : Image crop
+2022-01-10 13:18:33,394 : INFO : Image resonance/gamma
+2022-01-10 13:18:36,219 : INFO : Loading data took: -0.000174s
+2022-01-10 13:18:36,315 : INFO : Loading data took: -0.0001025s
+2022-01-10 13:18:36,415 : INFO : Loading data took: -0.0001862s
+2022-01-10 13:18:36,513 : INFO : Loading data took: -0.000232s
+2022-01-10 13:18:36,593 : INFO : ...Data saved

@@ -56,6 +56,7 @@ except KeyError:
 
 
 num_of_ROIs = 1
+num_of_subROIs = 1
 r2_threshold = 0.8
 image_interval = 1.0
 angle = None
@@ -67,6 +68,11 @@ try:
     if num_of_ROIs is None:
         num_of_ROIs = 1
         logging.info('No ROI count provided')
+
+    num_of_subROIs = config['Image'].getint('num_of_subROIs')
+    if num_of_subROIs is None:
+        num_of_subROIs = 1
+        logging.info('No subROI count provided')
 
     r2_threshold = config['Image'].getfloat('r2_threshold')
     if r2_threshold is None:
@@ -111,7 +117,10 @@ for roi in range(num_of_ROIs):
     except (IndexError, TypeError):
         roi_range = None
         r_g = None
-    roi_array.append(ROI(angle=angle, roi=roi_range, res=r_g))
+    roi_array.append(ROI(subROIs=num_of_subROIs,
+                         angle=angle,
+                         roi=roi_range,
+                         res=r_g))
 
 # filenames_old = listdir(image_folder)
 # print(f'Original filenames -> \n {sorted(filenames_old)}')
