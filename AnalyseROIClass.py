@@ -1,10 +1,10 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import time
-import timeit
-import configparser
 import json
+import timeit
 import logging
+import configparser
+import numpy as np
+import matplotlib.pyplot as plt
 from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
@@ -125,7 +125,8 @@ for roi in range(num_of_ROIs):
 # filenames_old = listdir(image_folder)
 # print(f'Original filenames -> \n {sorted(filenames_old)}')
 filenames_old = []
-for i in range(1):
+# for i in range(1):
+while True:
     to_be_processed = [item for item in listdir(image_folder)
                        if item not in filenames_old]
     filenames_old = listdir(image_folder)
@@ -167,19 +168,23 @@ for i in range(1):
     for idx, roi in enumerate(roi_array):
         output_raw = roi.get_save_data()
         header = output_raw[0]
+        header.append('Image Path')
         output_good = [header]
-        header = header.append('Image Path')
         output_bad = [header]
-        for d in output_raw[1:]:
-            if np.mean(d[-1]) < r2_threshold:
-                d.append(im_path)
-                output_bad.append(d)
+
+        for i, row in enumerate(output_raw[1:]):
+            row.append(image_files[i])
+            # ~(tilde)num -> count from end starting at 0 (~ two's complement)
+            if np.mean(row[~num_of_subROIs:~0]) < r2_threshold:
+                output_bad.append(row)
             else:
-                output_good.append(d)
-        output_good_str = [str(o)[1:-1] for o in output_good]
-        output_bad_str = [str(o)[1:-1] for o in output_bad]
+                output_good.append(row)
+
+        output_good_str = [str(o)[1:-1].replace("'", "") for o in output_good]
         with open(join(save_path, f'{save_name}_ROI_{idx}.csv'), 'w') as f:
             f.write('\n'.join(output_good_str))
+
+        output_bad_str = [str(o)[1:-1].replace("'", "") for o in output_bad]
         with open(join(save_path, f'{save_name}_ROI_{idx}_BAD.csv'), 'w') as f:
             f.write('\n'.join(output_bad_str))
         logging.info('...Data saved')

@@ -305,17 +305,35 @@ class ROImulti:
         first = True
         output = []
 
+        # for d in self.resonance_data:
+        #     text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
+        #     text_vals = [self.roi[0][0], self.roi[0][1],
+        #                  self.roi[1][1], self.angle]
+        #     for k, v in d.items():
+        #         text_keys.append(k)
+        #         text_vals.append(v)
+        #     if first:
+        #         output.append(text_keys)
+        #         first = False
+        #     output.append(text_vals)
+
         for d in self.resonance_data:
             text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
-            text_vals = [self.roi[0][0], self.roi[0][1],
+            text_vals = [self.roi[0][0], self.roi[0][1], self.roi[1][0],
                          self.roi[1][1], self.angle]
             for k, v in d.items():
-                text_keys.append(k)
-                text_vals.append(v)
+                if isinstance(v, list):
+                    for idx, data in enumerate(v):
+                        text_keys.append(f'{k}_{idx}')
+                        text_vals.append(data)
+                else:
+                    text_keys.append(f'{k}')
+                    text_vals.append(v)
             if first:
                 output.append(text_keys)
                 first = False
             output.append(text_vals)
+
         return output
 
     def get_resonance_data(self, disp=False):

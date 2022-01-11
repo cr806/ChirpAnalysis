@@ -727,3 +727,652 @@
 2022-01-10 13:18:36,415 : INFO : Loading data took: -0.0001862s
 2022-01-10 13:18:36,513 : INFO : Loading data took: -0.000232s
 2022-01-10 13:18:36,593 : INFO : ...Data saved
+2022-01-10 13:21:25,062 : INFO : Live watch not requested
+2022-01-10 13:21:25,062 : INFO : No image interval provided
+2022-01-10 13:21:25,062 : INFO : No ROI coordinates provided
+2022-01-10 13:21:25,062 : INFO : No resonance/gamma data provided
+2022-01-10 13:21:25,062 : INFO : __init__(<ROImulti.ROImulti object at 0x10edf5150>, angle=None, roi=None, res=None)
+2022-01-10 13:21:25,063 : INFO : 5 files processed
+2022-01-10 13:21:25,086 : INFO : Loading data took: -0.00243s
+2022-01-10 13:21:25,291 : INFO : Image rotate
+2022-01-10 13:21:27,960 : INFO : Image crop
+2022-01-10 13:21:31,606 : INFO : Image resonance/gamma
+2022-01-10 13:21:34,835 : INFO : Loading data took: 5.553e-06s
+2022-01-10 13:21:34,930 : INFO : Loading data took: -0.0008173s
+2022-01-10 13:21:35,022 : INFO : Loading data took: -0.0002872s
+2022-01-10 13:21:35,114 : INFO : Loading data took: -0.001376s
+2022-01-10 13:22:23,954 : INFO : Live watch not requested
+2022-01-10 13:22:23,954 : INFO : No image interval provided
+2022-01-10 13:22:23,954 : INFO : No ROI coordinates provided
+2022-01-10 13:22:23,954 : INFO : No resonance/gamma data provided
+2022-01-10 13:22:23,954 : INFO : __init__(<ROImulti.ROImulti object at 0x1200ed180>, angle=None, roi=None, res=None)
+2022-01-10 13:22:23,955 : INFO : 5 files processed
+2022-01-10 13:22:23,980 : INFO : Loading data took: -0.0009723s
+2022-01-10 13:22:24,188 : INFO : Image rotate
+2022-01-10 13:22:24,883 : INFO : Image crop
+2022-01-10 13:22:28,719 : INFO : Image resonance/gamma
+2022-01-10 13:22:31,545 : INFO : Loading data took: 1.511e-05s
+2022-01-10 13:22:31,641 : INFO : Loading data took: -0.000682s
+2022-01-10 13:22:31,737 : INFO : Loading data took: -0.0005305s
+2022-01-10 13:22:31,830 : INFO : Loading data took: 1.827e-06s
+2022-01-10 13:22:31,907 : INFO : ...Data saved
+2022-01-10 13:23:31,828 : INFO : Live watch not requested
+2022-01-10 13:23:31,828 : INFO : No image interval provided
+2022-01-10 13:23:31,828 : INFO : No ROI coordinates provided
+2022-01-10 13:23:31,828 : INFO : No resonance/gamma data provided
+2022-01-10 13:23:31,828 : INFO : __init__(<ROImulti.ROImulti object at 0x11d7691e0>, angle=None, roi=None, res=None)
+2022-01-10 13:23:31,828 : INFO : 5 files processed
+2022-01-10 13:23:31,851 : INFO : Loading data took: -0.001328s
+2022-01-10 13:23:32,059 : INFO : Image rotate
+2022-01-10 13:23:32,822 : INFO : Image crop
+2022-01-10 13:23:37,165 : INFO : Image resonance/gamma
+2022-01-10 13:23:40,277 : INFO : Loading data took: 1.301e-05s
+2022-01-10 13:23:40,373 : INFO : Loading data took: -0.0005727s
+2022-01-10 13:23:40,467 : INFO : Loading data took: -0.001095s
+2022-01-10 13:23:40,561 : INFO : Loading data took: 0.0001754s
+2022-01-10 13:23:40,638 : INFO : ...Data saved
+2022-01-10 13:24:12,724 : INFO : Live watch not requested
+2022-01-10 13:24:12,724 : INFO : No image interval provided
+2022-01-10 13:24:12,725 : INFO : No ROI coordinates provided
+2022-01-10 13:24:12,725 : INFO : No resonance/gamma data provided
+2022-01-10 13:24:12,725 : INFO : __init__(<ROImulti.ROImulti object at 0x1111d11b0>, angle=None, roi=None, res=None)
+2022-01-10 13:24:12,725 : INFO : 5 files processed
+2022-01-10 13:24:12,748 : INFO : Loading data took: -0.0007666s
+2022-01-10 13:24:12,953 : INFO : Image rotate
+2022-01-10 13:24:13,579 : INFO : Image crop
+2022-01-10 13:24:16,810 : INFO : Image resonance/gamma
+2022-01-10 13:24:20,273 : INFO : Loading data took: -0.0004883s
+2022-01-10 13:24:20,370 : INFO : Loading data took: -0.0009973s
+2022-01-10 13:24:20,463 : INFO : Loading data took: 7.374e-05s
+2022-01-10 13:24:20,555 : INFO : Loading data took: -0.0003063s
+2022-01-10 13:24:20,641 : INFO : ...Data saved
+2022-01-10 15:36:39,157 : INFO : Live watch not requested
+2022-01-10 15:36:39,157 : INFO : No image interval provided
+2022-01-10 15:36:39,157 : INFO : No ROI coordinates provided
+2022-01-10 15:36:39,157 : INFO : No resonance/gamma data provided
+2022-01-10 15:36:39,157 : INFO : __init__(<ROImulti.ROImulti object at 0x117cf1180>, angle=None, roi=None, res=None)
+2022-01-10 15:36:39,157 : INFO : 5 files processed
+2022-01-10 15:36:39,183 : INFO : Loading data took: 0.001534s
+2022-01-10 15:36:39,439 : INFO : Image rotate
+2022-01-10 15:36:40,245 : INFO : Image crop
+2022-01-10 15:36:43,898 : INFO : Image resonance/gamma
+2022-01-10 15:36:46,877 : INFO : Loading data took: 0.000165s
+2022-01-10 15:36:46,972 : INFO : Loading data took: 2.317e-05s
+2022-01-10 15:36:47,066 : INFO : Loading data took: 0.001674s
+2022-01-10 15:36:47,158 : INFO : Loading data took: 0.0007473s
+2022-01-10 15:37:14,355 : INFO : Live watch not requested
+2022-01-10 15:37:14,355 : INFO : No image interval provided
+2022-01-10 15:37:14,355 : INFO : No ROI coordinates provided
+2022-01-10 15:37:14,355 : INFO : No resonance/gamma data provided
+2022-01-10 15:37:14,355 : INFO : __init__(<ROImulti.ROImulti object at 0x116551180>, angle=None, roi=None, res=None)
+2022-01-10 15:37:14,355 : INFO : 5 files processed
+2022-01-10 15:37:14,381 : INFO : Loading data took: -0.003403s
+2022-01-10 15:37:14,584 : INFO : Image rotate
+2022-01-10 15:37:15,157 : INFO : Image crop
+2022-01-10 15:37:18,650 : INFO : Image resonance/gamma
+2022-01-10 15:37:21,625 : INFO : Loading data took: -9.82e-05s
+2022-01-10 15:37:21,722 : INFO : Loading data took: -0.0002662s
+2022-01-10 15:37:21,822 : INFO : Loading data took: -2.844e-05s
+2022-01-10 15:37:21,921 : INFO : Loading data took: -0.0002804s
+2022-01-10 15:37:22,011 : INFO : ...Data saved
+2022-01-10 15:40:04,623 : INFO : Live watch not requested
+2022-01-10 15:40:04,623 : INFO : No image interval provided
+2022-01-10 15:40:04,623 : INFO : No ROI coordinates provided
+2022-01-10 15:40:04,623 : INFO : No resonance/gamma data provided
+2022-01-10 15:40:04,623 : INFO : __init__(<ROImulti.ROImulti object at 0x118295150>, angle=None, roi=None, res=None)
+2022-01-10 15:40:04,623 : INFO : 5 files processed
+2022-01-10 15:40:04,648 : INFO : Loading data took: 0.001336s
+2022-01-10 15:40:04,854 : INFO : Image rotate
+2022-01-10 15:40:05,882 : INFO : Image crop
+2022-01-10 15:40:08,647 : INFO : Image resonance/gamma
+2022-01-10 15:40:11,209 : INFO : Loading data took: -0.0003429s
+2022-01-10 15:40:11,308 : INFO : Loading data took: -0.0002178s
+2022-01-10 15:40:11,407 : INFO : Loading data took: -0.0001484s
+2022-01-10 15:40:11,504 : INFO : Loading data took: -0.001208s
+2022-01-10 15:40:11,580 : INFO : ...Data saved
+2022-01-10 15:52:27,222 : INFO : Live watch not requested
+2022-01-10 15:52:27,223 : INFO : No image interval provided
+2022-01-10 15:52:27,223 : INFO : No ROI coordinates provided
+2022-01-10 15:52:27,223 : INFO : No resonance/gamma data provided
+2022-01-10 15:52:27,223 : INFO : __init__(<ROImulti.ROImulti object at 0x11d58d150>, angle=None, roi=None, res=None)
+2022-01-10 15:52:27,223 : INFO : __init__(<ROImulti.ROImulti object at 0x11d58d210>, angle=None, roi=None, res=None)
+2022-01-10 15:52:27,223 : INFO : 5 files processed
+2022-01-10 15:52:27,248 : INFO : Loading data took: 0.0004395s
+2022-01-10 15:52:27,452 : INFO : Image rotate
+2022-01-10 15:52:30,506 : INFO : Image crop
+2022-01-10 15:52:35,433 : INFO : Image resonance/gamma
+2022-01-10 15:52:39,842 : INFO : Image rotate
+2022-01-10 15:52:46,581 : INFO : Image crop
+2022-01-10 15:52:49,602 : INFO : Image resonance/gamma
+2022-01-10 15:52:52,212 : INFO : Loading data took: 0.0002244s
+2022-01-10 15:52:52,322 : INFO : Loading data took: 0.0009978s
+2022-01-10 15:52:52,432 : INFO : Loading data took: 0.001085s
+2022-01-10 15:52:52,540 : INFO : Loading data took: 0.0005729s
+2022-01-10 15:52:52,631 : INFO : ...Data saved
+2022-01-10 15:52:52,632 : INFO : ...Data saved
+2022-01-11 10:11:43,206 : INFO : Live watch not requested
+2022-01-11 10:11:43,206 : INFO : No image interval provided
+2022-01-11 10:11:43,206 : INFO : No ROI coordinates provided
+2022-01-11 10:11:43,206 : INFO : No resonance/gamma data provided
+2022-01-11 10:11:43,206 : INFO : __init__(<ROImulti.ROImulti object at 0x11f208040>, angle=None, roi=None, res=None)
+2022-01-11 10:11:43,206 : INFO : __init__(<ROImulti.ROImulti object at 0x11f208070>, angle=None, roi=None, res=None)
+2022-01-11 10:11:43,206 : INFO : 5 files processed
+2022-01-11 10:11:43,233 : INFO : Loading data took: -0.0001562s
+2022-01-11 10:11:43,464 : INFO : Image rotate
+2022-01-11 10:11:44,672 : INFO : Image crop
+2022-01-11 10:11:48,979 : INFO : Image resonance/gamma
+2022-01-11 10:11:51,792 : INFO : Image rotate
+2022-01-11 10:11:53,596 : INFO : Image crop
+2022-01-11 10:11:57,674 : INFO : Image resonance/gamma
+2022-01-11 10:12:00,670 : INFO : Loading data took: 8.129e-05s
+2022-01-11 10:12:00,785 : INFO : Loading data took: -0.0003409s
+2022-01-11 10:12:00,897 : INFO : Loading data took: 0.000158s
+2022-01-11 10:12:01,010 : INFO : Loading data took: -0.0002335s
+2022-01-11 10:14:02,612 : INFO : Live watch not requested
+2022-01-11 10:14:02,612 : INFO : No image interval provided
+2022-01-11 10:14:02,612 : INFO : No ROI coordinates provided
+2022-01-11 10:14:02,612 : INFO : No resonance/gamma data provided
+2022-01-11 10:14:02,612 : INFO : __init__(<ROImulti.ROImulti object at 0x11a7980a0>, angle=None, roi=None, res=None)
+2022-01-11 10:14:02,612 : INFO : __init__(<ROImulti.ROImulti object at 0x11a798190>, angle=None, roi=None, res=None)
+2022-01-11 10:14:02,612 : INFO : 5 files processed
+2022-01-11 10:14:02,640 : INFO : Loading data took: 2.542e-05s
+2022-01-11 10:14:02,845 : INFO : Image rotate
+2022-01-11 10:14:03,474 : INFO : Image crop
+2022-01-11 10:14:07,431 : INFO : Image resonance/gamma
+2022-01-11 10:14:10,333 : INFO : Image rotate
+2022-01-11 10:14:21,205 : INFO : Image crop
+2022-01-11 10:14:24,852 : INFO : Image resonance/gamma
+2022-01-11 10:14:29,053 : INFO : Loading data took: 0.0008272s
+2022-01-11 10:14:29,181 : INFO : Loading data took: -3.896e-05s
+2022-01-11 10:14:29,306 : INFO : Loading data took: 7.833e-06s
+2022-01-11 10:14:29,431 : INFO : Loading data took: -0.0007741s
+2022-01-11 10:15:46,820 : INFO : Live watch not requested
+2022-01-11 10:15:46,820 : INFO : No image interval provided
+2022-01-11 10:15:46,820 : INFO : No ROI coordinates provided
+2022-01-11 10:15:46,820 : INFO : No resonance/gamma data provided
+2022-01-11 10:15:46,820 : INFO : __init__(<ROImulti.ROImulti object at 0x11ffa8040>, angle=None, roi=None, res=None)
+2022-01-11 10:15:46,820 : INFO : __init__(<ROImulti.ROImulti object at 0x11ffa8070>, angle=None, roi=None, res=None)
+2022-01-11 10:15:46,820 : INFO : 5 files processed
+2022-01-11 10:15:46,845 : INFO : Loading data took: 7.106e-05s
+2022-01-11 10:15:47,054 : INFO : Image rotate
+2022-01-11 10:15:48,105 : INFO : Image crop
+2022-01-11 10:15:52,239 : INFO : Image resonance/gamma
+2022-01-11 10:15:55,322 : INFO : Image rotate
+2022-01-11 10:15:57,009 : INFO : Image crop
+2022-01-11 10:17:40,845 : INFO : Image resonance/gamma
+2022-01-11 10:17:45,010 : INFO : Loading data took: 8.159e-05s
+2022-01-11 10:17:45,127 : INFO : Loading data took: 3.946e-05s
+2022-01-11 10:17:45,244 : INFO : Loading data took: 0.0002524s
+2022-01-11 10:17:45,359 : INFO : Loading data took: -0.0006927s
+2022-01-11 10:19:38,386 : INFO : Live watch not requested
+2022-01-11 10:19:38,386 : INFO : No image interval provided
+2022-01-11 10:19:38,386 : INFO : No ROI coordinates provided
+2022-01-11 10:19:38,386 : INFO : No resonance/gamma data provided
+2022-01-11 10:19:38,386 : INFO : __init__(<ROImulti.ROImulti object at 0x121a5c0a0>, angle=None, roi=None, res=None)
+2022-01-11 10:19:38,386 : INFO : __init__(<ROImulti.ROImulti object at 0x121a5c190>, angle=None, roi=None, res=None)
+2022-01-11 10:19:38,386 : INFO : 5 files processed
+2022-01-11 10:19:38,412 : INFO : Loading data took: 0.0007647s
+2022-01-11 10:19:38,621 : INFO : Image rotate
+2022-01-11 10:19:40,120 : INFO : Image crop
+2022-01-11 10:19:44,868 : INFO : Image resonance/gamma
+2022-01-11 10:19:48,218 : INFO : Image rotate
+2022-01-11 10:19:50,025 : INFO : Image crop
+2022-01-11 10:19:53,503 : INFO : Image resonance/gamma
+2022-01-11 10:19:56,460 : INFO : Loading data took: 2.371e-06s
+2022-01-11 10:19:56,578 : INFO : Loading data took: -0.0002438s
+2022-01-11 10:19:56,694 : INFO : Loading data took: -0.0008251s
+2022-01-11 10:19:56,809 : INFO : Loading data took: -0.001002s
+2022-01-11 10:19:56,914 : INFO : ...Data saved
+2022-01-11 10:19:56,919 : INFO : ...Data saved
+2022-01-11 10:20:52,485 : INFO : Live watch not requested
+2022-01-11 10:20:52,485 : INFO : No image interval provided
+2022-01-11 10:20:52,485 : INFO : No ROI coordinates provided
+2022-01-11 10:20:52,485 : INFO : No resonance/gamma data provided
+2022-01-11 10:20:52,485 : INFO : __init__(<ROImulti.ROImulti object at 0x114a15150>, angle=None, roi=None, res=None)
+2022-01-11 10:20:52,486 : INFO : __init__(<ROImulti.ROImulti object at 0x114a14190>, angle=None, roi=None, res=None)
+2022-01-11 10:20:52,486 : INFO : 5 files processed
+2022-01-11 10:20:52,512 : INFO : Loading data took: -0.001085s
+2022-01-11 10:20:52,718 : INFO : Image rotate
+2022-01-11 10:20:55,118 : INFO : Image crop
+2022-01-11 10:20:58,819 : INFO : Image resonance/gamma
+2022-01-11 10:21:01,545 : INFO : Image rotate
+2022-01-11 10:21:02,862 : INFO : Image crop
+2022-01-11 10:21:06,345 : INFO : Image resonance/gamma
+2022-01-11 10:21:09,442 : INFO : Loading data took: -0.0006762s
+2022-01-11 10:21:09,604 : INFO : Loading data took: -9.722e-05s
+2022-01-11 10:21:09,762 : INFO : Loading data took: -0.00085s
+2022-01-11 10:21:09,926 : INFO : Loading data took: -0.001118s
+2022-01-11 10:21:10,072 : INFO : ...Data saved
+2022-01-11 10:21:10,079 : INFO : ...Data saved
+2022-01-11 10:30:46,973 : INFO : Live watch not requested
+2022-01-11 10:30:46,973 : INFO : No image interval provided
+2022-01-11 10:30:46,974 : INFO : No ROI coordinates provided
+2022-01-11 10:30:46,974 : INFO : No resonance/gamma data provided
+2022-01-11 10:30:46,974 : INFO : __init__(<ROImulti.ROImulti object at 0x118dcc0a0>, angle=None, roi=None, res=None)
+2022-01-11 10:30:46,974 : INFO : __init__(<ROImulti.ROImulti object at 0x118dcc190>, angle=None, roi=None, res=None)
+2022-01-11 10:30:46,974 : INFO : 5 files processed
+2022-01-11 10:30:46,999 : INFO : Loading data took: 0.000435s
+2022-01-11 10:30:47,212 : INFO : Image rotate
+2022-01-11 10:30:48,631 : INFO : Image crop
+2022-01-11 10:30:52,592 : INFO : Image resonance/gamma
+2022-01-11 10:30:56,532 : INFO : Image rotate
+2022-01-11 10:30:57,748 : INFO : Image crop
+2022-01-11 10:31:01,765 : INFO : Image resonance/gamma
+2022-01-11 10:31:05,132 : INFO : Loading data took: -0.0002776s
+2022-01-11 10:31:05,250 : INFO : Loading data took: -0.0008957s
+2022-01-11 10:31:05,363 : INFO : Loading data took: -0.0004026s
+2022-01-11 10:31:05,478 : INFO : Loading data took: -0.001061s
+2022-01-11 10:31:05,578 : INFO : ...Data saved
+2022-01-11 10:31:05,579 : INFO : ...Data saved
+2022-01-11 10:32:13,688 : INFO : Live watch not requested
+2022-01-11 10:32:13,688 : INFO : No image interval provided
+2022-01-11 10:32:13,688 : INFO : No ROI coordinates provided
+2022-01-11 10:32:13,688 : INFO : No resonance/gamma data provided
+2022-01-11 10:32:13,688 : INFO : __init__(<ROImulti.ROImulti object at 0x11ee0c0a0>, angle=None, roi=None, res=None)
+2022-01-11 10:32:13,688 : INFO : 5 files processed
+2022-01-11 10:32:13,713 : INFO : Loading data took: -0.000124s
+2022-01-11 10:32:13,929 : INFO : Image rotate
+2022-01-11 10:32:15,485 : INFO : Image crop
+2022-01-11 10:32:19,620 : INFO : Image resonance/gamma
+2022-01-11 10:32:22,235 : INFO : Loading data took: -0.0001498s
+2022-01-11 10:32:22,332 : INFO : Loading data took: -0.001225s
+2022-01-11 10:32:22,426 : INFO : Loading data took: -2.52e-05s
+2022-01-11 10:32:22,521 : INFO : Loading data took: -0.0006173s
+2022-01-11 10:32:22,598 : INFO : ...Data saved
+2022-01-11 10:35:20,984 : INFO : Live watch not requested
+2022-01-11 10:35:20,984 : INFO : No image interval provided
+2022-01-11 10:35:20,984 : INFO : No ROI coordinates provided
+2022-01-11 10:35:20,984 : INFO : No resonance/gamma data provided
+2022-01-11 10:35:20,984 : INFO : __init__(<ROImulti.ROImulti object at 0x11863f0d0>, angle=None, roi=None, res=None)
+2022-01-11 10:35:20,984 : INFO : 5 files processed
+2022-01-11 10:35:21,007 : INFO : Loading data took: -0.0003951s
+2022-01-11 10:35:21,215 : INFO : Image rotate
+2022-01-11 10:35:22,395 : INFO : Image crop
+2022-01-11 10:35:26,164 : INFO : Image resonance/gamma
+2022-01-11 10:35:28,963 : INFO : Loading data took: -0.0003799s
+2022-01-11 10:35:29,062 : INFO : Loading data took: -0.001459s
+2022-01-11 10:35:29,160 : INFO : Loading data took: -0.00128s
+2022-01-11 10:35:29,256 : INFO : Loading data took: -6.443e-05s
+2022-01-11 10:35:29,335 : INFO : ...Data saved
+2022-01-11 10:36:00,269 : INFO : Live watch not requested
+2022-01-11 10:36:00,270 : INFO : No image interval provided
+2022-01-11 10:36:00,270 : INFO : No ROI coordinates provided
+2022-01-11 10:36:00,270 : INFO : No resonance/gamma data provided
+2022-01-11 10:36:00,270 : INFO : __init__(<ROImulti.ROImulti object at 0x11d9df0d0>, angle=None, roi=None, res=None)
+2022-01-11 10:36:00,270 : INFO : 5 files processed
+2022-01-11 10:36:00,294 : INFO : Loading data took: -0.0009741s
+2022-01-11 10:36:00,500 : INFO : Image rotate
+2022-01-11 10:36:01,819 : INFO : Image crop
+2022-01-11 10:36:05,552 : INFO : Image resonance/gamma
+2022-01-11 10:36:09,192 : INFO : Loading data took: -8.248e-05s
+2022-01-11 10:36:09,288 : INFO : Loading data took: -0.0006124s
+2022-01-11 10:36:09,383 : INFO : Loading data took: -0.001182s
+2022-01-11 10:36:09,480 : INFO : Loading data took: -0.0003578s
+2022-01-11 10:36:09,562 : INFO : ...Data saved
+2022-01-11 10:36:39,078 : INFO : Live watch not requested
+2022-01-11 10:36:39,078 : INFO : No image interval provided
+2022-01-11 10:36:39,078 : INFO : No ROI coordinates provided
+2022-01-11 10:36:39,078 : INFO : No resonance/gamma data provided
+2022-01-11 10:36:39,078 : INFO : __init__(<ROImulti.ROImulti object at 0x116573010>, angle=None, roi=None, res=None)
+2022-01-11 10:36:39,078 : INFO : 5 files processed
+2022-01-11 10:36:39,105 : INFO : Loading data took: -0.003963s
+2022-01-11 10:36:39,319 : INFO : Image rotate
+2022-01-11 10:36:41,104 : INFO : Image crop
+2022-01-11 10:36:44,280 : INFO : Image resonance/gamma
+2022-01-11 10:36:47,391 : INFO : Loading data took: -0.000337s
+2022-01-11 10:36:47,489 : INFO : Loading data took: -0.0004524s
+2022-01-11 10:36:47,587 : INFO : Loading data took: -0.0004083s
+2022-01-11 10:36:47,685 : INFO : Loading data took: -0.0007968s
+2022-01-11 10:36:47,769 : INFO : ...Data saved
+2022-01-11 10:37:32,389 : INFO : Live watch not requested
+2022-01-11 10:37:32,389 : INFO : No image interval provided
+2022-01-11 10:37:32,389 : INFO : No ROI coordinates provided
+2022-01-11 10:37:32,389 : INFO : No resonance/gamma data provided
+2022-01-11 10:37:32,389 : INFO : __init__(<ROImulti.ROImulti object at 0x1210bf040>, angle=None, roi=None, res=None)
+2022-01-11 10:37:32,389 : INFO : 5 files processed
+2022-01-11 10:37:32,416 : INFO : Loading data took: -0.001958s
+2022-01-11 10:37:32,623 : INFO : Image rotate
+2022-01-11 10:37:34,230 : INFO : Image crop
+2022-01-11 10:37:37,166 : INFO : Image resonance/gamma
+2022-01-11 10:37:39,861 : INFO : Loading data took: -9.633e-05s
+2022-01-11 10:37:39,960 : INFO : Loading data took: 0.0005274s
+2022-01-11 10:37:40,057 : INFO : Loading data took: -0.0005153s
+2022-01-11 10:37:40,153 : INFO : Loading data took: -0.0003291s
+2022-01-11 10:37:40,236 : INFO : ...Data saved
+2022-01-11 10:38:48,112 : INFO : Live watch not requested
+2022-01-11 10:38:48,112 : INFO : No image interval provided
+2022-01-11 10:38:48,112 : INFO : No ROI coordinates provided
+2022-01-11 10:38:48,112 : INFO : No resonance/gamma data provided
+2022-01-11 10:38:48,112 : INFO : __init__(<ROImulti.ROImulti object at 0x1183c3070>, angle=None, roi=None, res=None)
+2022-01-11 10:38:48,112 : INFO : 5 files processed
+2022-01-11 10:38:48,137 : INFO : Loading data took: -0.0004612s
+2022-01-11 10:38:48,344 : INFO : Image rotate
+2022-01-11 10:38:50,720 : INFO : Image crop
+2022-01-11 10:38:55,664 : INFO : Image resonance/gamma
+2022-01-11 10:38:58,353 : INFO : Loading data took: 0.0001965s
+2022-01-11 10:38:58,451 : INFO : Loading data took: -0.0008344s
+2022-01-11 10:38:58,551 : INFO : Loading data took: -0.0001795s
+2022-01-11 10:38:58,655 : INFO : Loading data took: 8.834e-05s
+2022-01-11 10:38:58,740 : INFO : ...Data saved
+2022-01-11 10:41:09,612 : INFO : Live watch not requested
+2022-01-11 10:41:09,612 : INFO : No image interval provided
+2022-01-11 10:41:09,612 : INFO : No ROI coordinates provided
+2022-01-11 10:41:09,612 : INFO : No resonance/gamma data provided
+2022-01-11 10:41:09,612 : INFO : __init__(<ROImulti.ROImulti object at 0x1225870d0>, angle=0.0, roi=None, res=None)
+2022-01-11 10:41:09,613 : INFO : 5 files processed
+2022-01-11 10:41:09,636 : INFO : Loading data took: -0.001041s
+2022-01-11 10:41:09,841 : INFO : Image crop
+2022-01-11 10:41:14,796 : INFO : Image resonance/gamma
+2022-01-11 10:41:17,770 : INFO : Loading data took: -0.0004324s
+2022-01-11 10:41:17,865 : INFO : Loading data took: -0.0007504s
+2022-01-11 10:41:17,958 : INFO : Loading data took: -0.0005162s
+2022-01-11 10:41:18,052 : INFO : Loading data took: -0.0001647s
+2022-01-11 10:41:18,129 : INFO : ...Data saved
+2022-01-11 10:42:32,408 : INFO : Live watch not requested
+2022-01-11 10:42:32,408 : INFO : No image interval provided
+2022-01-11 10:42:32,408 : INFO : No ROI coordinates provided
+2022-01-11 10:42:32,408 : INFO : No resonance/gamma data provided
+2022-01-11 10:42:32,408 : INFO : __init__(<ROImulti.ROImulti object at 0x11cfc7100>, angle=0.0, roi=None, res=None)
+2022-01-11 10:42:32,409 : INFO : 5 files processed
+2022-01-11 10:42:32,434 : INFO : Loading data took: -0.002535s
+2022-01-11 10:42:32,647 : INFO : Image crop
+2022-01-11 10:42:37,809 : INFO : Image resonance/gamma
+2022-01-11 10:42:40,777 : INFO : Loading data took: -0.0001977s
+2022-01-11 10:42:40,872 : INFO : Loading data took: -0.0002331s
+2022-01-11 10:42:40,966 : INFO : Loading data took: -0.000275s
+2022-01-11 10:42:41,059 : INFO : Loading data took: -0.0007513s
+2022-01-11 10:42:41,137 : INFO : ...Data saved
+2022-01-11 10:43:52,430 : INFO : Live watch not requested
+2022-01-11 10:43:52,430 : INFO : No image interval provided
+2022-01-11 10:43:52,430 : INFO : No ROI coordinates provided
+2022-01-11 10:43:52,430 : INFO : No resonance/gamma data provided
+2022-01-11 10:43:52,430 : INFO : __init__(<ROImulti.ROImulti object at 0x11d0f9150>, angle=0.0, roi=None, res=None)
+2022-01-11 10:43:52,430 : INFO : 5 files processed
+2022-01-11 10:43:52,456 : INFO : Loading data took: -0.0004484s
+2022-01-11 10:43:52,672 : INFO : Image crop
+2022-01-11 10:43:56,710 : INFO : Image resonance/gamma
+2022-01-11 10:43:59,633 : INFO : Loading data took: -0.0001751s
+2022-01-11 10:43:59,729 : INFO : Loading data took: -0.0005735s
+2022-01-11 10:43:59,824 : INFO : Loading data took: -0.0007535s
+2022-01-11 10:43:59,919 : INFO : Loading data took: -0.0003454s
+2022-01-11 10:43:59,998 : INFO : ...Data saved
+2022-01-11 10:45:15,551 : INFO : Live watch not requested
+2022-01-11 10:45:15,551 : INFO : No image interval provided
+2022-01-11 10:45:15,551 : INFO : No ROI coordinates provided
+2022-01-11 10:45:15,551 : INFO : No resonance/gamma data provided
+2022-01-11 10:45:15,551 : INFO : __init__(<ROImulti.ROImulti object at 0x1211c00a0>, angle=0.0, roi=None, res=None)
+2022-01-11 10:45:15,551 : INFO : 5 files processed
+2022-01-11 10:45:15,577 : INFO : Loading data took: 0.000591s
+2022-01-11 10:45:15,789 : INFO : Image crop
+2022-01-11 10:45:20,397 : INFO : Image resonance/gamma
+2022-01-11 10:45:23,189 : INFO : Loading data took: -0.000386s
+2022-01-11 10:45:23,284 : INFO : Loading data took: 8.023e-05s
+2022-01-11 10:45:23,379 : INFO : Loading data took: -0.0007652s
+2022-01-11 10:45:23,474 : INFO : Loading data took: -0.000384s
+2022-01-11 10:45:23,553 : INFO : ...Data saved
+2022-01-11 10:47:35,282 : INFO : Live watch not requested
+2022-01-11 10:47:35,282 : INFO : No image interval provided
+2022-01-11 10:47:35,282 : INFO : No resonance/gamma data provided
+2022-01-11 10:47:35,282 : INFO : __init__(<ROImulti.ROImulti object at 0x117fb40a0>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 10:47:35,283 : INFO : 5 files processed
+2022-01-11 10:47:35,307 : INFO : Loading data took: -0.001697s
+2022-01-11 10:47:35,499 : INFO : Image resonance/gamma
+2022-01-11 10:47:39,064 : INFO : Loading data took: -0.0001762s
+2022-01-11 10:47:39,159 : INFO : Loading data took: -0.0005059s
+2022-01-11 10:47:39,256 : INFO : Loading data took: -0.0005865s
+2022-01-11 10:47:39,351 : INFO : Loading data took: -3.407e-05s
+2022-01-11 10:47:39,433 : INFO : ...Data saved
+2022-01-11 10:48:33,832 : INFO : Live watch not requested
+2022-01-11 10:48:33,832 : INFO : No image interval provided
+2022-01-11 10:48:33,833 : INFO : No resonance/gamma data provided
+2022-01-11 10:48:33,833 : INFO : __init__(<ROImulti.ROImulti object at 0x1139140a0>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 10:48:33,833 : INFO : 5 files processed
+2022-01-11 10:48:33,856 : INFO : Loading data took: 0.0003461s
+2022-01-11 10:48:34,048 : INFO : Image resonance/gamma
+2022-01-11 10:48:36,997 : INFO : Loading data took: -2.429e-05s
+2022-01-11 10:48:37,097 : INFO : Loading data took: -4.035e-05s
+2022-01-11 10:48:37,194 : INFO : Loading data took: -0.001169s
+2022-01-11 10:48:37,290 : INFO : Loading data took: -4.904e-05s
+2022-01-11 10:48:37,370 : INFO : ...Data saved
+2022-01-11 10:56:03,811 : INFO : Live watch not requested
+2022-01-11 10:56:03,811 : INFO : No image interval provided
+2022-01-11 10:56:03,812 : INFO : No resonance/gamma data provided
+2022-01-11 10:56:03,812 : INFO : __init__(<ROImulti.ROImulti object at 0x121cd5150>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 10:56:03,812 : INFO : 5 files processed
+2022-01-11 10:56:03,838 : INFO : Loading data took: -0.001464s
+2022-01-11 10:56:04,034 : INFO : Image resonance/gamma
+2022-01-11 10:56:10,035 : INFO : Loading data took: -0.0006424s
+2022-01-11 10:56:10,134 : INFO : Loading data took: 3.179e-06s
+2022-01-11 10:56:10,234 : INFO : Loading data took: -0.0003638s
+2022-01-11 10:56:10,335 : INFO : Loading data took: -0.0001606s
+2022-01-11 10:56:10,420 : INFO : ...Data saved
+2022-01-11 10:58:20,359 : INFO : Live watch not requested
+2022-01-11 10:58:20,360 : INFO : No image interval provided
+2022-01-11 10:58:20,360 : INFO : No resonance/gamma data provided
+2022-01-11 10:58:20,360 : INFO : __init__(<ROImulti.ROImulti object at 0x11521d270>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 10:58:20,360 : INFO : 5 files processed
+2022-01-11 10:58:20,384 : INFO : Loading data took: -0.001518s
+2022-01-11 10:58:20,575 : INFO : Image resonance/gamma
+2022-01-11 10:58:27,629 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 10:58:27,630 : INFO : No crop data, returning full image
+2022-01-11 10:58:27,630 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 10:58:27,630 : INFO : No crop data, returning full image
+2022-01-11 10:58:27,715 : INFO : Loading data took: -0.0002878s
+2022-01-11 10:58:27,845 : INFO : Loading data took: -0.0007424s
+2022-01-11 10:58:27,976 : INFO : Loading data took: -0.0001264s
+2022-01-11 10:58:28,112 : INFO : Loading data took: -0.0001721s
+2022-01-11 10:58:28,228 : INFO : ...Data saved
+2022-01-11 10:59:29,393 : INFO : Live watch not requested
+2022-01-11 10:59:29,393 : INFO : No image interval provided
+2022-01-11 10:59:29,393 : INFO : No resonance/gamma data provided
+2022-01-11 10:59:29,393 : INFO : __init__(<ROImulti.ROImulti object at 0x122625150>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 10:59:29,393 : INFO : 5 files processed
+2022-01-11 10:59:29,416 : INFO : Loading data took: -0.001465s
+2022-01-11 10:59:29,606 : INFO : Image resonance/gamma
+2022-01-11 10:59:33,498 : INFO : Loading data took: -0.0001979s
+2022-01-11 10:59:33,595 : INFO : Loading data took: -0.0008438s
+2022-01-11 10:59:33,693 : INFO : Loading data took: -0.0008607s
+2022-01-11 10:59:33,787 : INFO : Loading data took: -0.0008469s
+2022-01-11 10:59:33,863 : INFO : ...Data saved
+2022-01-11 11:00:42,594 : INFO : Live watch not requested
+2022-01-11 11:00:42,594 : INFO : No image interval provided
+2022-01-11 11:00:42,594 : INFO : No resonance/gamma data provided
+2022-01-11 11:00:42,594 : INFO : __init__(<ROImulti.ROImulti object at 0x11aa6d270>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 11:00:42,595 : INFO : 5 files processed
+2022-01-11 11:00:42,619 : INFO : Loading data took: -0.002009s
+2022-01-11 11:00:42,808 : INFO : Image resonance/gamma
+2022-01-11 11:00:46,409 : INFO : Loading data took: -0.00021s
+2022-01-11 11:00:46,504 : INFO : Loading data took: -0.0002189s
+2022-01-11 11:00:46,600 : INFO : Loading data took: 8.98e-05s
+2022-01-11 11:00:46,696 : INFO : Loading data took: -0.001088s
+2022-01-11 11:00:46,777 : INFO : ...Data saved
+2022-01-11 11:01:40,505 : INFO : Live watch not requested
+2022-01-11 11:01:40,505 : INFO : No image interval provided
+2022-01-11 11:01:40,505 : INFO : No resonance/gamma data provided
+2022-01-11 11:01:40,505 : INFO : __init__(<ROImulti.ROImulti object at 0x1201dd270>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 11:01:40,505 : INFO : 5 files processed
+2022-01-11 11:01:40,528 : INFO : Loading data took: 0.0008911s
+2022-01-11 11:01:40,715 : INFO : Image resonance/gamma
+2022-01-11 11:01:43,931 : INFO : Loading data took: -0.000276s
+2022-01-11 11:01:44,026 : INFO : Loading data took: -0.0004033s
+2022-01-11 11:01:44,119 : INFO : Loading data took: -0.001011s
+2022-01-11 11:01:44,215 : INFO : Loading data took: -0.001063s
+2022-01-11 11:01:44,294 : INFO : ...Data saved
+2022-01-11 11:02:00,502 : INFO : Live watch not requested
+2022-01-11 11:02:00,502 : INFO : No image interval provided
+2022-01-11 11:02:00,502 : INFO : No resonance/gamma data provided
+2022-01-11 11:02:00,503 : INFO : __init__(<ROImulti.ROImulti object at 0x119f2d270>, angle=0.0, roi=[[1509, 102], [1792, 591]], res=None)
+2022-01-11 11:02:00,503 : INFO : 5 files processed
+2022-01-11 11:02:00,527 : INFO : Loading data took: -0.0007966s
+2022-01-11 11:02:00,718 : INFO : Image resonance/gamma
+2022-01-11 11:02:03,724 : INFO : Loading data took: 4.165e-05s
+2022-01-11 11:02:03,820 : INFO : Loading data took: -0.0001205s
+2022-01-11 11:02:03,917 : INFO : Loading data took: -0.0002619s
+2022-01-11 11:02:04,018 : INFO : Loading data took: -0.0004221s
+2022-01-11 11:02:04,098 : INFO : ...Data saved
+2022-01-11 11:04:30,451 : INFO : Live watch not requested
+2022-01-11 11:04:30,451 : INFO : No image interval provided
+2022-01-11 11:04:30,451 : INFO : No ROI coordinates provided
+2022-01-11 11:04:30,451 : INFO : No resonance/gamma data provided
+2022-01-11 11:04:30,451 : INFO : __init__(<ROImulti.ROImulti object at 0x117840040>, angle=0.0, roi=None, res=None)
+2022-01-11 11:04:30,452 : INFO : __init__(<ROImulti.ROImulti object at 0x117840700>, angle=0.0, roi=None, res=None)
+2022-01-11 11:04:30,452 : INFO : 5 files processed
+2022-01-11 11:04:30,479 : INFO : Loading data took: -0.004036s
+2022-01-11 11:04:30,687 : INFO : Image crop
+2022-01-11 11:04:35,789 : INFO : Image resonance/gamma
+2022-01-11 11:04:38,949 : INFO : Image crop
+2022-01-11 11:04:44,576 : INFO : Image resonance/gamma
+2022-01-11 11:04:48,355 : INFO : Loading data took: -5.15e-05s
+2022-01-11 11:04:48,459 : INFO : Loading data took: -0.000552s
+2022-01-11 11:04:48,560 : INFO : Loading data took: -0.0009604s
+2022-01-11 11:04:48,662 : INFO : Loading data took: -0.0005322s
+2022-01-11 11:04:48,745 : INFO : ...Data saved
+2022-01-11 11:04:48,745 : INFO : ...Data saved
+2022-01-11 11:48:57,295 : INFO : Live watch not requested
+2022-01-11 11:48:57,295 : INFO : No image interval provided
+2022-01-11 11:48:57,295 : INFO : No ROI coordinates provided
+2022-01-11 11:48:57,295 : INFO : No resonance/gamma data provided
+2022-01-11 11:48:57,295 : INFO : __init__(<ROImulti.ROImulti object at 0x1218070d0>, angle=0.0, roi=None, res=None)
+2022-01-11 11:48:57,295 : INFO : __init__(<ROImulti.ROImulti object at 0x121807280>, angle=0.0, roi=None, res=None)
+2022-01-11 11:48:57,295 : INFO : 5 files processed
+2022-01-11 11:48:57,318 : INFO : Loading data took: 9.794e-05s
+2022-01-11 11:48:57,531 : INFO : Image crop
+2022-01-11 11:48:58,386 : INFO : Returning (0,0) as first ROI coordinate
+2022-01-11 11:48:58,433 : INFO : Image resonance/gamma
+2022-01-11 11:49:02,014 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 11:49:02,014 : INFO : No crop data, returning full image
+2022-01-11 11:49:02,014 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 11:49:02,014 : INFO : No crop data, returning full image
+2022-01-11 11:49:02,026 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:02,028 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:02,029 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:02,102 : INFO : Image crop
+2022-01-11 11:49:04,702 : INFO : Returning (0,0) as first ROI coordinate
+2022-01-11 11:49:04,755 : INFO : Image resonance/gamma
+2022-01-11 11:49:05,333 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 11:49:05,333 : INFO : No crop data, returning full image
+2022-01-11 11:49:05,333 : INFO : No ROI coords, returning image data for res/gamma
+2022-01-11 11:49:05,333 : INFO : No crop data, returning full image
+2022-01-11 11:49:05,349 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,351 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,353 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,371 : INFO : Loading data took: -0.0009973s
+2022-01-11 11:49:05,440 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,441 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,443 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,453 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,455 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,456 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,474 : INFO : Loading data took: 6.928e-05s
+2022-01-11 11:49:05,541 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,543 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,544 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,555 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,556 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,558 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,575 : INFO : Loading data took: 1.144e-05s
+2022-01-11 11:49:05,643 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,645 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,646 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,657 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,658 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,659 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,677 : INFO : Loading data took: -4.179e-06s
+2022-01-11 11:49:05,747 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,748 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,750 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,760 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,762 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,763 : INFO : Curve fitting failed: `x0` is infeasible.
+2022-01-11 11:49:05,764 : INFO : ...Data saved
+2022-01-11 11:49:05,764 : INFO : ...Data saved
+2022-01-11 11:49:11,752 : INFO : Live watch not requested
+2022-01-11 11:49:11,752 : INFO : No image interval provided
+2022-01-11 11:49:11,752 : INFO : No ROI coordinates provided
+2022-01-11 11:49:11,752 : INFO : No resonance/gamma data provided
+2022-01-11 11:49:11,752 : INFO : __init__(<ROImulti.ROImulti object at 0x11d0070d0>, angle=0.0, roi=None, res=None)
+2022-01-11 11:49:11,752 : INFO : __init__(<ROImulti.ROImulti object at 0x11d007280>, angle=0.0, roi=None, res=None)
+2022-01-11 11:49:11,752 : INFO : 5 files processed
+2022-01-11 11:49:11,778 : INFO : Loading data took: -0.00266s
+2022-01-11 11:49:11,999 : INFO : Image crop
+2022-01-11 11:49:16,129 : INFO : Image resonance/gamma
+2022-01-11 11:49:18,949 : INFO : Image crop
+2022-01-11 11:49:23,098 : INFO : Image resonance/gamma
+2022-01-11 11:49:25,980 : INFO : Loading data took: 0.0001856s
+2022-01-11 11:49:26,085 : INFO : Loading data took: 2.171e-05s
+2022-01-11 11:49:26,186 : INFO : Loading data took: -2.799e-05s
+2022-01-11 11:49:26,286 : INFO : Loading data took: -0.0001138s
+2022-01-11 11:49:26,366 : INFO : ...Data saved
+2022-01-11 11:49:26,367 : INFO : ...Data saved
+2022-01-11 11:51:39,653 : INFO : Live watch not requested
+2022-01-11 11:51:39,653 : INFO : No image interval provided
+2022-01-11 11:51:39,653 : INFO : No ROI coordinates provided
+2022-01-11 11:51:39,653 : INFO : No resonance/gamma data provided
+2022-01-11 11:51:39,653 : INFO : __init__(<ROImulti.ROImulti object at 0x11e1b5150>, angle=0.0, roi=None, res=None)
+2022-01-11 11:51:39,653 : INFO : __init__(<ROImulti.ROImulti object at 0x11e1b4220>, angle=0.0, roi=None, res=None)
+2022-01-11 11:51:39,653 : INFO : 5 files processed
+2022-01-11 11:51:39,676 : INFO : Loading data took: -0.0002535s
+2022-01-11 11:51:39,883 : INFO : Image crop
+2022-01-11 11:51:45,300 : INFO : Image resonance/gamma
+2022-01-11 11:51:47,743 : INFO : Image crop
+2022-01-11 11:51:51,289 : INFO : Image resonance/gamma
+2022-01-11 11:51:54,428 : INFO : Loading data took: 0.0004426s
+2022-01-11 11:51:54,538 : INFO : Loading data took: -0.0003227s
+2022-01-11 11:51:54,652 : INFO : Loading data took: -0.0005025s
+2022-01-11 11:51:54,770 : INFO : Loading data took: -0.0006441s
+2022-01-11 11:51:54,873 : INFO : ...Data saved
+2022-01-11 11:51:54,874 : INFO : ...Data saved
+2022-01-11 14:54:58,506 : INFO : Live watch not requested
+2022-01-11 14:54:58,506 : INFO : No image interval provided
+2022-01-11 14:54:58,506 : INFO : No ROI coordinates provided
+2022-01-11 14:54:58,506 : INFO : No resonance/gamma data provided
+2022-01-11 14:54:58,506 : INFO : __init__(<ROImulti.ROImulti object at 0x115e746d0>, angle=0.0, roi=None, res=None)
+2022-01-11 14:54:58,506 : INFO : __init__(<ROImulti.ROImulti object at 0x115e74220>, angle=0.0, roi=None, res=None)
+2022-01-11 14:54:58,506 : INFO : 5 files processed
+2022-01-11 14:54:58,527 : INFO : Loading data took: -0.001053s
+2022-01-11 14:54:58,742 : INFO : Image crop
+2022-01-11 14:55:03,552 : INFO : Image resonance/gamma
+2022-01-11 14:55:07,282 : INFO : Image crop
+2022-01-11 14:55:12,544 : INFO : Image resonance/gamma
+2022-01-11 14:55:15,675 : INFO : Loading data took: 0.000173s
+2022-01-11 14:55:15,786 : INFO : Loading data took: -8.581e-05s
+2022-01-11 14:55:15,893 : INFO : Loading data took: -0.0004637s
+2022-01-11 14:55:16,000 : INFO : Loading data took: -0.0009304s
+2022-01-11 14:55:16,096 : INFO : ...Data saved
+2022-01-11 14:55:16,098 : INFO : ...Data saved
+2022-01-11 14:56:24,146 : INFO : Live watch not requested
+2022-01-11 14:56:24,146 : INFO : No image interval provided
+2022-01-11 14:56:24,146 : INFO : No ROI coordinates provided
+2022-01-11 14:56:24,146 : INFO : No resonance/gamma data provided
+2022-01-11 14:56:24,146 : INFO : __init__(<ROImulti.ROImulti object at 0x11c6d06d0>, angle=0.0, roi=None, res=None)
+2022-01-11 14:56:24,146 : INFO : __init__(<ROImulti.ROImulti object at 0x11c6d0220>, angle=0.0, roi=None, res=None)
+2022-01-11 14:56:24,146 : INFO : 5 files processed
+2022-01-11 14:56:24,172 : INFO : Loading data took: 0.0002267s
+2022-01-11 14:56:24,382 : INFO : Image crop
+2022-01-11 14:56:29,174 : INFO : Image resonance/gamma
+2022-01-11 14:56:31,722 : INFO : Image crop
+2022-01-11 14:56:35,498 : INFO : Image resonance/gamma
+2022-01-11 14:56:38,386 : INFO : Loading data took: 1.92e-05s
+2022-01-11 14:56:38,496 : INFO : Loading data took: -0.0002525s
+2022-01-11 14:56:38,603 : INFO : Loading data took: -0.0001006s
+2022-01-11 14:56:38,711 : INFO : Loading data took: -0.000749s
+2022-01-11 14:56:38,806 : INFO : ...Data saved
+2022-01-11 14:56:38,806 : INFO : ...Data saved
+2022-01-11 15:00:49,010 : INFO : Live watch not requested
+2022-01-11 15:00:49,010 : INFO : No image interval provided
+2022-01-11 15:00:49,010 : INFO : No ROI coordinates provided
+2022-01-11 15:00:49,010 : INFO : No resonance/gamma data provided
+2022-01-11 15:00:49,010 : INFO : __init__(<ROImulti.ROImulti object at 0x11ebb06d0>, angle=0.0, roi=None, res=None)
+2022-01-11 15:00:49,010 : INFO : __init__(<ROImulti.ROImulti object at 0x11ebb0220>, angle=0.0, roi=None, res=None)
+2022-01-11 15:00:49,010 : INFO : 5 files processed
+2022-01-11 15:00:49,032 : INFO : Loading data took: -0.0005191s
+2022-01-11 15:00:49,244 : INFO : Image crop
+2022-01-11 15:00:54,626 : INFO : Image resonance/gamma
+2022-01-11 15:00:58,042 : INFO : Image crop
+2022-01-11 15:01:02,917 : INFO : Image resonance/gamma
+2022-01-11 15:01:06,344 : INFO : Loading data took: 0.0004619s
+2022-01-11 15:01:06,500 : INFO : Loading data took: -0.0006579s
+2022-01-11 15:01:06,650 : INFO : Loading data took: -0.0005662s
+2022-01-11 15:01:06,800 : INFO : Loading data took: -0.0001086s
+2022-01-11 15:01:06,934 : INFO : ...Data saved
+2022-01-11 15:01:06,935 : INFO : ...Data saved

@@ -29,3 +29,25 @@ def fano(x, amp, assym, res, gamma, off):
     num = ((assym * gamma) + (x - res)) * ((assym * gamma) + (x - res))
     den = (gamma * gamma) + ((x - res)*(x - res))
     return (amp * (num / den)) + off
+
+
+def fano_array(xdata, amp, assym, res, gamma, off):
+    """ Fano function used for curve-fitting
+
+        Attributes:
+        x (list) :     Independant data values (i.e. x-values)
+        amp (float):   Amplitude
+        assym (float): Assymetry
+        res (float):   Resonance
+        gamma (float): Gamma
+        off (float):   Offset (i.e. function bias away from zero)
+
+        Returns:
+        list: Dependant data values (i.e. y-values)
+    """
+    ydata = []
+    for x in xdata:
+        num = ((assym * gamma) + (x - res)) * ((assym * gamma) + (x - res))
+        den = (gamma * gamma) + ((x - res)*(x - res))
+        ydata.append((amp * (num / den)) + off)
+    return ydata
