@@ -9,8 +9,8 @@ from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
 from Functions import convert_CSV_to_Image
-# from ROI import ROI
-from ROImulti import ROImulti as ROI
+from ROI import ROI
+# from ROImulti import ROImulti as ROI
 
 
 config_filepath = './CK_configuration_multi.ini'
@@ -39,13 +39,13 @@ try:
     image_align = config['Data']['image_align']
     save_figure_filename = config['Data']['save_figure_filename']
 
-    sleep_time = 0
+    sleep_time = 0.33
 
     if config['Data'].getboolean('live_watch'):
         try:
             sleep_time = config['Loop'].getfloat('sleep_time')
         except KeyError:
-            print("No sleep time provided, it is now set to 0 minutes")
+            print("No sleep time provided, it is now set to 2 seconds")
             logging.info('No sleep time provided')
     else:
         logging.info('Live watch not requested')
@@ -134,75 +134,77 @@ while True:
     image_files = [join(image_folder, f) for f in sorted(to_be_processed)
                    if f[-3:] == image_type]
 
-    # print(to_be_processed)
-    # print(image_files)
-    # image_files = image_files[:3]
-    print(f'{len(image_files)} files will now be processed')
-    logging.info(f'{len(image_files)} files processed')
+    if image_files:  # Check if there are images ready to be processed
+        print(f'{len(image_files)} files will now be processed')
+        logging.info(f'{len(image_files)} files processed')
 
-    for idx, im_path in enumerate(image_files):
-        print(f'Processing image {idx}')
+        for idx, im_path in enumerate(image_files):
+            print(f'Processing image {idx}')
 
-        start = timeit.timeit()
-        if im_path[-3:] == 'png':
-            im = Image.open(im_path)
-            logging.debug('Images found to PNG format')
-        elif im_path[-3:] == 'csv':
-            im = convert_CSV_to_Image(im_path)
-            logging.debug('Images found to CSV format')
+            start = timeit.timeit()
+            if im_path[-3:] == 'png':
+                im = Image.open(im_path)
+                logging.debug('Images found to PNG format')
+            elif im_path[-3:] == 'csv':
+                im = convert_CSV_to_Image(im_path)
+                logging.debug('Images found to CSV format')
 
-        if image_align == 'horizontal':
-            im = im.rotate(90, expand=True)
+            if image_align == 'horizontal':
+                im = im.rotate(90, expand=True)
 
-        # im = ImageEnhance.Contrast(im).enhance(10.0)
+            # im = ImageEnhance.Contrast(im).enhance(10.0)
 
-        end = timeit.timeit()
-        logging.info(f'Loading data took: {(end - start):.4}s')
+            end = timeit.timeit()
+            logging.info(f'Loading data took: {(end - start):.4}s')
 
+            for idx, roi in enumerate(roi_array):
+                roi.set_initial_ROI(im)
+                roi.create_ROI_data(im)
+                roi.process_ROI()
+
+        # Filter and save resulting data to CSV file
         for idx, roi in enumerate(roi_array):
-            roi.set_initial_ROI(im)
-            roi.create_ROI_data(im)
-            roi.process_ROI()
+            output_raw = roi.get_save_data()
+            header = output_raw[0]
+            header.append('Image Path')
+            output_good = [header]
+            output_bad = [header]
 
-    # Filter and save resulting data to CSV file
-    for idx, roi in enumerate(roi_array):
-        output_raw = roi.get_save_data()
-        header = output_raw[0]
-        header.append('Image Path')
-        output_good = [header]
-        output_bad = [header]
+            for i, row in enumerate(output_raw[1:]):
+                row.append(image_files[i])
+                # ~(tilde)num -> count from end starting at 0
+                if np.mean(row[~num_of_subROIs:~0]) < r2_threshold:
+                    output_bad.append(row)
+                else:
+                    output_good.append(row)
 
-        for i, row in enumerate(output_raw[1:]):
-            row.append(image_files[i])
-            # ~(tilde)num -> count from end starting at 0 (~ two's complement)
-            if np.mean(row[~num_of_subROIs:~0]) < r2_threshold:
-                output_bad.append(row)
-            else:
-                output_good.append(row)
+            output_good_str = [str(o)[1:-1].replace("'", "")
+                               for o in output_good]
+            with open(join(save_path, f'{save_name}_ROI_{idx}.csv'),
+                      'w') as f:
+                f.write('\n'.join(output_good_str))
 
-        output_good_str = [str(o)[1:-1].replace("'", "") for o in output_good]
-        with open(join(save_path, f'{save_name}_ROI_{idx}.csv'), 'w') as f:
-            f.write('\n'.join(output_good_str))
+            output_bad_str = [str(o)[1:-1].replace("'", "")
+                              for o in output_bad]
+            with open(join(save_path, f'{save_name}_ROI_{idx}_BAD.csv'),
+                      'w') as f:
+                f.write('\n'.join(output_bad_str))
+            logging.info('...Data saved')
 
-        output_bad_str = [str(o)[1:-1].replace("'", "") for o in output_bad]
-        with open(join(save_path, f'{save_name}_ROI_{idx}_BAD.csv'), 'w') as f:
-            f.write('\n'.join(output_bad_str))
-        logging.info('...Data saved')
-
-    # Plot and save data as it is processed
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
-    time_axis = [(y * image_interval) for y in range(len(filenames_old))]
-    for roi in roi_array:
-        res_data = [np.mean(d['res']) for d in roi.get_resonance_data()]
-        FWHM_data = [np.mean(d['FWHM']) for d in roi.get_resonance_data()]
-        r2_data = [np.mean(d['r2']) for d in roi.get_resonance_data()]
-        ax1.plot(time_axis, res_data)
-        ax2.plot(time_axis, FWHM_data)
-        ax3.plot(time_axis, r2_data)
-        ax1.set_xlabel('Time (minutes)')
-        ax2.set_xlabel('Time (minutes)')
-        ax3.set_xlabel('Time (minutes)')
-        plt.savefig(save_figure_filename)
+        # Plot and save data as it is processed
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
+        time_axis = [(y * image_interval) for y in range(len(filenames_old))]
+        for roi in roi_array:
+            res_data = [np.mean(d['res']) for d in roi.get_resonance_data()]
+            FWHM_data = [np.mean(d['FWHM']) for d in roi.get_resonance_data()]
+            r2_data = [np.mean(d['r2']) for d in roi.get_resonance_data()]
+            ax1.plot(time_axis, res_data)
+            ax2.plot(time_axis, FWHM_data)
+            ax3.plot(time_axis, r2_data)
+            ax1.set_xlabel('Time (minutes)')
+            ax2.set_xlabel('Time (minutes)')
+            ax3.set_xlabel('Time (minutes)')
+            plt.savefig(save_figure_filename)
 
     if sleep_time > 0:
         print('Waiting ...')

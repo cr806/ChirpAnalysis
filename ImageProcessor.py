@@ -89,7 +89,7 @@ class ImageProcessor:
             self.line.figure.canvas.mpl_disconnect(self.cidclick)
             self.line.figure.canvas.mpl_disconnect(self.cidkey)
             self.fig.canvas.mpl_disconnect(self.cidclose)
-            plt.close()
+            plt.close('all')
 
     def onClose(self, event):
         """ Callback function for figure close event event, at which point
@@ -99,7 +99,7 @@ class ImageProcessor:
         self.line.figure.canvas.mpl_disconnect(self.cidclick)
         self.line.figure.canvas.mpl_disconnect(self.cidkey)
         self.fig.canvas.mpl_disconnect(self.cidclose)
-        plt.close()
+        plt.close('all')
 
     def connect(self):
         """ Connects mouseClick() method to mouse click event of line object.
