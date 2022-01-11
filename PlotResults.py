@@ -7,6 +7,7 @@ import Functions as fnc
 
 image_num = 0
 data_filename = 'CK_results_test_multi_ROI_1.csv'
+image_align = 'vertical'
 
 data = []
 with open(data_filename, mode='r') as f:
@@ -33,8 +34,6 @@ xdata = list(range(xdata_len))
 
 num_subROIs = len([h for h in header if 'amp' in h])
 im_path = data_dict['Image Path'][image_num]
-image_align = 'vertical'
-
 
 if im_path[-3:] == 'png':
     im = Image.open(im_path)
