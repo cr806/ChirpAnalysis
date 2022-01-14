@@ -3,8 +3,8 @@ import matplotlib.patches as patches
 import numpy as np
 import Functions as fnc
 
-image_num = 0
-data_filename = 'CK_results_test_multi_ROI_0.csv'
+image_num = 20
+data_filename = 'CK_results_test_multi_ROI_1.csv'
 image_align = 'vertical'
 
 data, num_subROIs = fnc.get_data(data_filename)

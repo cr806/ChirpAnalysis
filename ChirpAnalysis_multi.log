@@ -1715,3 +1715,66 @@
 2022-01-13 13:42:26,944 : INFO : Loading data took: -0.0002134s
 2022-01-13 13:42:27,038 : INFO : ...Data saved
 2022-01-13 13:42:27,039 : INFO : ...Data saved
+2022-01-14 12:18:45,498 : INFO : Live watch not requested
+2022-01-14 12:18:45,498 : INFO : No image interval provided
+2022-01-14 12:18:45,498 : INFO : No ROI coordinates provided
+2022-01-14 12:18:45,498 : INFO : No resonance/gamma data provided
+2022-01-14 12:18:45,498 : INFO : __init__(<ROImulti.ROImulti object at 0x11b4157b0>, angle=0.0, roi=None, res=None)
+2022-01-14 12:18:45,498 : INFO : __init__(<ROImulti.ROImulti object at 0x11b414370>, angle=0.0, roi=None, res=None)
+2022-01-14 12:18:45,498 : INFO : 50 files processed
+2022-01-14 12:18:45,521 : INFO : Loading data took: -0.0001077s
+2022-01-14 12:18:45,723 : INFO : Image crop
+2022-01-14 12:18:52,537 : INFO : Image resonance/gamma
+2022-01-14 12:18:57,314 : INFO : Image crop
+2022-01-14 12:19:01,857 : INFO : Image resonance/gamma
+2022-01-14 12:19:05,892 : INFO : Loading data took: -0.0002339s
+2022-01-14 12:19:06,002 : INFO : Loading data took: -0.0002952s
+2022-01-14 12:19:06,114 : INFO : Loading data took: -0.000803s
+2022-01-14 12:19:06,220 : INFO : Loading data took: -0.000744s
+2022-01-14 12:19:06,329 : INFO : Loading data took: 0.0008445s
+2022-01-14 12:19:06,437 : INFO : Loading data took: -6.94e-05s
+2022-01-14 12:19:06,548 : INFO : Loading data took: 0.0001483s
+2022-01-14 12:19:06,662 : INFO : Loading data took: 0.003422s
+2022-01-14 12:19:06,779 : INFO : Loading data took: 3.725e-05s
+2022-01-14 12:19:06,890 : INFO : Loading data took: 0.0003207s
+2022-01-14 12:19:06,999 : INFO : Loading data took: -3.971e-05s
+2022-01-14 12:19:07,110 : INFO : Loading data took: -0.0004232s
+2022-01-14 12:19:07,221 : INFO : Loading data took: 9.296e-06s
+2022-01-14 12:19:07,331 : INFO : Loading data took: -0.0001556s
+2022-01-14 12:19:07,447 : INFO : Loading data took: 0.005757s
+2022-01-14 12:19:07,562 : INFO : Loading data took: 0.0007483s
+2022-01-14 12:19:07,684 : INFO : Loading data took: 0.0003896s
+2022-01-14 12:19:07,795 : INFO : Loading data took: -0.0001082s
+2022-01-14 12:19:07,907 : INFO : Loading data took: 0.0001113s
+2022-01-14 12:19:08,018 : INFO : Loading data took: 0.0008552s
+2022-01-14 12:19:08,130 : INFO : Loading data took: 0.00115s
+2022-01-14 12:19:08,241 : INFO : Loading data took: 0.0003484s
+2022-01-14 12:19:08,356 : INFO : Loading data took: 0.0009648s
+2022-01-14 12:19:08,467 : INFO : Loading data took: 0.0006083s
+2022-01-14 12:19:08,577 : INFO : Loading data took: -0.000139s
+2022-01-14 12:19:08,686 : INFO : Loading data took: 8.609e-05s
+2022-01-14 12:19:08,797 : INFO : Loading data took: -0.0002702s
+2022-01-14 12:19:08,908 : INFO : Loading data took: -0.0003869s
+2022-01-14 12:19:09,017 : INFO : Loading data took: -0.0003053s
+2022-01-14 12:19:09,128 : INFO : Loading data took: 5.777e-05s
+2022-01-14 12:19:09,238 : INFO : Loading data took: -0.0005108s
+2022-01-14 12:19:09,354 : INFO : Loading data took: 0.005925s
+2022-01-14 12:19:09,468 : INFO : Loading data took: 3.638e-06s
+2022-01-14 12:19:09,588 : INFO : Loading data took: -0.0001511s
+2022-01-14 12:19:09,712 : INFO : Loading data took: 9.298e-05s
+2022-01-14 12:19:09,824 : INFO : Loading data took: -0.0004673s
+2022-01-14 12:19:09,937 : INFO : Loading data took: 6.141e-05s
+2022-01-14 12:19:10,061 : INFO : Loading data took: -6.907e-05s
+2022-01-14 12:19:10,175 : INFO : Loading data took: 4.245e-05s
+2022-01-14 12:19:10,285 : INFO : Loading data took: -0.0003071s
+2022-01-14 12:19:10,394 : INFO : Loading data took: -0.0004004s
+2022-01-14 12:19:10,530 : INFO : Loading data took: 0.0009649s
+2022-01-14 12:19:10,640 : INFO : Loading data took: -0.0001925s
+2022-01-14 12:19:10,751 : INFO : Loading data took: -7.529e-05s
+2022-01-14 12:19:10,864 : INFO : Loading data took: -3.366e-05s
+2022-01-14 12:19:10,973 : INFO : Loading data took: -0.0004841s
+2022-01-14 12:19:11,083 : INFO : Loading data took: -7.242e-05s
+2022-01-14 12:19:11,195 : INFO : Loading data took: 0.0003776s
+2022-01-14 12:19:11,304 : INFO : Loading data took: -0.0002935s
+2022-01-14 12:19:11,400 : INFO : ...Data saved
+2022-01-14 12:19:11,403 : INFO : ...Data saved
