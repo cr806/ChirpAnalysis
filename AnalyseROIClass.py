@@ -9,8 +9,7 @@ from PIL import Image  # , ImageEnhance
 from os import listdir
 from os.path import join
 from Functions import convert_CSV_to_Image
-from ROI import ROI
-# from ROImulti import ROImulti as ROI
+from ROImulti import ROImulti as ROI
 
 
 config_filepath = './CK_configuration_multi.ini'
@@ -122,14 +121,12 @@ for roi in range(num_of_ROIs):
                          roi=roi_range,
                          res=r_g))
 
-# filenames_old = listdir(image_folder)
-# print(f'Original filenames -> \n {sorted(filenames_old)}')
-filenames_old = []
+filenames_old = list()
 # for i in range(1):
 while True:
     to_be_processed = [item for item in listdir(image_folder)
                        if item not in filenames_old]
-    filenames_old = listdir(image_folder)
+    filenames_old.extend(to_be_processed)
 
     image_files = [join(image_folder, f) for f in sorted(to_be_processed)
                    if f[-3:] == image_type]
@@ -207,5 +204,5 @@ while True:
             plt.savefig(save_figure_filename)
 
     if sleep_time > 0:
-        print('Waiting ...')
+        print(f'Waiting for {sleep_time} minutes')
         time.sleep(sleep_time * 60)

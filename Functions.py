@@ -1,4 +1,5 @@
 import numpy as np
+import csv
 import logging
 from PIL import Image
 # import json
@@ -51,3 +52,39 @@ def fano_array(xdata, amp, assym, res, gamma, off):
         den = (gamma * gamma) + ((x - res)*(x - res))
         ydata.append((amp * (num / den)) + off)
     return ydata
+
+
+def get_data(data_filename):
+    data = []
+    with open(data_filename, mode='r') as f:
+        csv_reader = csv.reader(f, delimiter=',')
+        for row in csv_reader:
+            data.append([r.strip() for r in row])
+
+    header = data[0]
+    data = data[1:]
+
+    num_subROIs = len([h for h in header if 'amp' in h])
+
+    data_dict = {}
+    for idx, h in enumerate(header):
+        data_dict[h] = []
+        for d in data:
+            if h != 'Image Path':
+                data_dict[h].append(float(d[idx]))
+            else:
+                data_dict[h].append(d[idx])
+
+    return data_dict, num_subROIs
+
+
+def get_image(im_path, im_align):
+    if im_path[-3:] == 'png':
+        im = Image.open(im_path)
+    elif im_path[-3:] == 'csv':
+        im = convert_CSV_to_Image(im_path)
+
+    if im_align == 'horizontal':
+        im = im.rotate(90, expand=True)
+
+    return im
