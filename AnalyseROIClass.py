@@ -162,18 +162,21 @@ while True:
         # Filter and save resulting data to CSV file
         for idx, roi in enumerate(roi_array):
             output_raw = roi.get_save_data()
-            header = output_raw[0]
+            header = ['ID']
+            header.extend(output_raw[0])
             header.append('Image Path')
             output_good = [header]
             output_bad = [header]
 
             for i, row in enumerate(output_raw[1:]):
-                row.append(image_files[i])
+                output_row = [i]
+                output_row.extend(row)
+                output_row.append(image_files[i])
                 # ~(tilde)num -> count from end starting at 0
                 if np.mean(row[~num_of_subROIs:~0]) < r2_threshold:
-                    output_bad.append(row)
+                    output_bad.append(output_row)
                 else:
-                    output_good.append(row)
+                    output_good.append(output_row)
 
             output_good_str = [str(o)[1:-1].replace("'", "")
                                for o in output_good]
