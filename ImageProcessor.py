@@ -84,7 +84,7 @@ class ImageProcessor:
         """ Callback function for "Enter" key press event, at which point closes
             figure
         """
-        logging.debug(f'...keyPress({self}, {event})')
+        logging.debug(f'...keyPress({self}, key: {event.key})')
         if event.key == 'enter':
             self.line.figure.canvas.mpl_disconnect(self.cidclick)
             self.line.figure.canvas.mpl_disconnect(self.cidkey)

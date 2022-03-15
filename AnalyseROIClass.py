@@ -18,7 +18,7 @@ log_filepath = 'ChirpAnalysis_multi.log'
 logging.basicConfig(filename=log_filepath,
                     format='%(asctime)s : %(levelname)s : %(message)s',
                     encoding='utf-8',
-                    level=logging.INFO)
+                    level=logging.DEBUG)
 
 try:
     with open(config_filepath, 'r') as f:
@@ -179,7 +179,7 @@ while True:
                     output_good.append(output_row)
 
             output_good_str = [str(o)[1:-1].replace("'", "")
-                               for o in output_good]
+                             for o in output_good]
             with open(join(save_path, f'{save_name}_ROI_{idx}.csv'),
                       'w') as f:
                 f.write('\n'.join(output_good_str))
