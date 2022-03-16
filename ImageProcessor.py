@@ -19,8 +19,8 @@ class ImageProcessor:
         im (PIL image):         Used to hold axis data for plotting
     """
 
-    def __init__(self, mode, figure, im):
-        logging.debug(f'...__init__({self}, {mode}, {figure}, {im})')
+    def __init__(self, log_data, mode, figure, im):
+        self.log_data = log_data
         self.mode = mode.lower()
         self.fig, (self.ax1, self.ax2) = figure
         (self.line, ) = self.ax1.plot([0], [0], 'r', linewidth=2)
@@ -31,19 +31,28 @@ class ImageProcessor:
         self.angle = 0
         self.ax1.imshow(self.im)
         self.ax2.axis('off')
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(log_data[1])
+        fh = logging.FileHandler(filename=log_data[0], encoding='utf-8')
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s : %(message)s')
+        fh.setFormatter(formatter)
+        self.logger.addHandler(fh)
+        self.logger.debug(f'...__init__({self}, {mode}, {figure}, {im})')
+
         if mode == 'rotate':
-            logging.info('Image rotate')
+            self.logger.info('Image rotate')
             self.fig.suptitle(
                 'Rotate: Select two horizontal points \n '
                 'Press <Enter> when finished', fontsize='xx-large')
         elif mode == 'crop':
-            logging.info('Image crop')
+            self.logger.info('Image crop')
             self.fig.suptitle(
                 'Crop: Rectangle select (i.e. select the top-left and '
                 'bottom-right points) around ROI \n '
                 'Press <Enter> when finished', fontsize='xx-large')
         elif mode == 'resonance':
-            logging.info('Image resonance/gamma')
+            self.logger.info('Image resonance/gamma')
             self.fig.suptitle(
                 'Resonance: Rectangle select (i.e. select the top-left '
                 'and bottom-right points) resonance \n '
@@ -72,7 +81,7 @@ class ImageProcessor:
             the class instance attributes accordingly.  Also forces re-draw of
             figure.
         """
-        logging.debug(f'...mouseClick({self}, {event})')
+        self.logger.debug(f'...mouseClick({self}, {event})')
         if event.inaxes != self.line.axes:
             return
         self.update_fig(event.xdata, event.ydata)
@@ -84,7 +93,7 @@ class ImageProcessor:
         """ Callback function for "Enter" key press event, at which point closes
             figure
         """
-        logging.debug(f'...keyPress({self}, key: {event.key})')
+        self.logger.debug(f'...keyPress({self}, key: {event.key})')
         if event.key == 'enter':
             self.line.figure.canvas.mpl_disconnect(self.cidclick)
             self.line.figure.canvas.mpl_disconnect(self.cidkey)
@@ -95,7 +104,7 @@ class ImageProcessor:
         """ Callback function for figure close event event, at which point
             closes figure
         """
-        logging.debug(f'...onClose({self}, {event})')
+        self.logger.debug(f'...onClose({self}, {event})')
         self.line.figure.canvas.mpl_disconnect(self.cidclick)
         self.line.figure.canvas.mpl_disconnect(self.cidkey)
         self.fig.canvas.mpl_disconnect(self.cidclose)
@@ -105,7 +114,7 @@ class ImageProcessor:
         """ Connects mouseClick() method to mouse click event of line object.
             Also connects keyPress() method to key press event of line object.
         """
-        logging.debug(f'...connect({self})')
+        self.logger.debug(f'...connect({self})')
         self.cidclick = (self.line
                          .figure
                          .canvas
@@ -132,7 +141,7 @@ class ImageProcessor:
             x (int): x-position of mouse click event
             y (int): y-position of mouse click event
         """
-        logging.debug(f'...add_data({self}, {x}, {y})')
+        self.logger.debug(f'...add_data({self}, {x}, {y})')
         if len(self.xs) == 2:
             self.xs = []
             self.ys = []
@@ -155,7 +164,7 @@ class ImageProcessor:
             xdata (int): x-position of mouse click event
             ydata (int): y-position of mouse click event
         """
-        logging.debug(f'...update_fig({self}, {xdata}, {ydata})')
+        self.logger.debug(f'...update_fig({self}, {xdata}, {ydata})')
         if len(self.xs) == 1:
             if self.mode == 'rotate':
                 self.angle = np.degrees(np.tan((ydata-self.ys[0]) /
@@ -177,7 +186,7 @@ class ImageProcessor:
     def get_angle(self):
         """ Getter method to return rotation angle to caller
         """
-        logging.debug(f'...get_angle({self})')
+        self.logger.debug(f'...get_angle({self})')
         return self.angle
 
     def get_coords(self):
@@ -185,9 +194,9 @@ class ImageProcessor:
             one element in xs list then returns (0, 0) as first point, this
             avoids errors however is not intended use
         """
-        logging.debug(f'...get_coords({self})')
+        self.logger.debug(f'...get_coords({self})')
         if len(self.xs) < 2:
-            logging.info('Returning (0,0) as first ROI coordinate')
+            self.logger.info('Returning (0,0) as first ROI coordinate')
             return (0, 0), (self.im.size[0], self.im.size[1])
         return zip(self.xs, self.ys)
 
@@ -195,12 +204,13 @@ class ImageProcessor:
         """ Getter method to return initial values to caller, these values come
             from the user selecting the resonance position
         """
-        logging.debug(f'...get_initial_values({self})')
+        self.logger.debug(f'...get_initial_values({self})')
         try:
             return ((self.ys[0]+self.ys[1])/2,
                     np.absolute(self.ys[0]-self.ys[1]))
         except IndexError:
-            logging.info('No ROI coords, returning image data for res/gamma')
+            self.logger.info('No ROI coords, returning image data'
+                             'for res/gamma')
             _, height = self.get_cropped_image().size
             return (height/2, height/20)
 
@@ -208,11 +218,11 @@ class ImageProcessor:
         """ Getter method to return rotated image to caller, if this fails
             original image
         """
-        logging.debug(f'...get_rotated_image({self})')
+        self.logger.debug(f'...get_rotated_image({self})')
         try:
             return self.im.rotate(self.angle)
         except ValueError:
-            logging.info(
+            self.logger.info(
                 'No angle data, returning 0')
             return self.im
 
@@ -220,10 +230,10 @@ class ImageProcessor:
         """ Getter method to return cropped image to caller, if this fails
             original image
         """
-        logging.debug(f'...get_cropped_image({self})')
+        self.logger.debug(f'...get_cropped_image({self})')
         try:
             return self.im.crop((self.xs[0], self.ys[0],
                                 self.xs[1], self.ys[1]))
         except IndexError:
-            logging.info('No crop data, returning full image')
+            self.logger.info('No crop data, returning full image')
             return self.im

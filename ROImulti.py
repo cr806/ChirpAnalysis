@@ -30,8 +30,8 @@ class ROImulti:
         ax (axis handle):      Used to hold axis data for plotting
     """
 
-    def __init__(self, subROIs=1, angle=None, roi=None, res=None):
-        logging.info(f'__init__({self}, angle={angle}, roi={roi}, res={res})')
+    def __init__(self, log_data, subROIs=1, angle=None, roi=None, res=None):
+        self.log_data = log_data
         self.im = None
         self.first = True
         self.subROIs = subROIs
@@ -46,6 +46,16 @@ class ROImulti:
         self.resonance_data = []
         self.fig = None
         self.ax = None
+
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(self.log_data[1])
+        fh = logging.FileHandler(filename=self.log_data[0], encoding='utf-8')
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s : %(message)s')
+        fh.setFormatter(formatter)
+        self.logger.addHandler(fh)
+        self.logger.info(f'__init__({self}, angle={angle}, roi={roi}, '
+                         'res={res})')
 
     def fano(self, x, amp, assym, res, gamma, off):
         """ Fano function used for curve-fitting
@@ -82,34 +92,37 @@ class ROImulti:
             Attributes:
             im (PIL image): Used to store image data
         """
-        logging.debug('...set_initial_ROI({self}, {im})')
+        self.logger.debug('...set_initial_ROI({self}, {im})')
         self.im = im
 
         if self.first:
             if self.angle is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
-                image_rotator = ImageProcessor('rotate', figure, self.im)
+                image_rotator = ImageProcessor(self.log_data, 'rotate',
+                                               figure, self.im)
                 self.angle = image_rotator.get_angle()
-                logging.debug('Angle correction')
+                self.logger.debug('Angle correction')
 
             if self.roi is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6),
                                       gridspec_kw={'width_ratios': [3, 1]})
                 temp = self.im.rotate(self.angle)
-                image_cropper = ImageProcessor('crop', figure, temp)
+                image_cropper = ImageProcessor(
+                    self.log_data, 'crop', figure, temp)
                 self.roi = tuple(image_cropper.get_coords())
-                logging.debug('ROI selection')
+                self.logger.debug('ROI selection')
 
             self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
                                     self.roi[1][0], self.roi[1][1]))
             if self.res is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
-                p0 = ImageProcessor('resonance', figure, self.im)
+                p0 = ImageProcessor(
+                    self.log_data, 'resonance', figure, self.im)
                 # self.set_initial_values(amp=0.2, assym=-100,
                 #                         res=None, gamma=None, off=40)
                 self.initial_values[2] = p0.get_initial_values()[0]
                 self.initial_values[3] = p0.get_initial_values()[1]
-                logging.debug('Resonance/Gamma selection')
+                self.logger.debug('Resonance/Gamma selection')
             self.first = False
 
     def create_ROI_data(self, im, plot=False):
@@ -131,7 +144,7 @@ class ROImulti:
                             method) is cropped and rotated.
         """
 
-        logging.debug(f'...create_ROI_data({self}, {im}, plot={plot})')
+        self.logger.debug(f'...create_ROI_data({self}, {im}, plot={plot})')
         self.im = im
         temp = self.im.rotate(self.angle)
         (x1, y1), (x2, y2) = self.roi
@@ -147,7 +160,7 @@ class ROImulti:
     #         is the wrong sign then curve-fit will converge to a "bad" fit
     #     """
 
-    #     logging.debug(f'...determine_assym({self}, plot={plot})')
+    #     self.logger.debug(f'...determine_assym({self}, plot={plot})')
     #     self.initial_values[1] = 100
     #     self.process_ROI(plot=plot)
     #     try:
@@ -170,7 +183,7 @@ class ROImulti:
             then applies curve_fit algorithm - updating resonance_data with
             the results
         """
-        logging.debug(f'...process_ROI({self}, plot={plot})')
+        self.logger.debug(f'...process_ROI({self}, plot={plot})')
 
         """
         get ROI dimensions (shape of im)
@@ -242,7 +255,7 @@ class ROImulti:
 
             except RuntimeError as e:
                 print(f'Curve fitting did not converge: {e}')
-                logging.info(f'Curve fitting did not converge: {e}')
+                self.logger.info(f'Curve fitting did not converge: {e}')
                 popt_dict['amp'].append(0)  # A * b**2,
                 popt_dict['assym'].append(0)
                 popt_dict['res'].append(0)
@@ -252,7 +265,7 @@ class ROImulti:
                 popt_dict['r2'].append(0)
             except ValueError as e:
                 print(f'Curve fitting failed: {e}')
-                logging.info(f'Curve fitting failed: {e}')
+                self.logger.info(f'Curve fitting failed: {e}')
                 popt_dict['amp'].append(0)  # A * b**2,
                 popt_dict['assym'].append(0)
                 popt_dict['res'].append(0)
@@ -280,7 +293,7 @@ class ROImulti:
             r2 (float):    Required in method call due to results dictionary
                            however, not used in curve-fit algorithm
         """
-        logging.debug(f"""set_initial_values({self}, amp={amp}, assym={assym},
+        self.logger.debug(f"""set_initial_values({self}, amp={amp}, assym={assym},
                          res={res}, gamma={gamma}, off={off}, FWHM={FWHM},
                          r2={r2})""")
         self.initial_values[0] = np.mean(amp)
@@ -295,7 +308,7 @@ class ROImulti:
             Return:
             initial_values (list): List of intial calculation values
         """
-        logging.debug(f'...get_inital_values({self})')
+        self.logger.debug(f'...get_inital_values({self})')
         print(self.initial_values)
         return self.initial_values
 
@@ -340,7 +353,7 @@ class ROImulti:
         """ Getter method for returning resonance_data list of dictionaries to
             the caller.
         """
-        logging.debug(f'...get_resonance_data({self}, disp={disp})')
+        self.logger.debug(f'...get_resonance_data({self}, disp={disp})')
         if disp:
             print(self.resonance_data)
         return self.resonance_data
@@ -349,11 +362,11 @@ class ROImulti:
         """ Getter method for returning ROI details ((x1, y1), (x2, y2)) to the
             caller
         """
-        logging.debug(f'...get_roi({self})')
+        self.logger.debug(f'...get_roi({self})')
         return self.roi
 
     def get_im(self):
         """ Getter method to return rotated/cropped image to caller
         """
-        logging.debug(f'...get_im({self})')
+        self.logger.debug(f'...get_im({self})')
         return self.im
