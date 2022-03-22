@@ -166,6 +166,12 @@ while True:
                 roi.process_ROI()
 
         # Filter and save resulting data to CSV file
+        output_all_header = ['ID', 'ROI', 'subROI', 'ROI_x1',
+                             'ROI_y1', 'ROI_x2', 'ROI_y2', 'angle',
+                             'amp', 'assym', 'res', 'gamma', 'off',
+                             'FWHM', 'r2', 'image-path']
+        output_all = [output_all_header]
+        data_idx = [5, 10, 15, 20, 25, 30, 35]
         for idx, roi in enumerate(roi_array):
             output_raw = roi.get_save_data()
             header = ['ID']
@@ -173,6 +179,20 @@ while True:
             header.append('Image Path')
             output_good = [header]
             output_bad = [header]
+
+            for i, row in enumerate(output_raw[1:]):
+                for j in range(num_of_subROIs):
+                    output_all_row = [i, idx, j]
+                    output_all_row.extend(row[:5])
+
+                    data_i = [d+j for d in data_idx]
+                    subROIdata = [row[z] for z in data_i]
+                    logger.debug(f'...Data index: {data_i}')
+                    logger.debug(f'...subROI data: {subROIdata}')
+
+                    output_all_row.extend(subROIdata)
+                    output_all_row.append(image_files[i])
+                    output_all.append(output_all_row)
 
             for i, row in enumerate(output_raw[1:]):
                 output_row = [i]
@@ -196,6 +216,12 @@ while True:
                       'w') as f:
                 f.write('\n'.join(output_bad_str))
             logger.info('...Data saved')
+
+        output_all_str = [str(o)[1:-1].replace("'", "")
+                          for o in output_all]
+        with open(join(save_path, f'{save_name}_ALLDATA.csv'),'w') as f:
+            f.write('\n'.join(output_all_str))
+        logger.info('...All raw data saved')
 
         # Plot and save data as it is processed
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
