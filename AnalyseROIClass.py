@@ -219,7 +219,7 @@ while True:
 
         output_all_str = [str(o)[1:-1].replace("'", "")
                           for o in output_all]
-        with open(join(save_path, f'{save_name}_ALLDATA.csv'),'w') as f:
+        with open(join(save_path, f'{save_name}_ALLDATA.csv'), 'w') as f:
             f.write('\n'.join(output_all_str))
         logger.info('...All raw data saved')
 
