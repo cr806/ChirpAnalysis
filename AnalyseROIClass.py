@@ -130,8 +130,11 @@ for roi in range(num_of_ROIs):
 filenames_old = list()
 # for i in range(1):
 while True:
+    logger.debug(f'...Files already processed : {len(filenames_old)}')
     to_be_processed = [item for item in listdir(image_folder)
-                       if item not in filenames_old]
+                       if item not in filenames_old
+                       and item[-3:] == image_type]
+    logger.debug(f'...Files to be processed : {len(to_be_processed)}')
     filenames_old.extend(to_be_processed)
 
     image_files = [join(image_folder, f) for f in sorted(to_be_processed)
@@ -142,7 +145,7 @@ while True:
         logger.info(f'{len(image_files)} files processed')
 
         for idx, im_path in enumerate(image_files):
-            print(f'Processing image {idx}')
+            print(f'Processing image {idx + 1}')
 
             start = timeit.timeit()
             if im_path[-3:] == 'png':
@@ -187,17 +190,15 @@ while True:
 
                     data_i = [d+j for d in data_idx]
                     subROIdata = [row[z] for z in data_i]
-                    logger.debug(f'...Data index: {data_i}')
-                    logger.debug(f'...subROI data: {subROIdata}')
 
                     output_all_row.extend(subROIdata)
-                    output_all_row.append(image_files[i])
+                    output_all_row.append(filenames_old[i])
                     output_all.append(output_all_row)
 
             for i, row in enumerate(output_raw[1:]):
                 output_row = [i]
                 output_row.extend(row)
-                output_row.append(image_files[i])
+                output_row.append(filenames_old[i])
                 # ~(tilde)num -> count from end starting at 0
                 if np.mean(row[~num_of_subROIs:~0]) < r2_threshold:
                     output_bad.append(output_row)
@@ -240,4 +241,5 @@ while True:
 
     if sleep_time > 0:
         print(f'Waiting for {sleep_time} minutes')
+        logger.info(f'...Sleeping for {sleep_time} minutes')
         time.sleep(sleep_time * 60)
