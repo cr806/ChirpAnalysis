@@ -114,7 +114,6 @@ class ImageProcessor:
         """ Connects mouseClick() method to mouse click event of line object.
             Also connects keyPress() method to key press event of line object.
         """
-        self.logger.debug(f'...connect({self})')
         self.cidclick = (self.line
                          .figure
                          .canvas
@@ -126,6 +125,9 @@ class ImageProcessor:
         self.cidclose = (self.fig
                          .canvas
                          .mpl_connect('close_event', self.onClose))
+        self.logger.debug(
+            f'...connect - click({self.cidclick}) - key({self.cidkey})'
+            f'- close(s{self.cidclose})')
 
     def add_data(self, x, y):
         """ Adds x- and y-data to the xs and ys attributes, if xs and ys is
