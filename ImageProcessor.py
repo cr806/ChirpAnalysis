@@ -110,10 +110,23 @@ class ImageProcessor:
         self.fig.canvas.mpl_disconnect(self.cidclose)
         plt.close('all')
 
+    def onEnterEvent(self, event):
+        """ Callback function mouse pointer entering figure, to force
+            focus so that key_press events are registered
+        """
+        self.logger.debug(f'...onEnter({self}, {event})')
+        try:
+            self.fig.canvas.setFocus()
+        except AttributeError:
+            pass  # MacOS does not have a 'setFocus()' option
+
     def connect(self):
         """ Connects mouseClick() method to mouse click event of line object.
             Also connects keyPress() method to key press event of line object.
         """
+        self.cid_enter = (self.fig
+                          .canvas
+                          .mpl_connect('axes_enter_event', self.onEnterEvent))
         self.cidclick = (self.line
                          .figure
                          .canvas
