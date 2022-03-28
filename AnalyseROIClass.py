@@ -174,7 +174,7 @@ while True:
                              'amp', 'assym', 'res', 'gamma', 'off',
                              'FWHM', 'r2', 'image-path']
         output_all = [output_all_header]
-        data_idx = [5, 10, 15, 20, 25, 30, 35]
+        data_idx = [5 + (i * num_of_subROIs) for i in range(7)]
         for idx, roi in enumerate(roi_array):
             output_raw = roi.get_save_data()
             header = ['ID']
