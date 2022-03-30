@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
-import Functions as fnc
+import Functions as func
 
 subROIs_to_plot = [0, 1, 2, 3, 4]
 data_filename = 'CK_results_test_multi_ROI_1.csv'
 image_align = 'vertical'
 
-data, num_subROIs = fnc.get_data(data_filename)
+data, num_subROIs = func.get_data(data_filename)
 num_of_results = len(data['ROI_x1'])
 
 fig, ax = plt.subplots(1, 5, figsize=(12, 6), constrained_layout=True)
