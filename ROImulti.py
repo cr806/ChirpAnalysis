@@ -44,6 +44,7 @@ class ROImulti:
         self.bounds = ([-1000, -100,  0,   0,    0],
                        [1000, 100,  500, 500,  500])
         self.resonance_data = []
+        self.reference_data = None
         self.fig = None
         self.ax = None
 
@@ -302,6 +303,14 @@ class ROImulti:
         self.initial_values[3] = np.mean(gamma)
         self.initial_values[4] = np.mean(off)
 
+        if self.reference_data is None:
+            self.reference_data = [amp,
+                                   assym,
+                                   res,
+                                   gamma,
+                                   off,
+                                   FWHM]
+
     def get_inital_values(self):
         """ Getter function used to return initial_values to the caller
 
@@ -357,6 +366,15 @@ class ROImulti:
         if disp:
             print(self.resonance_data)
         return self.resonance_data
+
+    def get_reference_data(self, disp=False):
+        """ Getter method for returning reference_data list of values to
+            the caller.
+        """
+        self.logger.debug(f'...get_reference_data({self}, disp={disp})')
+        if disp:
+            print(self.reference_data)
+        return self.reference_data
 
     def get_roi(self):
         """ Getter method for returning ROI details ((x1, y1), (x2, y2)) to the

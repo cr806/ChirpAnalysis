@@ -83,7 +83,6 @@ def get_simulation_params(logger, config_filepath):
 
     params['num_of_ROIs'] = 1
     params['num_of_subROIs'] = 1
-    params['r2_threshold'] = 0.8
     params['image_interval'] = 1.0
     params['angle'] = None
     params['roi_ranges'] = None
@@ -92,7 +91,6 @@ def get_simulation_params(logger, config_filepath):
     try:
         params['num_of_ROIs'] = int(get_param('Image', 'num_of_ROIs'))
         params['num_of_subROIs'] = int(get_param('Image', 'num_of_subROIs'))
-        params['r2_threshold'] = get_param('Image', 'r2_threshold')
 
         if config['Data'].getboolean('initialise_image'):
             params['image_interval'] = get_param('Image', 'image_interval')
@@ -279,16 +277,25 @@ def plot_data(params, filenames_old, roi_array):
         roi_array (list) :     List of ROI objects
     """
     # Plot and save data as it is processed
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
     for roi in roi_array:
-        res_data = [np.mean(d['res']) for d in roi.get_resonance_data()]
-        FWHM_data = [np.mean(d['FWHM']) for d in roi.get_resonance_data()]
+        ref_data = roi.get_reference_data()
+        res_data = [np.mean(np.subtract(d['res'], ref_data[2]))
+                    for d in roi.get_resonance_data()]
+
+        FWHM_data = [np.mean(np.subtract(d['FWHM'], ref_data[5]))
+                     for d in roi.get_resonance_data()]
+
         r2_data = [np.mean(d['r2']) for d in roi.get_resonance_data()]
+
         ax1.plot(time_axis, res_data)
         ax2.plot(time_axis, FWHM_data)
         ax3.plot(time_axis, r2_data)
+        ax1.set_ylabel('Resonance (px)')
+        ax2.set_ylabel('FWHM (px)')
+        ax3.set_ylabel('R^2')
         ax1.set_xlabel('Time (minutes)')
         ax2.set_xlabel('Time (minutes)')
         ax3.set_xlabel('Time (minutes)')
