@@ -234,7 +234,6 @@ def save_data(logger, params, roi_array, filenames_old):
         header.extend(output_raw[0])
         header.append('Image Path')
         output_good = [header]
-        output_bad = [header]
 
         for i, row in enumerate(output_raw[1:]):
             for j in range(params['num_of_subROIs']):
@@ -252,13 +251,8 @@ def save_data(logger, params, roi_array, filenames_old):
             output_row = [i]
             output_row.extend(row)
             output_row.append(filenames_old[i])
-            num_of_subROIs = params['num_of_subROIs']
-            r2_threshold = params['r2_threshold']
             # ~(tilde)num -> count from end starting at 0
-            if (np.mean(row[~num_of_subROIs:~0]) < r2_threshold):
-                output_bad.append(output_row)
-            else:
-                output_good.append(output_row)
+            output_good.append(output_row)
 
         save_path = params['save_path']
         save_name = params['save_name']
@@ -266,9 +260,6 @@ def save_data(logger, params, roi_array, filenames_old):
         with open(join(save_path, f'{save_name}_ROI_{idx}.csv'), 'w') as f:
             f.write('\n'.join(output_good_str))
 
-        output_bad_str = [str(o)[1:-1].replace("'", "") for o in output_bad]
-        with open(join(save_path, f'{save_name}_ROI_{idx}_BAD.csv'), 'w') as f:
-            f.write('\n'.join(output_bad_str))
         logger.info('...Data saved')
 
     output_all_str = [str(o)[1:-1].replace("'", "") for o in output_all]
