@@ -165,8 +165,6 @@ def get_image_filenames(logger, params, filenames_old):
 
     image_files = [join(image_path, f)
                    for f in sorted(to_be_processed)]
-    print(filenames_old)
-    print(to_be_processed)
     return image_files
 
 
