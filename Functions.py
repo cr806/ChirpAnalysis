@@ -157,14 +157,16 @@ def get_image_filenames(logger, params, filenames_old):
                                processed previously
     """
     logger.debug(f'...Files already processed : {len(filenames_old)}')
-    to_be_processed = [item for item in listdir(params['image_folder'])
-                       if item not in filenames_old
+    image_path = params['image_folder']
+    to_be_processed = [item for item in listdir(image_path)
+                       if join(image_path, item) not in filenames_old
                        and item[-3:] == params['image_type']]
     logger.debug(f'...Files to be processed : {len(to_be_processed)}')
 
-    image_files = [join(params['image_folder'], f)
-                   for f in sorted(to_be_processed)
-                   if f[-3:] == params['image_type']]
+    image_files = [join(image_path, f)
+                   for f in sorted(to_be_processed)]
+    print(filenames_old)
+    print(to_be_processed)
     return image_files
 
 
