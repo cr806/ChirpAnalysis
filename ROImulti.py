@@ -290,13 +290,13 @@ class ROImulti:
             gamma (float): Gamma
             off (float):   Offset (i.e. function bias away from zero)
             FWHM (float):  Required in method call due to results dictionary
-                           however, not used in curve-fit algorithm
+                          however, not used in curve-fit algorithm
             r2 (float):    Required in method call due to results dictionary
-                           however, not used in curve-fit algorithm
+                          however, not used in curve-fit algorithm
         """
-        self.logger.debug(f"""set_initial_values({self}, amp={amp}, assym={assym},
-                         res={res}, gamma={gamma}, off={off}, FWHM={FWHM},
-                         r2={r2})""")
+        self.logger.debug(f"""set_initial_values({self}, amp={amp},
+                          assym={assym}, res={res}, gamma={gamma}, off={off},
+                          FWHM={FWHM}, r2={r2})""")
         self.initial_values[0] = np.mean(amp)
         self.initial_values[1] = np.mean(assym)
         self.initial_values[2] = np.mean(res)

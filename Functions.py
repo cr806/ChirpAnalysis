@@ -1,6 +1,6 @@
 import csv
 import logging
-from PIL import Image
+from PIL import Image, ImageOps
 import json
 import timeit
 import configparser
@@ -317,6 +317,7 @@ def get_image(logger, params, im_path):
     """
     if im_path[-3:] == 'png':
         im = Image.open(im_path)
+        im = ImageOps.grayscale(im)
         logger.debug('Images found to PNG format')
     elif im_path[-3:] == 'csv':
         im = convert_CSV_to_Image(logger, im_path)
