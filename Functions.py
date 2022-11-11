@@ -315,11 +315,14 @@ def get_image(logger, params, im_path):
         Returns:
         image (Image obj) : PIL Image object
     """
-    if im_path[-3:] == 'png':
+    if im_path.split('.')[1] == 'png':
         im = Image.open(im_path)
         im = ImageOps.grayscale(im)
         logger.debug('Images found to PNG format')
-    elif im_path[-3:] == 'csv':
+    elif im_path.split('.')[1] == 'tif' or im_path.split('.')[1] == 'tiff':
+        im = Image.open(im_path)
+        logger.debug('Images found to TIFF format')
+    elif im_path.split('.')[1] == 'csv':
         im = convert_CSV_to_Image(logger, im_path)
         logger.debug('Images found to CSV format')
 
