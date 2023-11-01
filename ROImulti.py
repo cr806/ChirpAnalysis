@@ -252,6 +252,13 @@ class ROImulti:
                 # self.set_initial_values(**popt_dict)
                 #############################################################
 
+                #############################################################
+                # Update initial guess values, only using the central subROI, 
+                # this should stop edge effects propagating to other sub-ROIs.
+                # if i == self.subROIs // 2:
+                #     self.set_initial_values(**popt_dict)
+                #############################################################
+
                 if plot:
                     fig, ax = plt.subplots(1, figsize=(12, 6))
                     ax.plot(xdata, collapsed_im, 'b')
