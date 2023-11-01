@@ -246,7 +246,11 @@ class ROImulti:
                 ss_tot = np.sum((collapsed_im - y_bar)**2)
                 popt_dict['r2'].append(ss_res / ss_tot)
 
-                self.set_initial_values(**popt_dict)
+                #############################################################
+                # Removed initial value update, only values set by user at
+                # beginning of analysis will be used.
+                # self.set_initial_values(**popt_dict)
+                #############################################################
 
                 if plot:
                     fig, ax = plt.subplots(1, figsize=(12, 6))
