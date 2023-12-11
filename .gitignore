@@ -1,6 +1,6 @@
 **/Version01
 **/RawImages
-**/venv
+**/.my_venv
 **/ChristinaData
 **/.vscode
 **/__pycache__
