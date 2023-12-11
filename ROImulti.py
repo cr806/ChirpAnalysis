@@ -4,6 +4,8 @@ import logging
 from scipy.optimize import curve_fit
 from ImageProcessor import ImageProcessor
 
+from typing import List, Tuple
+
 
 class ROImulti:
     """ Region of Interest class - manages ROI data for images as they
@@ -178,7 +180,99 @@ class ROImulti:
     #     if r2pos > r2neg:
     #         self.initial_values[1] = 100
     #     self.resonance_data = []
+    
+    
+    def CollapseAnalysisGaussian(self, data: np.ndarray) -> Tuple[float, float,
+                                                                  float, float]:
+        x_data = np.arange(0, data.shape[1])
+        y_data = np.mean(data, axis=0)
+        return get_mu(x_data, y_data)
 
+    def CollapseAnalysisFano(self,
+                             data: np.ndarray,
+                             plot=False):
+
+        xdata = np.arange(0, data.shape[0])
+        collapsed_im = np.mean(data, axis=1)
+
+        initial = np.array(self.initial_values)
+        param_scale = [10, 1, self.initial_values[2],
+                       self.initial_values[3], np.amin(collapsed_im)]
+        # amp, assym, res, gamma, off
+
+        popt_dict = {}
+        try:
+            # start = timeit.timeit()
+            popt, _ = curve_fit(self.fano, xdata, collapsed_im,
+                               p0=initial, bounds=self.bounds,
+                               x_scale=param_scale)
+            # end = timeit.timeit()
+            # print(f'Curve fit took: {(end - start):.4} s')
+            """amp, assym, gamma, res, off = popt
+            print(f'Amp: {amp:.3f}, Assym: {assym:.3f} '
+                f'Gamma: {gamma:.3f}, Resonance: {res:.3f} '
+                f'Offset: {off:.3f}')
+            print('--------------------------------------')"""
+
+            A, b, c, d, e = popt
+            # fano(self, x, amp, assym, res, gamma, off)
+            popt_dict['amp'] = A  # A * b**2,
+            popt_dict['assym'] = b
+            popt_dict['res'] = c
+            popt_dict['gamma'] = d
+            popt_dict['off'] = e
+
+            FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
+                    ((2 * b**2) - 4))
+            popt_dict['FWHM'] = FWHM
+
+            y_bar = np.mean(collapsed_im)
+            ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
+            ss_tot = np.sum((collapsed_im - y_bar)**2)
+            popt_dict['r2'] = ss_res / ss_tot
+
+            #############################################################
+            # Removed initial value update, only values set by user at
+            # beginning of analysis will be used.
+            # self.set_initial_values(**popt_dict)
+            #############################################################
+
+            #############################################################
+            # Update initial guess values, only using the central subROI,
+            # this should stop edge effects propagating to other sub-ROIs.
+            # if i == self.subROIs // 2:
+            #     self.set_initial_values(**popt_dict)
+            #############################################################
+
+            if plot:
+                fig, ax = plt.subplots(1, figsize=(12, 6))
+                ax.plot(xdata, collapsed_im, 'b')
+                ax.plot(xdata, self.fano(xdata, *popt), 'r')
+                plt.show()
+
+        except RuntimeError as e:
+            print(f'Curve fitting did not converge: {e}')
+            self.logger.info(f'Curve fitting did not converge: {e}')
+            popt_dict['amp'] = 0  # A * b**2,
+            popt_dict['assym'] = 0
+            popt_dict['res'] = 0
+            popt_dict['gamma'] = 0
+            popt_dict['off'] = 0
+            popt_dict['FWHM'] = 0
+            popt_dict['r2'] = 0
+        except ValueError as e:
+            print(f'Curve fitting failed: {e}')
+            self.logger.info(f'Curve fitting failed: {e}')
+            popt_dict['amp'] = 0  # A * b**2,
+            popt_dict['assym'] = 0
+            popt_dict['res'] = 0
+            popt_dict['gamma'] = 0
+            popt_dict['off'] = 0
+            popt_dict['FWHM'] = 0
+            popt_dict['r2'] = 0
+
+        return popt_dict
+    
     def process_ROI(self, idx, im_path, plot=False):
         """ Processes ROI from initial image, first collapsing image into 1D,
             then applies curve_fit algorithm - updating resonance_data with
@@ -198,98 +292,23 @@ class ROImulti:
         transposed_im = np.transpose(self.im)
 
         for i in range(self.subROIs):
-            popt_dict = {}
-            popt_dict['ID'] = idx
-            popt_dict['subROI'] = i
-            popt_dict['ROI_x1'] = self.roi[0][0]
-            popt_dict['ROI_y1'] = self.roi[0][1]
-            popt_dict['ROI_x2'] = self.roi[1][0]
-            popt_dict['ROI_y2'] = self.roi[1][1]
-            popt_dict['Angle'] = self.angle
+            result = {}
+            result['ID'] = idx
+            result['subROI'] = i
+            result['ROI_x1'] = self.roi[0][0]
+            result['ROI_y1'] = self.roi[0][1]
+            result['ROI_x2'] = self.roi[1][0]
+            result['ROI_y2'] = self.roi[1][1]
+            result['Angle'] = self.angle
 
             subROI = np.transpose(
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
+            
+            result.update(self.CollapseAnalysisFano(subROI))
 
-            collapsed_im = subROI.mean(axis=1)
-            xdata = np.arange(0, collapsed_im.shape[0], 1)
-            initial = np.array(self.initial_values)
-            param_scale = [10, 1, self.initial_values[2],
-                           self.initial_values[3], np.amin(collapsed_im)]
-            # amp, assym, res, gamma, off
+            result['image path'] = im_path
 
-            try:
-                # start = timeit.timeit()
-                popt, _ = curve_fit(self.fano, xdata, collapsed_im,
-                                       p0=initial, bounds=self.bounds,
-                                       x_scale=param_scale)
-                # end = timeit.timeit()
-                # print(f'Curve fit took: {(end - start):.4} s')
-                """amp, assym, gamma, res, off = popt
-                print(f'Amp: {amp:.3f}, Assym: {assym:.3f} '
-                    f'Gamma: {gamma:.3f}, Resonance: {res:.3f} '
-                    f'Offset: {off:.3f}')
-                print('--------------------------------------')"""
-
-                A, b, c, d, e = popt
-                # fano(self, x, amp, assym, res, gamma, off)
-                popt_dict['amp'] = A  # A * b**2,
-                popt_dict['assym'] = b
-                popt_dict['res'] = c
-                popt_dict['gamma'] = d
-                popt_dict['off'] = e
-
-                FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
-                        ((2 * b**2) - 4))
-                popt_dict['FWHM'] = FWHM
-
-                y_bar = np.mean(collapsed_im)
-                ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
-                ss_tot = np.sum((collapsed_im - y_bar)**2)
-                popt_dict['r2'] = ss_res / ss_tot
-
-                #############################################################
-                # Removed initial value update, only values set by user at
-                # beginning of analysis will be used.
-                # self.set_initial_values(**popt_dict)
-                #############################################################
-
-                #############################################################
-                # Update initial guess values, only using the central subROI,
-                # this should stop edge effects propagating to other sub-ROIs.
-                # if i == self.subROIs // 2:
-                #     self.set_initial_values(**popt_dict)
-                #############################################################
-
-                if plot:
-                    fig, ax = plt.subplots(1, figsize=(12, 6))
-                    ax.plot(xdata, collapsed_im, 'b')
-                    ax.plot(xdata, self.fano(xdata, *popt), 'r')
-                    plt.show()
-
-            except RuntimeError as e:
-                print(f'Curve fitting did not converge: {e}')
-                self.logger.info(f'Curve fitting did not converge: {e}')
-                popt_dict['amp'] = 0  # A * b**2,
-                popt_dict['assym'] = 0
-                popt_dict['res'] = 0
-                popt_dict['gamma'] = 0
-                popt_dict['off'] = 0
-                popt_dict['FWHM'] = 0
-                popt_dict['r2'] = 0
-            except ValueError as e:
-                print(f'Curve fitting failed: {e}')
-                self.logger.info(f'Curve fitting failed: {e}')
-                popt_dict['amp'] = 0  # A * b**2,
-                popt_dict['assym'] = 0
-                popt_dict['res'] = 0
-                popt_dict['gamma'] = 0
-                popt_dict['off'] = 0
-                popt_dict['FWHM'] = 0
-                popt_dict['r2'] = 0
-
-            popt_dict['image path'] = im_path
-
-            self.resonance_data.append(popt_dict)
+            self.resonance_data.append(result)
 
     def set_initial_values(self, amp=None, assym=None,
                            res=None, gamma=None, off=None,
