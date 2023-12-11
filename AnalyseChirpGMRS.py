@@ -22,8 +22,9 @@ while True:
         print(f'{len(image_files)} files will now be processed')
         logger.info(f'{len(image_files)} files processed')
         func.process_images(logger, params, image_files, roi_array)
-        func.save_data(logger, params, roi_array, filenames_old)
+        func.save_data(logger, params, roi_array)
         func.plot_data(params, filenames_old, roi_array)
+        break
 
     if params['sleep_time'] > 0:
         print(f"Waiting for {params['sleep_time']} minutes")

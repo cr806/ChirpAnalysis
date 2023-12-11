@@ -179,7 +179,7 @@ class ROImulti:
     #         self.initial_values[1] = 100
     #     self.resonance_data = []
 
-    def process_ROI(self, plot=False):
+    def process_ROI(self, idx, im_path, plot=False):
         """ Processes ROI from initial image, first collapsing image into 1D,
             then applies curve_fit algorithm - updating resonance_data with
             the results
@@ -197,15 +197,16 @@ class ROImulti:
         subROI_size = ROI_x_size // self.subROIs
         transposed_im = np.transpose(self.im)
 
-        popt_dict = {'amp': [],  # A * b**2,
-                     'assym': [],
-                     'res': [],
-                     'gamma': [],
-                     'off': [],
-                     'FWHM': [],
-                     'r2': []}
-
         for i in range(self.subROIs):
+            popt_dict = {}
+            popt_dict['ID'] = idx
+            popt_dict['subROI'] = i
+            popt_dict['ROI_x1'] = self.roi[0][0]
+            popt_dict['ROI_y1'] = self.roi[0][1]
+            popt_dict['ROI_x2'] = self.roi[1][0]
+            popt_dict['ROI_y2'] = self.roi[1][1]
+            popt_dict['Angle'] = self.angle
+
             subROI = np.transpose(
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
 
@@ -218,7 +219,7 @@ class ROImulti:
 
             try:
                 # start = timeit.timeit()
-                popt, pcov = curve_fit(self.fano, xdata, collapsed_im,
+                popt, _ = curve_fit(self.fano, xdata, collapsed_im,
                                        p0=initial, bounds=self.bounds,
                                        x_scale=param_scale)
                 # end = timeit.timeit()
@@ -231,22 +232,33 @@ class ROImulti:
 
                 A, b, c, d, e = popt
                 # fano(self, x, amp, assym, res, gamma, off)
-                popt_dict['amp'].append(A)  # A * b**2,
-                popt_dict['assym'].append(b)
-                popt_dict['res'].append(c)
-                popt_dict['gamma'].append(d)
-                popt_dict['off'].append(e)
+                popt_dict['amp'] = A  # A * b**2,
+                popt_dict['assym'] = b
+                popt_dict['res'] = c
+                popt_dict['gamma'] = d
+                popt_dict['off'] = e
 
                 FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
                         ((2 * b**2) - 4))
-                popt_dict['FWHM'].append(FWHM)
+                popt_dict['FWHM'] = FWHM
 
                 y_bar = np.mean(collapsed_im)
                 ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
                 ss_tot = np.sum((collapsed_im - y_bar)**2)
-                popt_dict['r2'].append(ss_res / ss_tot)
+                popt_dict['r2'] = ss_res / ss_tot
 
-                self.set_initial_values(**popt_dict)
+                #############################################################
+                # Removed initial value update, only values set by user at
+                # beginning of analysis will be used.
+                # self.set_initial_values(**popt_dict)
+                #############################################################
+
+                #############################################################
+                # Update initial guess values, only using the central subROI,
+                # this should stop edge effects propagating to other sub-ROIs.
+                # if i == self.subROIs // 2:
+                #     self.set_initial_values(**popt_dict)
+                #############################################################
 
                 if plot:
                     fig, ax = plt.subplots(1, figsize=(12, 6))
@@ -257,25 +269,27 @@ class ROImulti:
             except RuntimeError as e:
                 print(f'Curve fitting did not converge: {e}')
                 self.logger.info(f'Curve fitting did not converge: {e}')
-                popt_dict['amp'].append(0)  # A * b**2,
-                popt_dict['assym'].append(0)
-                popt_dict['res'].append(0)
-                popt_dict['gamma'].append(0)
-                popt_dict['off'].append(0)
-                popt_dict['FWHM'].append(0)
-                popt_dict['r2'].append(0)
+                popt_dict['amp'] = 0  # A * b**2,
+                popt_dict['assym'] = 0
+                popt_dict['res'] = 0
+                popt_dict['gamma'] = 0
+                popt_dict['off'] = 0
+                popt_dict['FWHM'] = 0
+                popt_dict['r2'] = 0
             except ValueError as e:
                 print(f'Curve fitting failed: {e}')
                 self.logger.info(f'Curve fitting failed: {e}')
-                popt_dict['amp'].append(0)  # A * b**2,
-                popt_dict['assym'].append(0)
-                popt_dict['res'].append(0)
-                popt_dict['gamma'].append(0)
-                popt_dict['off'].append(0)
-                popt_dict['FWHM'].append(0)
-                popt_dict['r2'].append(0)
+                popt_dict['amp'] = 0  # A * b**2,
+                popt_dict['assym'] = 0
+                popt_dict['res'] = 0
+                popt_dict['gamma'] = 0
+                popt_dict['off'] = 0
+                popt_dict['FWHM'] = 0
+                popt_dict['r2'] = 0
 
-        self.resonance_data.append(popt_dict)
+            popt_dict['image path'] = im_path
+
+            self.resonance_data.append(popt_dict)
 
     def set_initial_values(self, amp=None, assym=None,
                            res=None, gamma=None, off=None,
@@ -324,39 +338,40 @@ class ROImulti:
     def get_save_data(self):
         """ Return the results as a formattted list ready for saving.
         """
-        first = True
-        output = []
+        # first = True
+        # output = []
+
+        # # for d in self.resonance_data:
+        # #     text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
+        # #     text_vals = [self.roi[0][0], self.roi[0][1],
+        # #                  self.roi[1][1], self.angle]
+        # #     for k, v in d.items():
+        # #         text_keys.append(k)
+        # #         text_vals.append(v)
+        # #     if first:
+        # #         output.append(text_keys)
+        # #         first = False
+        # #     output.append(text_vals)
 
         # for d in self.resonance_data:
         #     text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
-        #     text_vals = [self.roi[0][0], self.roi[0][1],
+        #     text_vals = [self.roi[0][0], self.roi[0][1], self.roi[1][0],
         #                  self.roi[1][1], self.angle]
         #     for k, v in d.items():
-        #         text_keys.append(k)
-        #         text_vals.append(v)
+        #         if isinstance(v, list):
+        #             for idx, data in enumerate(v):
+        #                 text_keys.append(f'{k}_{idx}')
+        #                 text_vals.append(data)
+        #         else:
+        #             text_keys.append(f'{k}')
+        #             text_vals.append(v)
         #     if first:
         #         output.append(text_keys)
         #         first = False
         #     output.append(text_vals)
 
-        for d in self.resonance_data:
-            text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
-            text_vals = [self.roi[0][0], self.roi[0][1], self.roi[1][0],
-                         self.roi[1][1], self.angle]
-            for k, v in d.items():
-                if isinstance(v, list):
-                    for idx, data in enumerate(v):
-                        text_keys.append(f'{k}_{idx}')
-                        text_vals.append(data)
-                else:
-                    text_keys.append(f'{k}')
-                    text_vals.append(v)
-            if first:
-                output.append(text_keys)
-                first = False
-            output.append(text_vals)
-
-        return output
+        # return output
+        return self.resonance_data
 
     def get_resonance_data(self, disp=False):
         """ Getter method for returning resonance_data list of dictionaries to

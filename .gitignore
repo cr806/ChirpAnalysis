@@ -9,3 +9,4 @@
 .DS_Store
 requirements.txt
 Makefile
+ChirpAnalysis_multi.log

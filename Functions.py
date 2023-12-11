@@ -1,6 +1,7 @@
 import csv
 import logging
 from PIL import Image, ImageOps
+import pandas as pd
 import json
 import timeit
 import configparser
@@ -200,70 +201,44 @@ def process_images(logger, params, image_files, roi_array):
         end = timeit.timeit()
         logger.info(f'Loading data took: {(end - start):.4}s')
 
-        for idx, roi in enumerate(roi_array):
+        for roi in roi_array:
             roi.set_initial_ROI(im)
             roi.create_ROI_data(im)
-            roi.process_ROI()
+            roi.process_ROI(idx, im_path)
 
 
-def save_data(logger, params, roi_array, filenames_old):
-    """ Saves ROI data to a number of CSV files. One file will contain all data
-        in a format that is easy to read in as a dataframe.  Also two CSVs are
-        produced per ROI, one containing "GOOD" results, the other "BAD"
-        results, good and bad determined by the r**2 value of the Fano fit and
-        the threshold level set by the user within the configuration file
+def save_data(logger, params, roi_array):
+    """ Saves ROI data to a CSV file.
 
         Attributes:
         logger (obj) :         Logger information
         params (dict) :        Dictionary containing user parameters
         roi_array (list) :     List of ROI objects
-        filenames_old (list) : List of filenames that were previously processed
     """
-    # Filter and save resulting data to CSV file
-    output_all_header = ['ID', 'ROI', 'subROI', 'ROI_x1',
-                         'ROI_y1', 'ROI_x2', 'ROI_y2', 'angle',
-                         'amp', 'assym', 'res', 'gamma', 'off',
-                         'FWHM', 'r2', 'image-path']
-    output_all = [output_all_header]
-    data_idx = [5 + (i * params['num_of_subROIs']) for i in range(7)]
+    all_data = []
+
     for idx, roi in enumerate(roi_array):
         output_raw = roi.get_save_data()
-        header = ['ID']
-        header.extend(output_raw[0])
-        header.append('Image Path')
-        output_good = [header]
+        for d in output_raw:
+            d['ROI'] = idx
+            all_data.append(d)
 
-        for i, row in enumerate(output_raw[1:]):
-            for j in range(params['num_of_subROIs']):
-                output_all_row = [i, idx, j]
-                output_all_row.extend(row[:5])
+    save_path = params['save_path']
+    save_name = params['save_name']
 
-                data_i = [d+j for d in data_idx]
-                subROIdata = [row[z] for z in data_i]
+    df = pd.DataFrame(all_data)
+    df = df.sort_values(by=['ROI', 'ID', 'subROI'])
+    df = df.reset_index(drop=True)
+    
+    initial_cols = ['ROI', 'ID', 'subROI']
+    new_col_order = initial_cols + [col for col in df.columns if col not in initial_cols]
+    df = df[new_col_order]
 
-                output_all_row.extend(subROIdata)
-                output_all_row.append(filenames_old[i])
-                output_all.append(output_all_row)
-
-        for i, row in enumerate(output_raw[1:]):
-            output_row = [i]
-            output_row.extend(row)
-            output_row.append(filenames_old[i])
-            # ~(tilde)num -> count from end starting at 0
-            output_good.append(output_row)
-
-        save_path = params['save_path']
-        save_name = params['save_name']
-        output_good_str = [str(o)[1:-1].replace("'", "") for o in output_good]
-        with open(join(save_path, f'{save_name}_ROI_{idx}.csv'), 'w') as f:
-            f.write('\n'.join(output_good_str))
-
-        logger.info('...Data saved')
-
-    output_all_str = [str(o)[1:-1].replace("'", "") for o in output_all]
-    with open(join(save_path, f'{save_name}_ALLDATA.csv'), 'w') as f:
-        f.write('\n'.join(output_all_str))
-    logger.info('...All raw data saved')
+    df.to_csv(join(save_path, f'{save_name}_NEWDATA.csv'),
+              sep=',',
+              index=False)
+    
+    logger.info('...Data saved')
 
 
 def plot_data(params, filenames_old, roi_array):
