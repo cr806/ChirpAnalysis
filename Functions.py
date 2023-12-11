@@ -231,7 +231,8 @@ def save_data(logger, params, roi_array):
     df = df.reset_index(drop=True)
     
     initial_cols = ['ROI', 'ID', 'subROI']
-    new_col_order = initial_cols + [col for col in df.columns if col not in initial_cols]
+    new_col_order = initial_cols + [col for col in df.columns
+                                    if col not in initial_cols]
     df = df[new_col_order]
 
     df.to_csv(join(save_path, f'{save_name}_NEWDATA.csv'),
@@ -242,9 +243,10 @@ def save_data(logger, params, roi_array):
 
 
 def plot_data(params, filenames_old, roi_array):
-    """ Plots relevant data from each ROI, and saves plot to file.  This plot
-        is aimed at allowing users to check on the progress of long running
-        experiments - it should not be used as the final data analysis
+    """ Plots relevant data from each ROI, and saves plot to file - one file per
+        ROI.  This plot is aimed at allowing users to check on the progress of
+        long running experiments - it should not be used as the final data
+        analysis
 
         Attributes:
         params (dict) :        Dictionary containing user parameters
@@ -252,29 +254,24 @@ def plot_data(params, filenames_old, roi_array):
         roi_array (list) :     List of ROI objects
     """
     # Plot and save data as it is processed
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
+    _, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
-    for roi in roi_array:
-        ref_data = roi.get_reference_data()
-        res_data = [np.mean(np.subtract(d['res'], ref_data[2]))
-                    for d in roi.get_resonance_data()]
+    for idx, roi in enumerate(roi_array):
+        data = pd.DataFrame(roi.get_resonance_data())
+        for i in range(roi.get_num_subROIs()):
+            plot_data = data[data['subROI'] == i]
+            ax1.plot(time_axis, plot_data['res'])
+            ax2.plot(time_axis, plot_data['FWHM'])
+            ax3.plot(time_axis, plot_data['r2'])
 
-        FWHM_data = [np.mean(np.subtract(d['FWHM'], ref_data[5]))
-                     for d in roi.get_resonance_data()]
-
-        r2_data = [np.mean(d['r2']) for d in roi.get_resonance_data()]
-
-        ax1.plot(time_axis, res_data)
-        ax2.plot(time_axis, FWHM_data)
-        ax3.plot(time_axis, r2_data)
         ax1.set_ylabel('Resonance (px)')
         ax2.set_ylabel('FWHM (px)')
         ax3.set_ylabel('R^2')
         ax1.set_xlabel('Time (minutes)')
         ax2.set_xlabel('Time (minutes)')
         ax3.set_xlabel('Time (minutes)')
-        plt.savefig(params['save_figure_filename'])
+        plt.savefig(f'{params['save_figure_filename']}_ROI-{idx}.png')
 
 
 def get_image(logger, params, im_path):

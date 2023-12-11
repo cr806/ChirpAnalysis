@@ -403,3 +403,9 @@ class ROImulti:
         """
         self.logger.debug(f'...get_im({self})')
         return self.im
+
+    def get_num_subROIs(self):
+        """ Getter method to return the number of subROIs to caller
+        """
+        self.logger.debug(f'...get_num_subROIs({self})')
+        return self.subROIs
