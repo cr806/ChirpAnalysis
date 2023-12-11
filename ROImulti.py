@@ -214,11 +214,23 @@ class ROImulti:
             self.logger.info(f'Curve fitting failed: {e}')
         return popt_dict
     
-    def CollapseAnalysisGaussian(self, data: np.ndarray) -> Tuple[float, float,
-                                                                  float, float]:
+    def CollapseAnalysisGaussian(self, data: np.ndarray):
         x_data = np.arange(0, data.shape[0])
         y_data = np.mean(data, axis=1)
         return self.get_mu(x_data, y_data)
+    
+    def get_centre(self, y_data: np.ndarray, filter: float):
+        '''Function to return the 'centre' of the peak within the data.
+        Accepts a 1D data array'''
+        max_idx = np.argmax(y_data)
+        threshold = y_data[max_idx] * filter
+        idxs = np.where(y_data > threshold)[0]
+        return {
+            'Lower Threshold': idxs[0],
+            'Maximum': max_idx,
+            'Centre': np.mean(idxs),
+            'Upper Threshold': idxs[-1],
+        }
 
     def CollapseAnalysisFano(self,
                              data: np.ndarray,
@@ -289,7 +301,7 @@ class ROImulti:
 
         return popt_dict
     
-    def process_ROI(self, idx, im_path, plot=False):
+    def process_ROI(self, method, idx, im_path, plot=False):
         """ Processes ROI from initial image, first collapsing image into 1D,
             then applies curve_fit algorithm - updating resonance_data with
             the results
@@ -320,8 +332,12 @@ class ROImulti:
             subROI = np.transpose(
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
             
-            result.update(self.CollapseAnalysisFano(subROI))
-            # result.update(self.CollapseAnalysisGaussian(subROI))
+            if method == 'fano-1D':
+                result.update(self.CollapseAnalysisFano(subROI))
+            elif method == 'gaussian-1D':
+                result.update(self.CollapseAnalysisGaussian(subROI))
+            elif method == 'maximum-1D':
+                result.update(self.get_centre(np.mean(subROI, axis=1), 0.75))
 
             result['image path'] = im_path
 

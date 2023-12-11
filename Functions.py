@@ -66,6 +66,7 @@ def get_simulation_params(logger, config_filepath):
         params['image_type'] = config['Data']['image_type']
         params['image_align'] = config['Data']['image_align']
         params['save_figure_filename'] = config['Data']['save_figure_filename']
+        params['analysis'] = config['Data']['analysis_method']
 
         params['sleep_time'] = 0.33
 
@@ -204,7 +205,7 @@ def process_images(logger, params, image_files, roi_array):
         for roi in roi_array:
             roi.set_initial_ROI(im)
             roi.create_ROI_data(im)
-            roi.process_ROI(idx, im_path)
+            roi.process_ROI(params['analysis'], idx, im_path)
 
 
 def save_data(logger, params, roi_array):
@@ -261,7 +262,7 @@ def plot_data(params, filenames_old, roi_array):
         data = pd.DataFrame(roi.get_resonance_data())
         for i in range(roi.get_num_subROIs()):
             plot_data = data[data['subROI'] == i]
-            ax.plot(time_axis, plot_data['res'])
+            ax.plot(time_axis, plot_data['Centre'])
 
         ax.set_ylabel('Resonance (px)')
         ax.set_xlabel('Time (minutes)')
