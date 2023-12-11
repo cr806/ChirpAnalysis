@@ -254,23 +254,17 @@ def plot_data(params, filenames_old, roi_array):
         roi_array (list) :     List of ROI objects
     """
     # Plot and save data as it is processed
-    _, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
+    _, ax = plt.subplots(1, 1, figsize=(6, 6))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
     for idx, roi in enumerate(roi_array):
         data = pd.DataFrame(roi.get_resonance_data())
         for i in range(roi.get_num_subROIs()):
             plot_data = data[data['subROI'] == i]
-            ax1.plot(time_axis, plot_data['res'])
-            ax2.plot(time_axis, plot_data['FWHM'])
-            ax3.plot(time_axis, plot_data['r2'])
+            ax.plot(time_axis, plot_data['res'])
 
-        ax1.set_ylabel('Resonance (px)')
-        ax2.set_ylabel('FWHM (px)')
-        ax3.set_ylabel('R^2')
-        ax1.set_xlabel('Time (minutes)')
-        ax2.set_xlabel('Time (minutes)')
-        ax3.set_xlabel('Time (minutes)')
+        ax.set_ylabel('Resonance (px)')
+        ax.set_xlabel('Time (minutes)')
         plt.savefig(f'{params['save_figure_filename']}_ROI-{idx}.png')
 
 

@@ -43,8 +43,6 @@ class ROImulti:
         self.initial_values = [0, 0, 0, 0, 0]
         if res is not None:
             self.initial_values = [0, 0, res[0], res[1], 0]
-        self.bounds = ([-1000, -100,  0,   0,    0],
-                       [1000, 100,  500, 500,  500])
         self.resonance_data = []
         self.reference_data = None
         self.fig = None
@@ -181,12 +179,46 @@ class ROImulti:
     #         self.initial_values[1] = 100
     #     self.resonance_data = []
     
+    def get_mu(self, x_data: np.ndarray, y_data: np.ndarray) -> Tuple[float, float,
+                                                                      float, float]:
+        '''Function to fit a Gaussian to the data, returning the fitted parameters
+        (or zeros if no fit possible)'''
+        def gaussian_fit(x, mu, A, sigma, bias):
+            return A * np.exp(-(x - mu)**2 / (2 * sigma**2)) + bias
+
+        # initial_guess = np.array(self.initial_values)
+        initial_guess = [np.argmax(y_data), 200, len(y_data)/4, 0]
+        bounds = ([0, 0, 0, 0],
+                  [len(y_data), 2**16, len(y_data), 2**16])
+        popt_dict = {
+            'res': 0,
+            'amp': 0,
+            'sigma': 0,
+            'bias': 0,
+        }
+        try:
+            popt, _ = curve_fit(gaussian_fit, x_data, y_data,
+                               p0=initial_guess, bounds=bounds)
+            # print(params)
+            mu, A, sigma, bias = popt
+            # fano(self, x, amp, assym, res, gamma, off)
+            popt_dict['res'] = mu  # A * b**2,
+            popt_dict['amp'] = A
+            popt_dict['sigma'] = sigma
+            popt_dict['bias'] = bias
+        except RuntimeError as e:
+            print(f'Curve fitting did not converge: {e}')
+            self.logger.info(f'Curve fitting did not converge: {e}')
+        except ValueError as e:
+            print(f'Curve fitting failed: {e}')
+            self.logger.info(f'Curve fitting failed: {e}')
+        return popt_dict
     
     def CollapseAnalysisGaussian(self, data: np.ndarray) -> Tuple[float, float,
                                                                   float, float]:
-        x_data = np.arange(0, data.shape[1])
-        y_data = np.mean(data, axis=0)
-        return get_mu(x_data, y_data)
+        x_data = np.arange(0, data.shape[0])
+        y_data = np.mean(data, axis=1)
+        return self.get_mu(x_data, y_data)
 
     def CollapseAnalysisFano(self,
                              data: np.ndarray,
@@ -196,15 +228,25 @@ class ROImulti:
         collapsed_im = np.mean(data, axis=1)
 
         initial = np.array(self.initial_values)
+        bounds = ([-1000, -100,  0,   0,    0],
+                  [1000, 100,  500, 500,  500])
         param_scale = [10, 1, self.initial_values[2],
                        self.initial_values[3], np.amin(collapsed_im)]
         # amp, assym, res, gamma, off
 
-        popt_dict = {}
+        popt_dict = {
+            'amp': 0,
+            'assym': 0,
+            'res': 0,
+            'gamma': 0,
+            'off': 0,
+            'FWHM': 0,
+            'r2': 0,
+        }
         try:
             # start = timeit.timeit()
             popt, _ = curve_fit(self.fano, xdata, collapsed_im,
-                               p0=initial, bounds=self.bounds,
+                               p0=initial, bounds=bounds,
                                x_scale=param_scale)
             # end = timeit.timeit()
             # print(f'Curve fit took: {(end - start):.4} s')
@@ -215,37 +257,25 @@ class ROImulti:
             print('--------------------------------------')"""
 
             A, b, c, d, e = popt
+
+            FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
+                    ((2 * b**2) - 4))
+
+            y_bar = np.mean(collapsed_im)
+            ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
+            ss_tot = np.sum((collapsed_im - y_bar)**2)
+            
             # fano(self, x, amp, assym, res, gamma, off)
             popt_dict['amp'] = A  # A * b**2,
             popt_dict['assym'] = b
             popt_dict['res'] = c
             popt_dict['gamma'] = d
             popt_dict['off'] = e
-
-            FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
-                    ((2 * b**2) - 4))
             popt_dict['FWHM'] = FWHM
-
-            y_bar = np.mean(collapsed_im)
-            ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
-            ss_tot = np.sum((collapsed_im - y_bar)**2)
             popt_dict['r2'] = ss_res / ss_tot
 
-            #############################################################
-            # Removed initial value update, only values set by user at
-            # beginning of analysis will be used.
-            # self.set_initial_values(**popt_dict)
-            #############################################################
-
-            #############################################################
-            # Update initial guess values, only using the central subROI,
-            # this should stop edge effects propagating to other sub-ROIs.
-            # if i == self.subROIs // 2:
-            #     self.set_initial_values(**popt_dict)
-            #############################################################
-
             if plot:
-                fig, ax = plt.subplots(1, figsize=(12, 6))
+                _, ax = plt.subplots(1, figsize=(12, 6))
                 ax.plot(xdata, collapsed_im, 'b')
                 ax.plot(xdata, self.fano(xdata, *popt), 'r')
                 plt.show()
@@ -253,23 +283,9 @@ class ROImulti:
         except RuntimeError as e:
             print(f'Curve fitting did not converge: {e}')
             self.logger.info(f'Curve fitting did not converge: {e}')
-            popt_dict['amp'] = 0  # A * b**2,
-            popt_dict['assym'] = 0
-            popt_dict['res'] = 0
-            popt_dict['gamma'] = 0
-            popt_dict['off'] = 0
-            popt_dict['FWHM'] = 0
-            popt_dict['r2'] = 0
         except ValueError as e:
             print(f'Curve fitting failed: {e}')
             self.logger.info(f'Curve fitting failed: {e}')
-            popt_dict['amp'] = 0  # A * b**2,
-            popt_dict['assym'] = 0
-            popt_dict['res'] = 0
-            popt_dict['gamma'] = 0
-            popt_dict['off'] = 0
-            popt_dict['FWHM'] = 0
-            popt_dict['r2'] = 0
 
         return popt_dict
     
@@ -305,6 +321,7 @@ class ROImulti:
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
             
             result.update(self.CollapseAnalysisFano(subROI))
+            # result.update(self.CollapseAnalysisGaussian(subROI))
 
             result['image path'] = im_path
 
