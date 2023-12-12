@@ -263,18 +263,52 @@ def plot_data(params, filenames_old, roi_array):
         'median_fano-2D': 'XXX',
         'median_maximum-2D': 'XXX',
     }
-    _, ax = plt.subplots(1, 1, figsize=(6, 6))
+    ncols = 3
+    nrows = 5
+    fig, ax = plt.subplots(nrows, ncols, sharex=True, sharey=True, figsize=(9, 15))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
-    for idx, roi in enumerate(roi_array):
-        data = pd.DataFrame(roi.get_resonance_data())
-        for i in range(roi.get_num_subROIs()):
+    
+    current_roi = 0
+    stop_plotting = False
+    for a in ax.flat:
+        print(f'{current_roi =} {len(roi_array) =}')
+        data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
+        for i in range(roi_array[current_roi].get_num_subROIs()):
             plot_data = data[data['subROI'] == i]
-            ax.plot(time_axis, plot_data[to_plot[params['analysis']]])
+            a.plot(time_axis, plot_data[to_plot[params['analysis']]])
+        a.set_title(f'ROI {current_roi}')
+        current_roi += 1
+        if current_roi >= len(roi_array):
+            print(f'INSIDE {current_roi =}')
+            break
+    # for r in range(nrows):
+    #     if stop_plotting: break
+    #     for c in range(ncols):
+    #         data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
+    #         for i in range(roi_array[current_roi].get_num_subROIs()):
+    #             plot_data = data[data['subROI'] == i]
+    #             ax[r, c].plot(time_axis, plot_data[to_plot[params['analysis']]])
+    #         # ax[r, c].set_ylabel('Resonance (px)')
+    #         # ax[r, c].set_xlabel('Time (minutes)')
+    #         ax[r, c].set_title(f'ROI {current_roi}')
+    #         current_roi += 1
+    #         if current_roi >= len(roi_array):
+    #             stop_plotting = True
+    #             break
+        fig.text(0.5, 0.02, 'Time (minutes)',
+                 ha='center', va='center', fontsize=24)
+        fig.text(0.02, 0.5, 'Resonance (px)',
+                 ha='center', va='center', rotation='vertical', fontsize=24)
+    # for roi in roi_array:
+    #     data = pd.DataFrame(roi.get_resonance_data())
+    #     for i in range(roi.get_num_subROIs()):
+    #         plot_data = data[data['subROI'] == i]
+    #         ax.plot(time_axis, plot_data[to_plot[params['analysis']]])
 
-        ax.set_ylabel('Resonance (px)')
-        ax.set_xlabel('Time (minutes)')
-        plt.savefig(f'{params['save_figure_filename']}_ROI-{idx}.png')
+    #     ax.set_ylabel('Resonance (px)')
+    #     ax.set_xlabel('Time (minutes)')
+        plt.savefig(f'{params['save_figure_filename']}')
 
 
 def get_image(logger, params, im_path):
