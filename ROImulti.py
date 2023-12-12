@@ -202,7 +202,7 @@ class ROImulti:
             # print(params)
             mu, A, sigma, bias = popt
             # fano(self, x, amp, assym, res, gamma, off)
-            popt_dict['res'] = mu  # A * b**2,
+            popt_dict['mu'] = mu  # A * b**2,
             popt_dict['amp'] = A
             popt_dict['sigma'] = sigma
             popt_dict['bias'] = bias
@@ -300,7 +300,50 @@ class ROImulti:
             self.logger.info(f'Curve fitting failed: {e}')
 
         return popt_dict
-    
+
+    def CDFAnalysis(self, data: np.ndarray, threshold: float = 0.75/2):
+        def get_quartiles(data: np.ndarray) -> Tuple[float, float, float]:
+            if len(data) == 0:
+                return (0, 0, 0)
+            # Calculate the CDF and normalise
+            cdf = np.cumsum(data)
+            cdf_norm = cdf / cdf[-1]
+
+            # Find the values at the specified percentiles
+            return tuple(np.interp(np.array([0.25, 0.50, 0.75]),
+                                   cdf_norm,
+                                   data))
+        
+        def filter_data(data: np.ndarray, threshold: float=0.0) -> np.ndarray:
+            # Sort data
+            data = np.sort(data)
+            
+            # Calculate the CDF and normalise
+            cdf = np.cumsum(data)
+            cdf_norm = cdf / cdf[-1]
+
+            # Filter data by threshold
+            Lo = np.interp(threshold, cdf_norm, data)
+            Hi = np.interp((1-threshold), cdf_norm, data)
+            data = data[np.where(data >= min(Lo, Hi))]
+            data = data[np.where(data <= max(Lo, Hi))]
+            return data
+
+        mus = []
+        x_data = np.arange(0, data.shape[0])
+        for i in range(0, data.shape[1]):
+            y_data = data[:, i]
+            mu = self.get_mu(x_data, y_data)['mu']
+            mus.append(mu)
+
+        mus = filter_data(mus, threshold)
+        F, M, T = get_quartiles(mus)
+        return {
+            'First Quartile': F,
+            'Median': M,
+            'Third Quartile': T,
+        }
+
     def process_ROI(self, method, idx, im_path, plot=False):
         """ Processes ROI from initial image, first collapsing image into 1D,
             then applies curve_fit algorithm - updating resonance_data with
@@ -315,6 +358,9 @@ class ROImulti:
         slice image array im[0:20]
         transpose slice
         """
+        if method == 'median_gaussian-2D':
+            self.subROIs = 1
+        
         ROI_x_size = np.shape(self.im)[1]
         subROI_size = ROI_x_size // self.subROIs
         transposed_im = np.transpose(self.im)
@@ -333,10 +379,21 @@ class ROImulti:
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
             
             if method == 'fano-1D':
+                self.logger.debug(f'... using simple Fano fit')
                 result.update(self.CollapseAnalysisFano(subROI))
             elif method == 'gaussian-1D':
+                self.logger.debug(f'... using simple Gaussian fit')
                 result.update(self.CollapseAnalysisGaussian(subROI))
             elif method == 'maximum-1D':
+                self.logger.debug(f'... using simple find maximum')
+                result.update(self.get_centre(np.mean(subROI, axis=1), 0.75))
+            elif method == 'median_gaussian-2D':
+                self.logger.debug(f'... using mulyi-Fano fit')
+                result.update(self.CDFAnalysis(subROI, 0.75/2))
+            else:
+                self.logger.debug((f'... no or incorrect analsysis method '
+                                  f'selected, using find maximum analysis '
+                                  f'method'))
                 result.update(self.get_centre(np.mean(subROI, axis=1), 0.75))
 
             result['image path'] = im_path

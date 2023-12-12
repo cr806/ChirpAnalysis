@@ -254,7 +254,15 @@ def plot_data(params, filenames_old, roi_array):
         filenames_old (list) : List of filenames that were previously processed
         roi_array (list) :     List of ROI objects
     """
-    # Plot and save data as it is processed
+
+    to_plot = {
+        'gaussian-1D': 'mu',
+        'fano-1D': 'res',
+        'maximum-1D': 'Maximum',
+        'median_gaussian-2D': 'Median',
+        'median_fano-2D': 'XXX',
+        'median_maximum-2D': 'XXX',
+    }
     _, ax = plt.subplots(1, 1, figsize=(6, 6))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
@@ -262,7 +270,7 @@ def plot_data(params, filenames_old, roi_array):
         data = pd.DataFrame(roi.get_resonance_data())
         for i in range(roi.get_num_subROIs()):
             plot_data = data[data['subROI'] == i]
-            ax.plot(time_axis, plot_data['Centre'])
+            ax.plot(time_axis, plot_data[to_plot[params['analysis']]])
 
         ax.set_ylabel('Resonance (px)')
         ax.set_xlabel('Time (minutes)')
