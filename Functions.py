@@ -256,12 +256,12 @@ def plot_data(params, filenames_old, roi_array):
     """
 
     to_plot = {
-        'gaussian-1D': 'mu',
-        'fano-1D': 'res',
-        'maximum-1D': 'Maximum',
-        'median_gaussian-2D': 'Median',
-        'median_fano-2D': 'XXX',
-        'median_maximum-2D': 'XXX',
+        'gaussian of mean': 'Mu',
+        'fano of mean': 'Resonance',
+        'centre of peak': 'Maximum',
+        'median of gaussians': 'Median',
+        'median of fanos': 'Median',
+        'median of centres': 'Median',
     }
     ncols = 3
     nrows = 5
@@ -271,43 +271,34 @@ def plot_data(params, filenames_old, roi_array):
     
     current_roi = 0
     stop_plotting = False
-    for a in ax.flat:
-        print(f'{current_roi =} {len(roi_array) =}')
-        data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
-        for i in range(roi_array[current_roi].get_num_subROIs()):
-            plot_data = data[data['subROI'] == i]
-            a.plot(time_axis, plot_data[to_plot[params['analysis']]])
-        a.set_title(f'ROI {current_roi}')
-        current_roi += 1
-        if current_roi >= len(roi_array):
-            print(f'INSIDE {current_roi =}')
-            break
-    # for r in range(nrows):
-    #     if stop_plotting: break
-    #     for c in range(ncols):
-    #         data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
-    #         for i in range(roi_array[current_roi].get_num_subROIs()):
-    #             plot_data = data[data['subROI'] == i]
-    #             ax[r, c].plot(time_axis, plot_data[to_plot[params['analysis']]])
-    #         # ax[r, c].set_ylabel('Resonance (px)')
-    #         # ax[r, c].set_xlabel('Time (minutes)')
-    #         ax[r, c].set_title(f'ROI {current_roi}')
-    #         current_roi += 1
-    #         if current_roi >= len(roi_array):
-    #             stop_plotting = True
-    #             break
+    # for a in ax.flat:
+    #     print(f'{current_roi =} {len(roi_array) =}')
+    #     data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
+    #     for i in range(roi_array[current_roi].get_num_subROIs()):
+    #         plot_data = data[data['subROI'] == i]
+    #         a.plot(time_axis, plot_data[to_plot[params['analysis']]])
+    #     a.set_title(f'ROI {current_roi}')
+    #     current_roi += 1
+    #     if current_roi >= len(roi_array):
+    #         print(f'INSIDE {current_roi =}')
+    #         break
+    for r in range(nrows):
+        if stop_plotting: break
+        for c in range(ncols):
+            data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
+            for i in range(roi_array[current_roi].get_num_subROIs()):
+                plot_data = data[data['subROI'] == i]
+                ax[r, c].plot(time_axis, plot_data[to_plot[params['analysis']]])
+            ax[r, c].set_title(f'ROI {current_roi}')
+            current_roi += 1
+            if current_roi >= len(roi_array):
+                stop_plotting = True
+                break
         fig.text(0.5, 0.02, 'Time (minutes)',
                  ha='center', va='center', fontsize=24)
         fig.text(0.02, 0.5, 'Resonance (px)',
                  ha='center', va='center', rotation='vertical', fontsize=24)
-    # for roi in roi_array:
-    #     data = pd.DataFrame(roi.get_resonance_data())
-    #     for i in range(roi.get_num_subROIs()):
-    #         plot_data = data[data['subROI'] == i]
-    #         ax.plot(time_axis, plot_data[to_plot[params['analysis']]])
 
-    #     ax.set_ylabel('Resonance (px)')
-    #     ax.set_xlabel('Time (minutes)')
         plt.savefig(f'{params['save_figure_filename']}')
 
 

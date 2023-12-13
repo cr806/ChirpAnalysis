@@ -58,25 +58,6 @@ class ROImulti:
         self.logger.info(f'__init__({self}, angle={angle}, roi={roi}, '
                          'res={res})')
 
-    def fano(self, x, amp, assym, res, gamma, off):
-        """ Fano function used for curve-fitting
-
-            Attributes:
-            x (float) :    Independant data value (i.e. x-value, in this
-                           case pixel number)
-            amp (float):   Amplitude
-            assym (float): Assymetry
-            res (float):   Resonance
-            gamma (float): Gamma
-            off (float):   Offset (i.e. function bias away from zero)
-
-            Returns:
-            float: Dependant data value (i.e. y-value)
-        """
-        num = ((assym * gamma) + (x - res)) * ((assym * gamma) + (x - res))
-        den = (gamma * gamma) + ((x - res)*(x - res))
-        return (amp * (num / den)) + off
-
     def set_initial_ROI(self, im):
         """ Method called to set-up ROI data from first image
 
@@ -179,33 +160,43 @@ class ROImulti:
     #         self.initial_values[1] = 100
     #     self.resonance_data = []
     
-    def get_mu(self, x_data: np.ndarray, y_data: np.ndarray) -> Tuple[float, float,
-                                                                      float, float]:
+    def fit_gaussian(self, x_data: np.ndarray, y_data: np.ndarray, plot=False):
         '''Function to fit a Gaussian to the data, returning the fitted parameters
         (or zeros if no fit possible)'''
-        def gaussian_fit(x, mu, A, sigma, bias):
+        def gaussian(x, mu, A, sigma, bias):
             return A * np.exp(-(x - mu)**2 / (2 * sigma**2)) + bias
 
-        # initial_guess = np.array(self.initial_values)
-        initial_guess = [np.argmax(y_data), 200, len(y_data)/4, 0]
-        bounds = ([0, 0, 0, 0],
+        initial_guess = [np.argmax(y_data), 200,
+                         len(y_data)/4, np.amin(y_data)]
+        bounds = ([0,           0,     0,           0],
                   [len(y_data), 2**16, len(y_data), 2**16])
         popt_dict = {
-            'res': 0,
-            'amp': 0,
-            'sigma': 0,
-            'bias': 0,
+            'Mu': 0,
+            'Amplitude': 0,
+            'Sigma': 0,
+            'Bias': 0,
+            'R^2': 0,
         }
         try:
-            popt, _ = curve_fit(gaussian_fit, x_data, y_data,
+            popt, _ = curve_fit(gaussian, x_data, y_data,
                                p0=initial_guess, bounds=bounds)
-            # print(params)
             mu, A, sigma, bias = popt
-            # fano(self, x, amp, assym, res, gamma, off)
-            popt_dict['mu'] = mu  # A * b**2,
-            popt_dict['amp'] = A
-            popt_dict['sigma'] = sigma
-            popt_dict['bias'] = bias
+
+            ss_res = np.sum(gaussian(x_data, *popt)**2)
+            ss_tot = np.sum(y_data**2)
+
+            popt_dict['Mu'] = mu
+            popt_dict['Amplitude'] = A
+            popt_dict['Sigma'] = sigma
+            popt_dict['Bias'] = bias
+            popt_dict['R^2'] = ss_res / ss_tot
+
+            if plot:
+                _, ax = plt.subplots(1, figsize=(12, 6))
+                ax.plot(x_data, y_data, 'b')
+                ax.plot(x_data, gaussian(x_data, *popt), 'r')
+                plt.show()
+
         except RuntimeError as e:
             print(f'Curve fitting did not converge: {e}')
             self.logger.info(f'Curve fitting did not converge: {e}')
@@ -213,83 +204,71 @@ class ROImulti:
             print(f'Curve fitting failed: {e}')
             self.logger.info(f'Curve fitting failed: {e}')
         return popt_dict
-    
-    def CollapseAnalysisGaussian(self, data: np.ndarray):
-        x_data = np.arange(0, data.shape[0])
-        y_data = np.mean(data, axis=1)
-        return self.get_mu(x_data, y_data)
-    
-    def get_centre(self, y_data: np.ndarray, filter: float):
-        '''Function to return the 'centre' of the peak within the data.
-        Accepts a 1D data array'''
-        max_idx = np.argmax(y_data)
-        threshold = y_data[max_idx] * filter
-        idxs = np.where(y_data > threshold)[0]
-        return {
-            'Lower Threshold': idxs[0],
-            'Maximum': max_idx,
-            'Centre': np.mean(idxs),
-            'Upper Threshold': idxs[-1],
-        }
 
-    def CollapseAnalysisFano(self,
-                             data: np.ndarray,
-                             plot=False):
+    def fit_fano(self, x_data, y_data, plot=False):
+        def fano(x, amp, assym, res, gamma, bias):
+            """ Fano function used for curve-fitting
 
-        xdata = np.arange(0, data.shape[0])
-        collapsed_im = np.mean(data, axis=1)
+                Attributes:
+                x (float) :    Independant data value (i.e. x-value, in this
+                            case pixel number)
+                amp (float):   Amplitude
+                assym (float): Assymetry
+                res (float):   Resonance
+                gamma (float): Gamma
+                off (float):   Offset (i.e. function bias away from zero)
 
-        initial = np.array(self.initial_values)
+                Returns:
+                float: Dependant data value (i.e. y-value)
+            """
+            num = ((assym * gamma) + (x - res)) * ((assym * gamma) + (x - res))
+            den = (gamma * gamma) + ((x - res)*(x - res))
+            return (amp * (num / den)) + bias
+
+        # initial_guess = np.array(self.initial_values)
+        # param_scale = [10, 1, self.initial_values[2],
+        #                self.initial_values[3], np.amin(y_data)]
+        initial_guess = [np.max(y_data), 0, np.argmax(y_data),
+                         len(y_data)/4, 0]
         bounds = ([-1000, -100,  0,   0,    0],
                   [1000, 100,  500, 500,  500])
-        param_scale = [10, 1, self.initial_values[2],
-                       self.initial_values[3], np.amin(collapsed_im)]
-        # amp, assym, res, gamma, off
+        param_scale = [10, 1, np.argmax(y_data),
+                       len(y_data)/4, np.amin(y_data)]
 
         popt_dict = {
-            'amp': 0,
-            'assym': 0,
-            'res': 0,
-            'gamma': 0,
-            'off': 0,
+            'Amplitude': 0,
+            'Assymetry': 0,
+            'Resonance': 0,
+            'Gamma': 0,
+            'Bias': 0,
             'FWHM': 0,
-            'r2': 0,
+            'R^2': 0,
         }
         try:
-            # start = timeit.timeit()
-            popt, _ = curve_fit(self.fano, xdata, collapsed_im,
-                               p0=initial, bounds=bounds,
+            popt, _ = curve_fit(fano, x_data, y_data,
+                               p0=initial_guess, bounds=bounds,
                                x_scale=param_scale)
-            # end = timeit.timeit()
-            # print(f'Curve fit took: {(end - start):.4} s')
-            """amp, assym, gamma, res, off = popt
-            print(f'Amp: {amp:.3f}, Assym: {assym:.3f} '
-                f'Gamma: {gamma:.3f}, Resonance: {res:.3f} '
-                f'Offset: {off:.3f}')
-            print('--------------------------------------')"""
 
             A, b, c, d, e = popt
 
             FWHM = ((2 * np.sqrt(4 * ((b*d)**2) * (b**2 + 2))) /
                     ((2 * b**2) - 4))
 
-            y_bar = np.mean(collapsed_im)
-            ss_res = np.sum((self.fano(xdata, *popt) - y_bar)**2)
-            ss_tot = np.sum((collapsed_im - y_bar)**2)
+            ss_res = np.sum(fano(x_data, *popt)**2)
+            ss_tot = np.sum(y_data**2)
             
-            # fano(self, x, amp, assym, res, gamma, off)
-            popt_dict['amp'] = A  # A * b**2,
-            popt_dict['assym'] = b
-            popt_dict['res'] = c
-            popt_dict['gamma'] = d
-            popt_dict['off'] = e
+            popt_dict['Amplitude'] = A
+            popt_dict['Assymetry'] = b
+            popt_dict['Resonance'] = c
+            popt_dict['Gamma'] = d
+            popt_dict['Bias'] = e
             popt_dict['FWHM'] = FWHM
-            popt_dict['r2'] = ss_res / ss_tot
+            popt_dict['R^2'] = ss_res / ss_tot
 
             if plot:
                 _, ax = plt.subplots(1, figsize=(12, 6))
-                ax.plot(xdata, collapsed_im, 'b')
-                ax.plot(xdata, self.fano(xdata, *popt), 'r')
+                ax.plot(x_data, y_data, 'b')
+                ax.plot(x_data, fano(x_data, *popt), 'r')
                 plt.show()
 
         except RuntimeError as e:
@@ -301,44 +280,104 @@ class ROImulti:
 
         return popt_dict
 
-    def CDFAnalysis(self, data: np.ndarray, threshold: float = 0.75/2):
-        def get_quartiles(data: np.ndarray) -> Tuple[float, float, float]:
-            if len(data) == 0:
-                return (0, 0, 0)
-            # Calculate the CDF and normalise
-            cdf = np.cumsum(data)
-            cdf_norm = cdf / cdf[-1]
+    def get_quartiles(self, data: np.ndarray) -> Tuple[float, float, float]:
+        if len(data) == 0:
+            return (0, 0, 0)
+        # Calculate the CDF and normalise
+        cdf = np.cumsum(data)
+        cdf_norm = cdf / cdf[-1]
 
-            # Find the values at the specified percentiles
-            return tuple(np.interp(np.array([0.25, 0.50, 0.75]),
-                                   cdf_norm,
-                                   data))
+        # Find the values at the specified percentiles
+        return tuple(np.interp(np.array([0.25, 0.50, 0.75]),
+                               cdf_norm,
+                               data))
+    def filter_data(self, data: np.ndarray, threshold: float=0.0) -> np.ndarray:
+        # Sort data
+        data = np.sort(data)
         
-        def filter_data(data: np.ndarray, threshold: float=0.0) -> np.ndarray:
-            # Sort data
-            data = np.sort(data)
-            
-            # Calculate the CDF and normalise
-            cdf = np.cumsum(data)
-            cdf_norm = cdf / cdf[-1]
+        # Calculate the CDF and normalise
+        cdf = np.cumsum(data)
+        cdf_norm = cdf / cdf[-1]
 
-            # Filter data by threshold
-            Lo = np.interp(threshold, cdf_norm, data)
-            Hi = np.interp((1-threshold), cdf_norm, data)
-            data = data[np.where(data >= min(Lo, Hi))]
-            data = data[np.where(data <= max(Lo, Hi))]
-            return data
+        # Filter data by threshold
+        Lo = np.interp(threshold, cdf_norm, data)
+        Hi = np.interp((1-threshold), cdf_norm, data)
+        data = data[np.where(data >= min(Lo, Hi))]
+        data = data[np.where(data <= max(Lo, Hi))]
+        return data
 
+    def get_centre_of_peak(self, y_data: np.ndarray, filter: float):
+        '''Function to return the 'centre' of the peak within the data.
+        Accepts a 1D data array'''
+        max_idx = np.argmax(y_data)
+        threshold = y_data[max_idx] * filter
+        idxs = np.where(y_data > threshold)[0]
+        return {
+            'Analysis Method': 'Centre of peak',
+            'Lower Threshold': idxs[0],
+            'Maximum': max_idx,
+            'Centre': np.mean(idxs),
+            'Upper Threshold': idxs[-1],
+        }
+
+    def get_fano_of_mean(self, data: np.ndarray, plot=False):
+        x_data = np.arange(0, data.shape[0])
+        y_data = np.mean(data, axis=1)
+        return self.fit_fano(x_data, y_data, plot)
+
+    def get_gaussian_of_mean(self, data: np.ndarray, plot=False):
+        x_data = np.arange(0, data.shape[0])
+        y_data = np.mean(data, axis=1)
+        return self.fit_gaussian(x_data, y_data, plot)
+
+    def get_median_of_centres(self, data: np.ndarray,
+                              threshold: float = 0.75/2):
+        centres = []
+        x_data = np.arange(0, data.shape[0])
+        for i in range(0, data.shape[1]):
+            y_data = data[:, i]
+            centre = self.fit_fano(x_data, y_data)['Centre']
+            centres.append(centre)
+
+        centres = self.filter_data(centres, threshold)
+        F, M, T = self.get_quartiles(centres)
+        return {
+            'Analysis Method': 'Centre of Peak',
+            'First Quartile': F,
+            'Median': M,
+            'Third Quartile': T,
+        }
+
+    def get_median_of_gaussians(self, data: np.ndarray,
+                                threshold: float = 0.75/2):
         mus = []
         x_data = np.arange(0, data.shape[0])
         for i in range(0, data.shape[1]):
             y_data = data[:, i]
-            mu = self.get_mu(x_data, y_data)['mu']
+            mu = self.fit_gaussian(x_data, y_data)['Mu']
             mus.append(mu)
 
-        mus = filter_data(mus, threshold)
-        F, M, T = get_quartiles(mus)
+        mus = self.filter_data(mus, threshold)
+        F, M, T = self.get_quartiles(mus)
         return {
+            'Analysis Method': 'Gaussian',
+            'First Quartile': F,
+            'Median': M,
+            'Third Quartile': T,
+        }
+
+    def get_median_of_fanos(self, data: np.ndarray, threshold: float = 0.75/2):
+        res = []
+        x_data = np.arange(0, data.shape[0])
+        for i in range(0, data.shape[1]):
+            y_data = data[:, i]
+            r = self.fit_fano(x_data, y_data)['Resonance']
+            res.append(r)
+
+        res = self.filter_data(res, threshold)
+        F, M, T = self.get_quartiles(res)
+        return {
+            'Analysis Method': 'Fano',
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
@@ -377,24 +416,32 @@ class ROImulti:
 
             subROI = np.transpose(
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
-            
-            if method == 'fano-1D':
-                self.logger.debug(f'... using simple Fano fit')
-                result.update(self.CollapseAnalysisFano(subROI))
-            elif method == 'gaussian-1D':
-                self.logger.debug(f'... using simple Gaussian fit')
-                result.update(self.CollapseAnalysisGaussian(subROI))
-            elif method == 'maximum-1D':
-                self.logger.debug(f'... using simple find maximum')
-                result.update(self.get_centre(np.mean(subROI, axis=1), 0.75))
-            elif method == 'median_gaussian-2D':
-                self.logger.debug(f'... using mulyi-Fano fit')
-                result.update(self.CDFAnalysis(subROI, 0.75/2))
+
+            if method == 'fano of mean':
+                self.logger.info(f'... using simple Fano fit')
+                result.update(self.get_fano_of_mean(subROI))
+            elif method == 'gaussian of mean':
+                self.logger.info(f'... using simple Gaussian fit')
+                result.update(self.get_gaussian_of_mean(subROI))
+            elif method == 'centre of peak':
+                self.logger.info(f'... using simple maximum of centre fit')
+                y_data = np.mean(subROI, axis=1)
+                result.update(self.get_centre_of_peak(y_data, 0.75))
+            elif method == 'median of gaussians':
+                self.logger.info(f'... using multi-Fano fit')
+                result.update(self.get_median_of_gaussians(subROI, 0.75/2))
+            elif method == 'median of fanos':
+                self.logger.info(f'... using multi-Gaussian fit')
+                result.update(self.get_median_of_gaussians(subROI, 0.75/2))
+            elif method == 'median of centres':
+                self.logger.info(f'... using multi-Centre fit')
+                result.update(self.get_median_of_gaussians(subROI, 0.75/2))
             else:
-                self.logger.debug((f'... no or incorrect analsysis method '
+                self.logger.info((f'... no or incorrect analsysis method '
                                   f'selected, using find maximum analysis '
                                   f'method'))
-                result.update(self.get_centre(np.mean(subROI, axis=1), 0.75))
+                y_data = np.mean(subROI, axis=1)
+                result.update(self.get_centre_of_peak(y_data, 0.75))
 
             result['image path'] = im_path
 

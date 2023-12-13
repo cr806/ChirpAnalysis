@@ -2,8 +2,8 @@ import time
 import logging
 import Functions as func
 
-config_filepath = './CK_configuration_multi.ini'
-log_filepath = 'ChirpAnalysis_multi.log'
+config_filepath = './CPR_configuration.ini'
+log_filepath = 'ChirpAnalysis.log'
 log_level = logging.DEBUG
 logger = func.setup_logger(log_filepath, log_level)
 
