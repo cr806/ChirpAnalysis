@@ -1,0 +1,12 @@
+**/Version01
+**/RawImages
+**/.my_venv
+**/ChristinaData
+**/.vscode
+**/__pycache__
+**/Images
+**/TestScripts
+.DS_Store
+requirements.txt
+Makefile
+*.log
