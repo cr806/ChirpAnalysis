@@ -11,7 +11,7 @@ params = func.get_simulation_params(logger, config_filepath)
 params['log_filepath'] = log_filepath
 params['log_level'] = log_level
 
-roi_array = func.register_ROIs(params)
+roi_array = None
 
 filenames_old = list()
 while True:
@@ -21,6 +21,8 @@ while True:
     if image_files:  # Check if there are images ready to be processed
         print(f'{len(image_files)} files will now be processed')
         logger.info(f'{len(image_files)} files processed')
+        if not roi_array:
+            roi_array = func.register_ROIs(logger, params, image_files)
         func.process_images(logger, params, image_files, roi_array)
         func.save_data(logger, params, roi_array)
         func.plot_data(params, filenames_old, roi_array)

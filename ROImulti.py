@@ -36,6 +36,7 @@ class ROImulti:
         self.log_data = log_data
         self.im = None
         self.first = True
+        self.last_call_status = False
         self.subROIs = subROIs
         self.roi = roi
         self.angle = angle
@@ -58,7 +59,7 @@ class ROImulti:
         self.logger.info(f'__init__({self}, angle={angle}, roi={roi}, '
                          'res={res})')
 
-    def set_initial_ROI(self, im):
+    def set_initial_ROI(self, im, info):
         """ Method called to set-up ROI data from first image
 
             Usage:
@@ -80,8 +81,12 @@ class ROImulti:
         if self.first:
             if self.angle is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
-                image_rotator = ImageProcessor(self.log_data, 'rotate',
-                                               figure, self.im)
+                details = {
+                    'mode': 'rotate',
+                    'figure': figure,
+                    'im': self.im,
+                }
+                image_rotator = ImageProcessor(self.log_data, details)
                 self.angle = image_rotator.get_angle()
                 self.logger.debug('Angle correction')
 
@@ -89,17 +94,28 @@ class ROImulti:
                 figure = plt.subplots(1, 2, figsize=(12, 6),
                                       gridspec_kw={'width_ratios': [3, 1]})
                 temp = self.im.rotate(self.angle)
-                image_cropper = ImageProcessor(
-                    self.log_data, 'crop', figure, temp)
+                details = {
+                    'mode': 'crop',
+                    'figure': figure,
+                    'im': temp,
+                    'message': info['message'],
+                    'patches': info['patches'],
+                }
+                image_cropper = ImageProcessor(self.log_data, details)
                 self.roi = tuple(image_cropper.get_coords())
+                self.last_call_status = image_cropper.was_last_call()
                 self.logger.debug('ROI selection')
 
             self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
                                     self.roi[1][0], self.roi[1][1]))
             # if self.res is None:
             #     figure = plt.subplots(1, 2, figsize=(12, 6))
-            #     p0 = ImageProcessor(
-            #         self.log_data, 'resonance', figure, self.im)
+            #     details = {
+            #         'mode': 'resonance',
+            #         'figure': figure,
+            #         'im': self.im,
+            #     }
+            #     p0 = ImageProcessor(self.log_data, details)
             #     # self.set_initial_values(amp=0.2, assym=-100,
             #     #                         res=None, gamma=None, off=40)
             #     self.initial_values[2] = p0.get_initial_values()[0]
@@ -565,3 +581,6 @@ class ROImulti:
         """
         self.logger.debug(f'...get_num_subROIs({self})')
         return self.subROIs
+
+    def was_last_call(self):
+        return self.last_call_status

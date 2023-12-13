@@ -117,7 +117,7 @@ def get_simulation_params(logger, config_filepath):
     return params
 
 
-def register_ROIs(params):
+def register_ROIs(logger, params, image_files):
     """ Calls ROI constructors and stores resulting ROI object in array
 
         Attributes:
@@ -126,22 +126,49 @@ def register_ROIs(params):
         Returns:
         roi_array (list) : List of ROI objects
     """
+    im = get_image(logger, params, image_files[0])
     roi_array = []
-    for roi in range(params['num_of_ROIs']):
-        try:
-            r_g = params['res_gamma'][roi]
-        except (IndexError, TypeError):
-            r_g = None
-        try:
-            roi_range = params['roi_ranges'][roi]
-        except (IndexError, TypeError):
-            roi_range = None
-            r_g = None
-        roi_array.append(ROI([params['log_filepath'], params['log_level']],
-                             subROIs=params['num_of_subROIs'],
-                             angle=params['angle'],
-                             roi=roi_range,
-                             res=r_g))
+    if params['num_of_ROIs'] > 0:
+        for roi in range(params['num_of_ROIs']):
+            try:
+                r_g = params['res_gamma'][roi]
+            except (IndexError, TypeError):
+                r_g = None
+            try:
+                roi_range = params['roi_ranges'][roi]
+            except (IndexError, TypeError):
+                roi_range = None
+                r_g = None
+            roi = ROI([params['log_filepath'], params['log_level']],
+                                subROIs=params['num_of_subROIs'],
+                                angle=params['angle'],
+                                roi=roi_range,
+                                res=r_g)
+            details = {}
+            roi.set_initial_ROI(im, details)
+            roi.create_ROI_data(im)
+            roi_array.append(roi)
+    else:
+        while True:
+            roi = ROI([params['log_filepath'], params['log_level']],
+                                subROIs=params['num_of_subROIs'],
+                                angle=params['angle'],
+                                roi=None,
+                                res=None)
+            rectangles = []
+            if roi_array:
+                for r in roi_array:
+                    rectangles.append(r.get_roi())
+            details = {
+                'message': (f'Press "q" after last ROI. - ROI {len(roi_array)}'),
+                'patches': rectangles,
+            }
+            roi.set_initial_ROI(im, details)
+            roi.create_ROI_data(im)
+            roi_array.append(roi)
+            if roi.was_last_call() is True:
+                params['num_of_ROIs'] = len(roi_array)
+                break
     return roi_array
 
 
@@ -192,8 +219,8 @@ def process_images(logger, params, image_files, roi_array):
         logger.info(f'Loading data took: {(end - start):.4}s')
 
         for roi in roi_array:
-            roi.set_initial_ROI(im)
-            roi.create_ROI_data(im)
+            # roi.set_initial_ROI(im)
+            # roi.create_ROI_data(im)
             roi.process_ROI(params['analysis'], idx, im_path)
 
 

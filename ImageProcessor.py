@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import logging
 
 
@@ -19,18 +20,19 @@ class ImageProcessor:
         im (PIL image):         Used to hold axis data for plotting
     """
 
-    def __init__(self, log_data, mode, figure, im):
+    def __init__(self, log_data, details):
         self.log_data = log_data
-        self.mode = mode.lower()
-        self.fig, (self.ax1, self.ax2) = figure
+        self.mode = details['mode'].lower()
+        self.fig, (self.ax1, self.ax2) = details['figure']
         (self.line, ) = self.ax1.plot([0], [0], 'r', linewidth=2)
         self.line.figure = self.fig
-        self.im = im
+        self.im = details['im']
         self.xs = []
         self.ys = []
         self.angle = 0
         self.ax1.imshow(self.im)
         self.ax2.axis('off')
+        self.last_call_status = False
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_data[1])
         fh = logging.FileHandler(filename=log_data[0], encoding='utf-8')
@@ -38,20 +40,26 @@ class ImageProcessor:
             '%(asctime)s - %(name)s - %(levelname)s : %(message)s')
         fh.setFormatter(formatter)
         self.logger.addHandler(fh)
-        self.logger.debug(f'...__init__({self}, {mode}, {figure}, {im})')
-
-        if mode == 'rotate':
+        self.logger.debug(f'...__init__({self}, {self.mode}, {self.fig}, {self.im})')
+        
+        if details['patches']:
+            for rect_coord in details['patches']:
+                (x1, y1), (x2, y2) = rect_coord
+                self.ax1.add_patch(patches.Rectangle((x1, y1), x2-x1, y2-y1,
+                                   edgecolor='red', facecolor='none'))
+        
+        if self.mode == 'rotate':
             self.logger.info('Image rotate')
             self.fig.suptitle(
                 'Rotate: Select two horizontal points \n '
                 'Press <Enter> when finished', fontsize='xx-large')
-        elif mode == 'crop':
+        elif self.mode == 'crop':
             self.logger.info('Image crop')
             self.fig.suptitle(
-                'Crop: Rectangle select (i.e. select the top-left and '
-                'bottom-right points) around ROI \n '
-                'Press <Enter> when finished', fontsize='xx-large')
-        elif mode == 'resonance':
+                'Select ROI (top-left then bottom-right points) \n '
+                f'Press <Enter> to select next ROI   {details['message']}',
+                fontsize='xx-large')
+        elif self.mode == 'resonance':
             self.logger.info('Image resonance/gamma')
             self.fig.suptitle(
                 'Resonance: Rectangle select (i.e. select the top-left '
@@ -95,16 +103,19 @@ class ImageProcessor:
         """
         self.logger.debug(f'...keyPress({self}, key: {event.key})')
         if event.key == 'enter':
-            self.line.figure.canvas.mpl_disconnect(self.cidclick)
-            self.line.figure.canvas.mpl_disconnect(self.cidkey)
-            self.fig.canvas.mpl_disconnect(self.cidclose)
-            plt.close('all')
+            self.close_all()
+        if event.key == 'q' or event.key == 'Q':
+            self.last_call_status = True
+            self.close_all()
 
     def onClose(self, event):
         """ Callback function for figure close event event, at which point
             closes figure
         """
         self.logger.debug(f'...onClose({self}, {event})')
+        self.close_all()
+
+    def close_all(self):
         self.line.figure.canvas.mpl_disconnect(self.cidclick)
         self.line.figure.canvas.mpl_disconnect(self.cidkey)
         self.fig.canvas.mpl_disconnect(self.cidclose)
@@ -252,3 +263,6 @@ class ImageProcessor:
         except IndexError:
             self.logger.info('No crop data, returning full image')
             return self.im
+
+    def was_last_call(self):
+        return self.last_call_status
