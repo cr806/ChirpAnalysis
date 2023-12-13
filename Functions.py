@@ -187,17 +187,6 @@ def process_images(logger, params, image_files, roi_array):
 
         start = timeit.timeit()
         im = get_image(logger, params, im_path)
-        # if im_path[-3:] == 'png':
-        #     im = Image.open(im_path)
-        #     logger.debug('Images found to PNG format')
-        # elif im_path[-3:] == 'csv':
-        #     im = convert_CSV_to_Image(logger, im_path)
-        #     logger.debug('Images found to CSV format')
-
-        # if params['image_align'] == 'horizontal':
-        #     im = im.rotate(90, expand=True)
-
-        # im = ImageEnhance.Contrast(im).enhance(10.0)
 
         end = timeit.timeit()
         logger.info(f'Loading data took: {(end - start):.4}s')
@@ -325,6 +314,8 @@ def get_image(logger, params, im_path):
     elif im_path.split('.')[-1] == 'csv':
         im = convert_CSV_to_Image(logger, im_path)
         logger.debug('Images found to CSV format')
+
+    # im = ImageEnhance.Contrast(im).enhance(10.0)
 
     if params['image_align'] == 'horizontal':
         im = im.rotate(90, expand=True)

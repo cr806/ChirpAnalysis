@@ -40,9 +40,9 @@ class ROImulti:
         self.roi = roi
         self.angle = angle
         self.res = res
-        self.initial_values = [0, 0, 0, 0, 0]
-        if res is not None:
-            self.initial_values = [0, 0, res[0], res[1], 0]
+        # self.initial_values = [0, 0, 0, 0, 0]
+        # if res is not None:
+        #     self.initial_values = [0, 0, res[0], res[1], 0]
         self.resonance_data = []
         self.reference_data = None
         self.fig = None
@@ -96,15 +96,15 @@ class ROImulti:
 
             self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
                                     self.roi[1][0], self.roi[1][1]))
-            if self.res is None:
-                figure = plt.subplots(1, 2, figsize=(12, 6))
-                p0 = ImageProcessor(
-                    self.log_data, 'resonance', figure, self.im)
-                # self.set_initial_values(amp=0.2, assym=-100,
-                #                         res=None, gamma=None, off=40)
-                self.initial_values[2] = p0.get_initial_values()[0]
-                self.initial_values[3] = p0.get_initial_values()[1]
-                self.logger.debug('Resonance/Gamma selection')
+            # if self.res is None:
+            #     figure = plt.subplots(1, 2, figsize=(12, 6))
+            #     p0 = ImageProcessor(
+            #         self.log_data, 'resonance', figure, self.im)
+            #     # self.set_initial_values(amp=0.2, assym=-100,
+            #     #                         res=None, gamma=None, off=40)
+            #     self.initial_values[2] = p0.get_initial_values()[0]
+            #     self.initial_values[3] = p0.get_initial_values()[1]
+            #     self.logger.debug('Resonance/Gamma selection')
             self.first = False
 
     def create_ROI_data(self, im, plot=False):

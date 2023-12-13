@@ -640,3 +640,798 @@
 2023-12-13 14:36:52,847 - Functions - INFO : ...Data saved
 2023-12-13 14:36:52,996 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x10477ed80>, disp=False)
 2023-12-13 14:36:52,997 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x10477ed80>)
+2023-12-13 14:51:57,354 - Functions - INFO : No ROI coordinates provided
+2023-12-13 14:51:57,354 - Functions - INFO : No resonance/gamma data provided
+2023-12-13 14:51:57,354 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x14d567470>, angle=0.0, roi=None, res={res})
+2023-12-13 14:51:57,354 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x14eb43980>, angle=0.0, roi=None, res={res})
+2023-12-13 14:51:57,354 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x14eb43980>, angle=0.0, roi=None, res={res})
+2023-12-13 14:51:57,354 - Functions - DEBUG : ...Files already processed : 0
+2023-12-13 14:51:57,354 - Functions - DEBUG : ...Files to be processed : 10
+2023-12-13 14:51:57,354 - Functions - INFO : 10 files processed
+2023-12-13 14:51:57,409 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:51:57,413 - Functions - INFO : Loading data took: -4.962e-05s
+2023-12-13 14:51:57,413 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:51:57,413 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:51:57,510 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x14E8B91C0>)
+2023-12-13 14:51:57,510 - ImageProcessor - INFO : Image crop
+2023-12-13 14:51:57,511 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:51:58,347 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, motion_notify_event: xy=(628, 220) xydata=(1972.7632821723737, 1295.5000000000002) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:00,566 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, button_press_event: xy=(518, 502) xydata=(1509.9061393152306, 108.90259740259808) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:00,566 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, 1509.9061393152306, 108.90259740259808)
+2023-12-13 14:52:00,566 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, 1509.9061393152306, 108.90259740259808)
+2023-12-13 14:52:01,775 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, button_press_event: xy=(581, 387) xydata=(1774.99704840614, 592.7987012987016) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:01,775 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, 1774.99704840614, 592.7987012987016)
+2023-12-13 14:52:01,775 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, 1774.99704840614, 592.7987012987016)
+2023-12-13 14:52:02,932 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>, key: enter)
+2023-12-13 14:52:02,940 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x14e8b82f0>)
+2023-12-13 14:52:02,940 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:52:02,940 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:52:02,941 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14EB99010>, plot=False)
+2023-12-13 14:52:02,941 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14EB99010>, plot=False)
+2023-12-13 14:52:02,941 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:02,941 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:02,942 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:02,942 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:02,960 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x14f98d730>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x14F92DF40>)
+2023-12-13 14:52:02,960 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x14f98d730>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x14F92DF40>)
+2023-12-13 14:52:02,960 - ImageProcessor - INFO : Image crop
+2023-12-13 14:52:02,960 - ImageProcessor - INFO : Image crop
+2023-12-13 14:52:02,960 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:52:02,960 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:52:04,069 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x14f98d730>, motion_notify_event: xy=(581, 388) xydata=(1774.99704840614, 588.5909090909095) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:04,069 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x14f98d730>, motion_notify_event: xy=(581, 388) xydata=(1774.99704840614, 588.5909090909095) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:05,593 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14f98d730>, button_press_event: xy=(519, 347) xydata=(1514.113931523023, 761.11038961039) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:05,593 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14f98d730>, button_press_event: xy=(519, 347) xydata=(1514.113931523023, 761.11038961039) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:05,594 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1514.113931523023, 761.11038961039)
+2023-12-13 14:52:05,594 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1514.113931523023, 761.11038961039)
+2023-12-13 14:52:05,594 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1514.113931523023, 761.11038961039)
+2023-12-13 14:52:05,594 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1514.113931523023, 761.11038961039)
+2023-12-13 14:52:06,691 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14f98d730>, button_press_event: xy=(582, 235) xydata=(1779.204840613932, 1232.383116883117) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:06,691 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x14f98d730>, button_press_event: xy=(582, 235) xydata=(1779.204840613932, 1232.383116883117) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:52:06,692 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1779.204840613932, 1232.383116883117)
+2023-12-13 14:52:06,692 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1779.204840613932, 1232.383116883117)
+2023-12-13 14:52:06,693 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1779.204840613932, 1232.383116883117)
+2023-12-13 14:52:06,693 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x14f98d730>, 1779.204840613932, 1232.383116883117)
+2023-12-13 14:52:07,810 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x14f98d730>, key: enter)
+2023-12-13 14:52:07,810 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x14f98d730>, key: enter)
+2023-12-13 14:52:07,815 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x14f98d730>)
+2023-12-13 14:52:07,815 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x14f98d730>)
+2023-12-13 14:52:07,815 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:52:07,815 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:52:07,816 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14EB99010>, plot=False)
+2023-12-13 14:52:07,816 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14EB99010>, plot=False)
+2023-12-13 14:52:07,818 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,818 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,818 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,818 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,818 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,818 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,819 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,889 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:07,894 - Functions - INFO : Loading data took: -0.004s
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D9804D0>, plot=False)
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D9804D0>, plot=False)
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:07,894 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:07,894 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,894 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D9804D0>, plot=False)
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D9804D0>, plot=False)
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,895 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,895 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,896 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,896 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,896 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,896 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,949 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:07,954 - Functions - INFO : Loading data took: -2.296e-05s
+2023-12-13 14:52:07,954 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,954 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,954 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:07,954 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,955 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:07,956 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,009 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,014 - Functions - INFO : Loading data took: 0.0001656s
+2023-12-13 14:52:08,014 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,014 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,014 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,014 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,015 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,016 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,016 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,016 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,017 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,017 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,070 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,075 - Functions - INFO : Loading data took: 8.096e-05s
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,075 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,075 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,075 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,076 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,076 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,077 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,077 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,077 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,077 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,131 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,136 - Functions - INFO : Loading data took: -5.008e-05s
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F706C30>, plot=False)
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F706C30>, plot=False)
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,136 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,136 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F706C30>, plot=False)
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F706C30>, plot=False)
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,137 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,137 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,190 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,195 - Functions - INFO : Loading data took: 7.392e-05s
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,195 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,195 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,195 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,195 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,195 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DCC31D0>, plot=False)
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,196 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,196 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,249 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,253 - Functions - INFO : Loading data took: 9.625e-06s
+2023-12-13 14:52:08,253 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,253 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,253 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DC8ABA0>, plot=False)
+2023-12-13 14:52:08,253 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DC8ABA0>, plot=False)
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DC8ABA0>, plot=False)
+2023-12-13 14:52:08,254 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14DC8ABA0>, plot=False)
+2023-12-13 14:52:08,255 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,255 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,255 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,309 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,313 - Functions - INFO : Loading data took: -2.992e-05s
+2023-12-13 14:52:08,313 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,313 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,313 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F9714C0>, plot=False)
+2023-12-13 14:52:08,313 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F9714C0>, plot=False)
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F9714C0>, plot=False)
+2023-12-13 14:52:08,314 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14F9714C0>, plot=False)
+2023-12-13 14:52:08,315 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,315 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,315 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,369 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:52:08,373 - Functions - INFO : Loading data took: 8.8e-05s
+2023-12-13 14:52:08,373 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,373 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,373 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,373 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14d567470>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14d567470>, plot=False)
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,374 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x14eb43980>, <PIL.Image.Image image mode=L size=2592x1944 at 0x14D5657F0>, plot=False)
+2023-12-13 14:52:08,375 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,375 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x14eb43980>, plot=False)
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,375 - ROImulti - INFO : ... using simple maximum of centre fit
+2023-12-13 14:52:08,379 - Functions - INFO : ...Data saved
+2023-12-13 14:52:08,451 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x14d567470>, disp=False)
+2023-12-13 14:52:08,451 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x14d567470>, disp=False)
+2023-12-13 14:52:08,451 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x14d567470>)
+2023-12-13 14:52:08,451 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x14d567470>)
+2023-12-13 14:52:08,453 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x14eb43980>, disp=False)
+2023-12-13 14:52:08,453 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x14eb43980>, disp=False)
+2023-12-13 14:52:08,453 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x14eb43980>)
+2023-12-13 14:52:08,453 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x14eb43980>)
+2023-12-13 14:53:33,879 - Functions - INFO : No ROI coordinates provided
+2023-12-13 14:53:33,879 - Functions - INFO : No resonance/gamma data provided
+2023-12-13 14:53:33,880 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x11ef7a030>, angle=0.0, roi=None, res={res})
+2023-12-13 14:53:33,880 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x12009b380>, angle=0.0, roi=None, res={res})
+2023-12-13 14:53:33,880 - ROImulti - INFO : __init__(<ROImulti.ROImulti object at 0x12009b380>, angle=0.0, roi=None, res={res})
+2023-12-13 14:53:33,880 - Functions - DEBUG : ...Files already processed : 0
+2023-12-13 14:53:33,880 - Functions - DEBUG : ...Files to be processed : 10
+2023-12-13 14:53:33,880 - Functions - INFO : 10 files processed
+2023-12-13 14:53:33,937 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:33,941 - Functions - INFO : Loading data took: -8.683e-05s
+2023-12-13 14:53:33,941 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:33,941 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:34,036 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x11F1C9280>)
+2023-12-13 14:53:34,036 - ImageProcessor - INFO : Image crop
+2023-12-13 14:53:34,036 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:53:34,646 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, motion_notify_event: xy=(588, 218) xydata=(1804.4515938606855, 1303.9155844155848) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:37,244 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, motion_notify_event: xy=(571, 519) xydata=(1732.9191263282178, 37.37012987013031) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:38,969 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, button_press_event: xy=(517, 502) xydata=(1505.6983471074386, 108.90259740259808) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:38,969 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, 1505.6983471074386, 108.90259740259808)
+2023-12-13 14:53:38,969 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, 1505.6983471074386, 108.90259740259808)
+2023-12-13 14:53:40,269 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, button_press_event: xy=(581, 383) xydata=(1774.99704840614, 609.6298701298706) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:40,269 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, 1774.99704840614, 609.6298701298706)
+2023-12-13 14:53:40,271 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, 1774.99704840614, 609.6298701298706)
+2023-12-13 14:53:42,443 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>, key: enter)
+2023-12-13 14:53:42,455 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x11f1c6e40>)
+2023-12-13 14:53:42,455 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:53:42,455 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:53:42,455 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x11FD6B830>, plot=False)
+2023-12-13 14:53:42,455 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x11FD6B830>, plot=False)
+2023-12-13 14:53:42,456 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:42,456 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:42,456 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,456 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,461 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,461 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,465 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,465 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,468 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,468 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,471 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,471 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:42,474 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:42,474 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:42,495 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x1264D5EE0>)
+2023-12-13 14:53:42,495 - ImageProcessor - DEBUG : ...__init__(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, crop, (<Figure size 1200x600 with 2 Axes>, array([<Axes: >, <Axes: >], dtype=object)), <PIL.Image.Image image mode=L size=2592x1944 at 0x1264D5EE0>)
+2023-12-13 14:53:42,495 - ImageProcessor - INFO : Image crop
+2023-12-13 14:53:42,495 - ImageProcessor - INFO : Image crop
+2023-12-13 14:53:42,496 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:53:42,496 - ImageProcessor - DEBUG : ...connect - click(15) - key(16)- close(s17)
+2023-12-13 14:53:45,631 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, motion_notify_event: xy=(766, 494) xydata=(2553.4386068476983, 142.56493506493553) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:45,631 - ImageProcessor - DEBUG : ...onEnter(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, motion_notify_event: xy=(766, 494) xydata=(2553.4386068476983, 142.56493506493553) button=None dblclick=False inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, button_press_event: xy=(520, 347) xydata=(1518.321723730815, 761.11038961039) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, button_press_event: xy=(520, 347) xydata=(1518.321723730815, 761.11038961039) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1518.321723730815, 761.11038961039)
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1518.321723730815, 761.11038961039)
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1518.321723730815, 761.11038961039)
+2023-12-13 14:53:47,203 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1518.321723730815, 761.11038961039)
+2023-12-13 14:53:49,141 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, button_press_event: xy=(582, 224) xydata=(1779.204840613932, 1278.6688311688313) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:49,141 - ImageProcessor - DEBUG : ...mouseClick(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, button_press_event: xy=(582, 224) xydata=(1779.204840613932, 1278.6688311688313) button=1 dblclick=0 inaxes=Axes(0.132538,0.11;0.513333x0.77))
+2023-12-13 14:53:49,141 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1779.204840613932, 1278.6688311688313)
+2023-12-13 14:53:49,141 - ImageProcessor - DEBUG : ...update_fig(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1779.204840613932, 1278.6688311688313)
+2023-12-13 14:53:49,143 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1779.204840613932, 1278.6688311688313)
+2023-12-13 14:53:49,143 - ImageProcessor - DEBUG : ...add_data(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, 1779.204840613932, 1278.6688311688313)
+2023-12-13 14:53:50,683 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, key: enter)
+2023-12-13 14:53:50,683 - ImageProcessor - DEBUG : ...keyPress(<ImageProcessor.ImageProcessor object at 0x1264d6f90>, key: enter)
+2023-12-13 14:53:50,685 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x1264d6f90>)
+2023-12-13 14:53:50,685 - ImageProcessor - DEBUG : ...get_coords(<ImageProcessor.ImageProcessor object at 0x1264d6f90>)
+2023-12-13 14:53:50,685 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:53:50,685 - ROImulti - DEBUG : ROI selection
+2023-12-13 14:53:50,686 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x11FD6B830>, plot=False)
+2023-12-13 14:53:50,686 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x11FD6B830>, plot=False)
+2023-12-13 14:53:50,686 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,686 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,686 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,686 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,689 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,689 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,692 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,692 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,694 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,694 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,697 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,697 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,762 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:50,767 - Functions - INFO : Loading data took: 4.654e-05s
+2023-12-13 14:53:50,767 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,767 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,767 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12651D1C0>, plot=False)
+2023-12-13 14:53:50,767 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12651D1C0>, plot=False)
+2023-12-13 14:53:50,768 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,768 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,768 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,768 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,771 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,771 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,773 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,773 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,775 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,775 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,777 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,777 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12651D1C0>, plot=False)
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12651D1C0>, plot=False)
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,780 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,780 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,780 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,782 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,782 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,785 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,785 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,787 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,787 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,789 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,789 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,843 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:50,848 - Functions - INFO : Loading data took: 0.0001122s
+2023-12-13 14:53:50,848 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,848 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,848 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x1585379B0>, plot=False)
+2023-12-13 14:53:50,848 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x1585379B0>, plot=False)
+2023-12-13 14:53:50,849 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,849 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,849 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,849 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,851 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,851 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,854 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,854 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,856 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,856 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,858 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,858 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,860 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,860 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,860 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x1585379B0>, plot=False)
+2023-12-13 14:53:50,860 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x1585379B0>, plot=False)
+2023-12-13 14:53:50,861 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,861 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,861 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,861 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,863 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,863 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,866 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,866 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,868 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,868 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,870 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,870 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,924 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:50,929 - Functions - INFO : Loading data took: 3.459e-06s
+2023-12-13 14:53:50,929 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,929 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,929 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158559820>, plot=False)
+2023-12-13 14:53:50,929 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158559820>, plot=False)
+2023-12-13 14:53:50,930 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,930 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:50,930 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,930 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,932 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,932 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,935 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,935 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,937 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,937 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,939 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,939 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,941 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,941 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:50,942 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158559820>, plot=False)
+2023-12-13 14:53:50,942 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158559820>, plot=False)
+2023-12-13 14:53:50,942 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,942 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:50,942 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,942 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,945 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,945 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,947 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,947 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,949 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,949 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,951 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:50,951 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,006 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,010 - Functions - INFO : Loading data took: 0.0001097s
+2023-12-13 14:53:51,010 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,010 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,010 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855A2D0>, plot=False)
+2023-12-13 14:53:51,010 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855A2D0>, plot=False)
+2023-12-13 14:53:51,011 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,011 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,011 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,011 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,014 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,014 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,016 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,016 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,018 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,018 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,021 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,021 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,023 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,023 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,024 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855A2D0>, plot=False)
+2023-12-13 14:53:51,024 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855A2D0>, plot=False)
+2023-12-13 14:53:51,025 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,025 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,026 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,026 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,028 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,028 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,030 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,030 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,032 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,032 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,034 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,034 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,090 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,094 - Functions - INFO : Loading data took: 7.733e-05s
+2023-12-13 14:53:51,094 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,094 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,095 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855AF00>, plot=False)
+2023-12-13 14:53:51,095 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855AF00>, plot=False)
+2023-12-13 14:53:51,095 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,095 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,095 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,095 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,098 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,098 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,100 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,100 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,102 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,102 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,105 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,105 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855AF00>, plot=False)
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855AF00>, plot=False)
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,107 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,107 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,107 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,110 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,110 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,112 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,112 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,114 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,114 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,116 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,116 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,172 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,176 - Functions - INFO : Loading data took: 0.0002611s
+2023-12-13 14:53:51,176 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,176 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,176 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855BAD0>, plot=False)
+2023-12-13 14:53:51,176 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855BAD0>, plot=False)
+2023-12-13 14:53:51,177 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,177 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,177 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,177 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,180 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,180 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,182 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,182 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,185 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,185 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,187 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,187 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,189 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,189 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,190 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855BAD0>, plot=False)
+2023-12-13 14:53:51,190 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855BAD0>, plot=False)
+2023-12-13 14:53:51,190 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,190 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,190 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,190 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,193 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,193 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,195 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,195 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,197 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,197 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,199 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,199 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,254 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,258 - Functions - INFO : Loading data took: 2.875e-05s
+2023-12-13 14:53:51,258 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,258 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,258 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158570650>, plot=False)
+2023-12-13 14:53:51,258 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158570650>, plot=False)
+2023-12-13 14:53:51,259 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,259 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,259 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,259 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,262 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,262 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,264 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,264 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,266 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,266 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,269 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,269 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158570650>, plot=False)
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x158570650>, plot=False)
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,271 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,271 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,271 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,274 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,274 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,276 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,276 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,278 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,278 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,280 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,280 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,335 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,340 - Functions - INFO : Loading data took: -2.917e-05s
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12655CB30>, plot=False)
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12655CB30>, plot=False)
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,340 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,340 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,340 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,343 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,343 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,345 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,345 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,348 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,348 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,350 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,350 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,352 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,352 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,352 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12655CB30>, plot=False)
+2023-12-13 14:53:51,352 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x12655CB30>, plot=False)
+2023-12-13 14:53:51,353 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,353 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,353 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,353 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,355 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,355 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,358 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,358 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,360 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,360 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,362 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,362 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,418 - Functions - DEBUG : Images found to PNG format
+2023-12-13 14:53:51,422 - Functions - INFO : Loading data took: -4.208e-06s
+2023-12-13 14:53:51,422 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,422 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,422 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855B140>, plot=False)
+2023-12-13 14:53:51,422 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x11ef7a030>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855B140>, plot=False)
+2023-12-13 14:53:51,423 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,423 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x11ef7a030>, plot=False)
+2023-12-13 14:53:51,423 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,423 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,426 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,426 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,428 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,428 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,430 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,430 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,432 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,432 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...set_initial_ROI({self}, {im})
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855B140>, plot=False)
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...create_ROI_data(<ROImulti.ROImulti object at 0x12009b380>, <PIL.Image.Image image mode=L size=2592x1944 at 0x15855B140>, plot=False)
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,435 - ROImulti - DEBUG : ...process_ROI(<ROImulti.ROImulti object at 0x12009b380>, plot=False)
+2023-12-13 14:53:51,435 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,435 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,437 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,437 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,440 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,440 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,442 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,442 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,444 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,444 - ROImulti - INFO : ... using simple Gaussian fit
+2023-12-13 14:53:51,451 - Functions - INFO : ...Data saved
+2023-12-13 14:53:51,521 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x11ef7a030>, disp=False)
+2023-12-13 14:53:51,521 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x11ef7a030>, disp=False)
+2023-12-13 14:53:51,522 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x11ef7a030>)
+2023-12-13 14:53:51,522 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x11ef7a030>)
+2023-12-13 14:53:51,523 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x12009b380>, disp=False)
+2023-12-13 14:53:51,523 - ROImulti - DEBUG : ...get_resonance_data(<ROImulti.ROImulti object at 0x12009b380>, disp=False)
+2023-12-13 14:53:51,523 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x12009b380>)
+2023-12-13 14:53:51,523 - ROImulti - DEBUG : ...get_num_subROIs(<ROImulti.ROImulti object at 0x12009b380>)
