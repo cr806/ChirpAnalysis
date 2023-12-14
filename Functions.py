@@ -211,13 +211,6 @@ def process_images(logger, params, image_files, roi_array):
     """
     for idx, im_path in enumerate(image_files):
         print(f'Processing image {idx + 1}')
-
-        start = timeit.timeit()
-        im = get_image(logger, params, im_path)
-
-        end = timeit.timeit()
-        logger.info(f'Loading data took: {(end - start):.4}s')
-
         for roi in roi_array:
             # roi.set_initial_ROI(im)
             # roi.create_ROI_data(im)
@@ -332,7 +325,21 @@ def get_image(logger, params, im_path):
         image (Image obj) : PIL Image object
     """
     if im_path.split('.')[-1] == 'png':
+        
+        # Open the image
         im = Image.open(im_path)
+        print(f'{im.mode =}')
+        # Check image mode and convert to 8-Bit if necessary
+        if im.mode == 'I':
+            im32 = np.array(im)
+            scale = np.iinfo(np.uint8).max + 1
+            im8 = (im32/scale).astype('uint8')
+            im = Image.fromarray(im8)
+        elif '16' in im.mode:
+            im16 = np.array(im)
+            scale = np.iinfo(np.uint8).max + 1
+            im8 = (im16/scale).astype('uint8')
+            im = Image.fromarray(im8)
         im = ImageOps.grayscale(im)
         logger.debug('Images found to PNG format')
     elif im_path.split('.')[-1] == 'tif' or im_path.split('.')[1] == 'tiff':
