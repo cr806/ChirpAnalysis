@@ -1,56 +1,25 @@
 import matplotlib.pyplot as plt
-import Functions as func
+import pandas as pd
 
-subROIs_to_plot = [0, 1, 2, 3, 4]
-data_filename = 'CK_results_test_multi_ROI_1.csv'
-image_align = 'vertical'
+data_filename1 = 'Libra_Data_20230810-000004_ROI1_Fano.csv'
+data_filename2 = 'Libra_Data_20230810-000004_ROI1_MedianOfFano.csv'
 
-data, num_subROIs = func.get_data(data_filename)
-num_of_results = len(data['ROI_x1'])
+data1 = pd.read_csv(data_filename1)
+data2 = pd.read_csv(data_filename2)
 
-fig, ax = plt.subplots(1, 5, figsize=(12, 6), constrained_layout=True)
-colours = ('b', 'g', 'r', 'c', 'm', 'k')
+subROIs = data1['subROI'].unique()
+print(subROIs[0])
 
-for idx, subROI in enumerate(subROIs_to_plot):
-    res = []
-    gamma = []
-    off = []
-    fwhm = []
-    r2 = []
-    for image_num in range(num_of_results):
-        res.append(data[f'res_{subROI}'][image_num])
-        gamma.append(data[f'gamma_{subROI}'][image_num])
-        off.append(data[f'off_{subROI}'][image_num])
-        fwhm.append(data[f'FWHM_{subROI}'][image_num])
-        r2.append(data[f'r2_{subROI}'][image_num])
+x_data = range(0, len(data2['Median']))
 
-    ax[0].plot(res,
-               color=colours[idx % 6],
-               label=f'subROI-{subROI}')
-    ax[0].set_title('Resonance location')
-
-    ax[1].plot(gamma,
-               color=colours[idx % 6],
-               label=f'subROI-{subROI}')
-    ax[1].set_title('Gamma')
-
-    ax[2].plot(off,
-               color=colours[idx % 6],
-               label=f'subROI-{subROI}')
-    ax[2].set_title('Offset')
-
-    ax[3].plot(fwhm,
-               color=colours[idx % 6],
-               label=f'subROI-{subROI}')
-    ax[3].set_title('FWHM')
-
-    ax[4].plot(r2,
-               color=colours[idx % 6],
-               label=f'subROI-{subROI}')
-    ax[4].set_title('R2')
-    ax[4].legend(loc='center right')
-
-    plt.subplots_adjust(bottom=0.1, left=0.1)
-    plt.pause(0.5)
-
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+# colours = ('b', 'g', 'r', 'c', 'm', 'k')
+for idx in subROIs:
+    y_data = data1[data1['subROI'] == subROIs[idx]]['Resonance']
+    ax1.plot(y_data, label=f'SubROI: {idx}')
+ax1.legend()
+ax1.set_title('SubROI analysis')
+ax2.plot(x_data,data2['Median'])
+ax2.fill_between(x_data, data2['First Quartile'], data2['Third Quartile'], alpha=0.2)
+ax2.set_title('Median analysis')
 plt.show()

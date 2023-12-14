@@ -106,8 +106,9 @@ class ROImulti:
                 self.last_call_status = image_cropper.was_last_call()
                 self.logger.debug('ROI selection')
 
-            self.im = self.im.crop((self.roi[0][0], self.roi[0][1],
-                                    self.roi[1][0], self.roi[1][1]))
+            temp = self.im.rotate(self.angle)
+            self.im = temp.crop((self.roi[0][0], self.roi[0][1],
+                                 self.roi[1][0], self.roi[1][1]))
             # if self.res is None:
             #     figure = plt.subplots(1, 2, figsize=(12, 6))
             #     details = {
@@ -307,6 +308,7 @@ class ROImulti:
         return tuple(np.interp(np.array([0.25, 0.50, 0.75]),
                                cdf_norm,
                                data))
+
     def filter_data(self, data: np.ndarray, threshold: float=0.0) -> np.ndarray:
         # Sort data
         data = np.sort(data)
@@ -327,7 +329,15 @@ class ROImulti:
         Accepts a 1D data array'''
         max_idx = np.argmax(y_data)
         threshold = y_data[max_idx] * filter
-        idxs = np.where(y_data > threshold)[0]
+        idxs = np.where(y_data >= threshold)[0]
+        if len(idxs) == 0:
+            return {
+            'Analysis Method': 'Centre of peak',
+            'Lower Threshold': 0,
+            'Maximum': max_idx,
+            'Centre': 0,
+            'Upper Threshold': 0,
+            }    
         return {
             'Analysis Method': 'Centre of peak',
             'Lower Threshold': idxs[0],
@@ -347,12 +357,11 @@ class ROImulti:
         return self.fit_gaussian(x_data, y_data, plot)
 
     def get_median_of_centres(self, data: np.ndarray,
-                              threshold: float = 0.75/2):
+                              threshold: float=0.75/2):
         centres = []
-        x_data = np.arange(0, data.shape[0])
         for i in range(0, data.shape[1]):
             y_data = data[:, i]
-            centre = self.fit_fano(x_data, y_data)['Centre']
+            centre = self.get_centre_of_peak(y_data, 0.75)['Centre']
             centres.append(centre)
 
         centres = self.filter_data(centres, threshold)
@@ -365,7 +374,7 @@ class ROImulti:
         }
 
     def get_median_of_gaussians(self, data: np.ndarray,
-                                threshold: float = 0.75/2):
+                                threshold: float=0.75/2):
         mus = []
         x_data = np.arange(0, data.shape[0])
         for i in range(0, data.shape[1]):
@@ -413,7 +422,8 @@ class ROImulti:
         slice image array im[0:20]
         transpose slice
         """
-        if method == 'median_gaussian-2D':
+        method = method.lower()
+        if 'median' in method:
             self.subROIs = 1
         
         ROI_x_size = np.shape(self.im)[1]
@@ -448,10 +458,10 @@ class ROImulti:
                 result.update(self.get_median_of_gaussians(subROI, 0.75/2))
             elif method == 'median of fanos':
                 self.logger.info(f'... using multi-Gaussian fit')
-                result.update(self.get_median_of_gaussians(subROI, 0.75/2))
+                result.update(self.get_median_of_fanos(subROI, 0.75/2))
             elif method == 'median of centres':
                 self.logger.info(f'... using multi-Centre fit')
-                result.update(self.get_median_of_gaussians(subROI, 0.75/2))
+                result.update(self.get_median_of_centres(subROI, 0.75/2))
             else:
                 self.logger.info((f'... no or incorrect analsysis method '
                                   f'selected, using find maximum analysis '
@@ -510,39 +520,6 @@ class ROImulti:
     def get_save_data(self):
         """ Return the results as a formattted list ready for saving.
         """
-        # first = True
-        # output = []
-
-        # # for d in self.resonance_data:
-        # #     text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
-        # #     text_vals = [self.roi[0][0], self.roi[0][1],
-        # #                  self.roi[1][1], self.angle]
-        # #     for k, v in d.items():
-        # #         text_keys.append(k)
-        # #         text_vals.append(v)
-        # #     if first:
-        # #         output.append(text_keys)
-        # #         first = False
-        # #     output.append(text_vals)
-
-        # for d in self.resonance_data:
-        #     text_keys = ['ROI_x1', 'ROI_y1', 'ROI_x2', 'ROI_y2', 'Angle']
-        #     text_vals = [self.roi[0][0], self.roi[0][1], self.roi[1][0],
-        #                  self.roi[1][1], self.angle]
-        #     for k, v in d.items():
-        #         if isinstance(v, list):
-        #             for idx, data in enumerate(v):
-        #                 text_keys.append(f'{k}_{idx}')
-        #                 text_vals.append(data)
-        #         else:
-        #             text_keys.append(f'{k}')
-        #             text_vals.append(v)
-        #     if first:
-        #         output.append(text_keys)
-        #         first = False
-        #     output.append(text_vals)
-
-        # return output
         return self.resonance_data
 
     def get_resonance_data(self, disp=False):

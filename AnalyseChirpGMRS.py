@@ -4,7 +4,7 @@ import Functions as func
 
 config_filepath = './CPR_configuration.ini'
 log_filepath = 'ChirpAnalysis.log'
-log_level = logging.DEBUG
+log_level = logging.INFO
 logger = func.setup_logger(log_filepath, log_level)
 
 params = func.get_simulation_params(logger, config_filepath)
@@ -16,6 +16,7 @@ roi_array = None
 filenames_old = list()
 while True:
     image_files = func.get_image_filenames(logger, params, filenames_old)
+    image_files = image_files[::10]
     filenames_old.extend(image_files)
 
     if image_files:  # Check if there are images ready to be processed
@@ -26,6 +27,7 @@ while True:
         func.process_images(logger, params, image_files, roi_array)
         func.save_data(logger, params, roi_array)
         func.plot_data(params, filenames_old, roi_array)
+        # logger.shutdown()
         break
 
     if params['sleep_time'] > 0:

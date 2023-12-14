@@ -165,10 +165,10 @@ def register_ROIs(logger, params, image_files):
             }
             roi.set_initial_ROI(im, details)
             roi.create_ROI_data(im)
-            roi_array.append(roi)
             if roi.was_last_call() is True:
                 params['num_of_ROIs'] = len(roi_array)
                 break
+            roi_array.append(roi)
     return roi_array
 
 
@@ -211,9 +211,10 @@ def process_images(logger, params, image_files, roi_array):
     """
     for idx, im_path in enumerate(image_files):
         print(f'Processing image {idx + 1}')
+        im = get_image(logger, params, im_path)
         for roi in roi_array:
             # roi.set_initial_ROI(im)
-            # roi.create_ROI_data(im)
+            roi.create_ROI_data(im)
             roi.process_ROI(params['analysis'], idx, im_path)
 
 
@@ -260,37 +261,27 @@ def plot_data(params, filenames_old, roi_array):
 
         Attributes:
         params (dict) :        Dictionary containing user parameters
-        filenames_old (list) : List of filenames that were previously processed
+        filenames_old (list) :  List of filenames that were previously processed
         roi_array (list) :     List of ROI objects
     """
 
     to_plot = {
         'gaussian of mean': 'Mu',
         'fano of mean': 'Resonance',
-        'centre of peak': 'Maximum',
+        'centre of peak': 'Centre',
         'median of gaussians': 'Median',
         'median of fanos': 'Median',
         'median of centres': 'Median',
     }
-    ncols = 3
-    nrows = 5
-    fig, ax = plt.subplots(nrows, ncols, sharex=True, sharey=True, figsize=(9, 15))
+    ncols = 4
+    nrows = 3
+    fig, ax = plt.subplots(nrows, ncols, sharex=True, sharey=False,
+                          figsize=(11.7, 8.3))
     time_axis = [(y * params['image_interval'])
                  for y in range(len(filenames_old))]
     
     current_roi = 0
     stop_plotting = False
-    # for a in ax.flat:
-    #     print(f'{current_roi =} {len(roi_array) =}')
-    #     data = pd.DataFrame(roi_array[current_roi].get_resonance_data())
-    #     for i in range(roi_array[current_roi].get_num_subROIs()):
-    #         plot_data = data[data['subROI'] == i]
-    #         a.plot(time_axis, plot_data[to_plot[params['analysis']]])
-    #     a.set_title(f'ROI {current_roi}')
-    #     current_roi += 1
-    #     if current_roi >= len(roi_array):
-    #         print(f'INSIDE {current_roi =}')
-    #         break
     for r in range(nrows):
         if stop_plotting: break
         for c in range(ncols):
@@ -325,10 +316,7 @@ def get_image(logger, params, im_path):
         image (Image obj) : PIL Image object
     """
     if im_path.split('.')[-1] == 'png':
-        
-        # Open the image
         im = Image.open(im_path)
-        print(f'{im.mode =}')
         # Check image mode and convert to 8-Bit if necessary
         if im.mode == 'I':
             im32 = np.array(im)
@@ -414,38 +402,3 @@ def fano_array(xdata, amp, assym, res, gamma, off):
         den = (gamma * gamma) + ((x - res)*(x - res))
         ydata.append((amp * (num / den)) + off)
     return ydata
-
-
-def get_data(data_filename):
-    """ Open and parses CSV data file.  Creates dictionary object with parsed
-        data.  Also extracts number of subROIs that are listed within the data
-        file.
-
-        Attributes:
-        data_filename (str) :  Filepath to CSV data file
-
-        Returns:
-        data_dict (dict) :     Dictionary of data parsed from CSV data file
-        num_subROIS (int) :    Number of subROIs as parsed from CSV data file
-    """
-    data = []
-    with open(data_filename, mode='r') as f:
-        csv_reader = csv.reader(f, delimiter=',')
-        for row in csv_reader:
-            data.append([r.strip() for r in row])
-
-    header = data[0]
-    data = data[1:]
-
-    num_subROIs = len([h for h in header if 'amp' in h])
-
-    data_dict = {}
-    for idx, h in enumerate(header):
-        data_dict[h] = []
-        for d in data:
-            if h != 'Image Path':
-                data_dict[h].append(float(d[idx]))
-            else:
-                data_dict[h].append(d[idx])
-
-    return data_dict, num_subROIs
