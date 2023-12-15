@@ -6,6 +6,7 @@
 **/__pycache__
 **/Images
 **/TestScripts
+**/Libra*
 .DS_Store
 requirements.txt
 Makefile
