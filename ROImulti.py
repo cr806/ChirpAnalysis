@@ -41,9 +41,6 @@ class ROImulti:
         self.roi = roi
         self.angle = angle
         self.res = res
-        # self.initial_values = [0, 0, 0, 0, 0]
-        # if res is not None:
-        #     self.initial_values = [0, 0, res[0], res[1], 0]
         self.resonance_data = []
         self.reference_data = None
         self.fig = None
@@ -109,19 +106,6 @@ class ROImulti:
             temp = self.im.rotate(self.angle)
             self.im = temp.crop((self.roi[0][0], self.roi[0][1],
                                  self.roi[1][0], self.roi[1][1]))
-            # if self.res is None:
-            #     figure = plt.subplots(1, 2, figsize=(12, 6))
-            #     details = {
-            #         'mode': 'resonance',
-            #         'figure': figure,
-            #         'im': self.im,
-            #     }
-            #     p0 = ImageProcessor(self.log_data, details)
-            #     # self.set_initial_values(amp=0.2, assym=-100,
-            #     #                         res=None, gamma=None, off=40)
-            #     self.initial_values[2] = p0.get_initial_values()[0]
-            #     self.initial_values[3] = p0.get_initial_values()[1]
-            #     self.logger.debug('Resonance/Gamma selection')
             self.first = False
 
     def create_ROI_data(self, im, plot=False):
@@ -148,35 +132,8 @@ class ROImulti:
         temp = self.im.rotate(self.angle)
         (x1, y1), (x2, y2) = self.roi
         self.im = np.array(temp.crop((x1, y1, x2, y2)))
-        # self.process_ROI(plot=plot)
 
-    # def determine_assym(self, plot=False):
-    #     """ CURRENTLY NOT REQUIRED BY SETTING INITIAL VALUE TO 0
-    #         Determine positive or negative assymetry value from initial
-    #         image.
-    #         Curve-fit algorithm seems to requires a positive or negative
-    #         initial guess for the fitting of the Fano function, if the guess
-    #         is the wrong sign then curve-fit will converge to a "bad" fit
-    #     """
 
-    #     self.logger.debug(f'...determine_assym({self}, plot={plot})')
-    #     self.initial_values[1] = 100
-    #     self.process_ROI(plot=plot)
-    #     try:
-    #         r2pos = self.resonance_data[-1]['r2']
-    #     except IndexError:
-    #         r2pos = 0
-    #     self.initial_values[1] = -100
-    #     self.process_ROI(plot=plot)
-    #     try:
-    #         r2neg = self.resonance_data[-1]['r2']
-    #     except IndexError:
-    #         r2neg = 0
-    #     print(f'Positive r2 -> {r2pos}  Negative r2 -> {r2neg}')
-    #     if r2pos > r2neg:
-    #         self.initial_values[1] = 100
-    #     self.resonance_data = []
-    
     def fit_gaussian(self, x_data: np.ndarray, y_data: np.ndarray, plot=False):
         '''Function to fit a Gaussian to the data, returning the fitted parameters
         (or zeros if no fit possible)'''
@@ -242,9 +199,6 @@ class ROImulti:
             den = (gamma * gamma) + ((x - res)*(x - res))
             return (amp * (num / den)) + bias
 
-        # initial_guess = np.array(self.initial_values)
-        # param_scale = [10, 1, self.initial_values[2],
-        #                self.initial_values[3], np.amin(y_data)]
         initial_guess = [np.max(y_data), 0, np.argmax(y_data),
                          len(y_data)/4, 0]
         bounds = ([-1000, -100,  0,   0,    0],
@@ -299,13 +253,13 @@ class ROImulti:
 
     def get_quartiles(self, data: np.ndarray) -> Tuple[float, float, float]:
         if len(data) == 0:
-            return (0, 0, 0)
+            return (0, 0, 0, 0, 0)
         # Calculate the CDF and normalise
         cdf = np.cumsum(data)
         cdf_norm = cdf / cdf[-1]
 
         # Find the values at the specified percentiles
-        return tuple(np.interp(np.array([0.25, 0.50, 0.75]),
+        return tuple(np.interp(np.array([0.00, 0.25, 0.50, 0.75, 1.00]),
                                cdf_norm,
                                data))
 
@@ -365,12 +319,14 @@ class ROImulti:
             centres.append(centre)
 
         centres = self.filter_data(centres, threshold)
-        F, M, T = self.get_quartiles(centres)
+        Z, F, M, T, O = self.get_quartiles(centres)
         return {
             'Analysis Method': 'Centre of Peak',
+            'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
+            'Maximum value': O,
         }
 
     def get_median_of_gaussians(self, data: np.ndarray,
@@ -383,12 +339,14 @@ class ROImulti:
             mus.append(mu)
 
         mus = self.filter_data(mus, threshold)
-        F, M, T = self.get_quartiles(mus)
+        Z, F, M, T, O = self.get_quartiles(mus)
         return {
             'Analysis Method': 'Gaussian',
+            'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
+            'Maximum value': O,
         }
 
     def get_median_of_fanos(self, data: np.ndarray, threshold: float = 0.75/2):
@@ -400,12 +358,14 @@ class ROImulti:
             res.append(r)
 
         res = self.filter_data(res, threshold)
-        F, M, T = self.get_quartiles(res)
+        Z, F, M, T, O = self.get_quartiles(res)
         return {
             'Analysis Method': 'Fano',
+            'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
+            'Maximum value': O,
         }
 
     def process_ROI(self, method, idx, im_path, plot=False):
@@ -422,7 +382,7 @@ class ROImulti:
         slice image array im[0:20]
         transpose slice
         """
-        method = method.lower()
+
         if 'median' in method:
             self.subROIs = 1
         

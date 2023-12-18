@@ -63,10 +63,10 @@ def get_simulation_params(logger, config_filepath):
         params['save_name'] = config['Data']['save_name']
 
         params['image_folder'] = config['Data']['image_folder']
-        params['image_type'] = config['Data']['image_type']
-        params['image_align'] = config['Data']['image_align']
+        params['image_type'] = config['Data']['image_type'].lower()
+        params['image_align'] = config['Data']['image_align'].lower()
         params['save_figure_filename'] = config['Data']['save_figure_filename']
-        params['analysis'] = config['Data']['analysis_method']
+        params['analysis'] = config['Data']['analysis_method'].lower()
 
         params['sleep_time'] = 0.33
 
@@ -83,7 +83,7 @@ def get_simulation_params(logger, config_filepath):
         logger.error('No [Data] section provided within configuration file')
         quit()
 
-    params['num_of_ROIs'] = 1
+    params['num_of_ROIs'] = 0
     params['num_of_subROIs'] = 1
     params['image_interval'] = 1.0
     params['angle'] = None
@@ -247,7 +247,7 @@ def save_data(logger, params, roi_array):
                                     if col not in initial_cols]
     df = df[new_col_order]
 
-    df.to_csv(join(save_path, f'{save_name}_NEWDATA.csv'),
+    df.to_csv(join(save_path, f'{save_name}.csv'),
               sep=',',
               index=False)
     
@@ -300,7 +300,7 @@ def plot_data(params, filenames_old, roi_array):
         fig.text(0.02, 0.5, 'Resonance (px)',
                  ha='center', va='center', rotation='vertical', fontsize=24)
 
-        plt.savefig(f'{params['save_figure_filename']}')
+        plt.savefig(f"{params['save_figure_filename']}")
 
 
 def get_image(logger, params, im_path):

@@ -32,5 +32,5 @@ for file1, file2, column in file_details:
     ax2.set_ylim([190, 280])
     ax2.set_title('Median analysis')
     fig.suptitle(f'Analysis method: {file1}')
-    fig.savefig(save_name)
-    # plt.pause(2)
+    # fig.savefig(save_name)
+    plt.pause(2)
