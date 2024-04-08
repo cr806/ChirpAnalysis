@@ -144,7 +144,14 @@ def register_ROIs(logger, params, image_files):
                                 angle=params['angle'],
                                 roi=roi_range,
                                 res=r_g)
-            details = {}
+            rectangles = []
+            if roi_array:
+                for r in roi_array:
+                    rectangles.append(r.get_roi())
+            details = {
+                'message': (f'ROI {len(roi_array)}'),
+                'patches': rectangles,
+            }
             roi.set_initial_ROI(im, details)
             roi.create_ROI_data(im)
             roi_array.append(roi)
