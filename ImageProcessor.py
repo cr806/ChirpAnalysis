@@ -42,7 +42,7 @@ class ImageProcessor:
         self.logger.addHandler(fh)
         self.logger.debug(f'...__init__({self}, {self.mode}, {self.fig}, {self.im})')
 
-        if details['patches']:
+        if 'patches' in details:
             for rect_coord in details['patches']:
                 (x1, y1), (x2, y2) = rect_coord
                 self.ax1.add_patch(patches.Rectangle((x1, y1), x2-x1, y2-y1,
