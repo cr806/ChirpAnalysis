@@ -519,5 +519,11 @@ class ROImulti:
         self.logger.debug(f'...get_num_subROIs({self})')
         return self.subROIs
 
+    def get_angle(self):
+        """ Getter method to return ROI angle to caller
+        """
+        self.logger.debug(f'...get_angle({self})')
+        return self.angle
+
     def was_last_call(self):
         return self.last_call_status

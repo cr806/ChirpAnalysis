@@ -139,11 +139,15 @@ def register_ROIs(logger, params, image_files):
             except (IndexError, TypeError):
                 roi_range = None
                 r_g = None
+            if not roi_array:
+                angle = params['angle']
+            else:
+                angle = roi_array[0].get_angle()
             roi = ROI([params['log_filepath'], params['log_level']],
-                                subROIs=params['num_of_subROIs'],
-                                angle=params['angle'],
-                                roi=roi_range,
-                                res=r_g)
+                      subROIs=params['num_of_subROIs'],
+                      angle=angle,
+                      roi=roi_range,
+                      res=r_g)
             rectangles = []
             if roi_array:
                 for r in roi_array:
@@ -157,11 +161,15 @@ def register_ROIs(logger, params, image_files):
             roi_array.append(roi)
     else:
         while True:
+            if not roi_array:
+                angle = params['angle']
+            else:
+                angle = roi_array[0].get_angle()
             roi = ROI([params['log_filepath'], params['log_level']],
-                                subROIs=params['num_of_subROIs'],
-                                angle=params['angle'],
-                                roi=None,
-                                res=None)
+                      subROIs=params['num_of_subROIs'],
+                      angle=angle,
+                      roi=None,
+                      res=None)
             rectangles = []
             if roi_array:
                 for r in roi_array:
