@@ -133,10 +133,9 @@ class ROImulti:
         (x1, y1), (x2, y2) = self.roi
         self.im = np.array(temp.crop((x1, y1, x2, y2)))
 
-
     def fit_gaussian(self, x_data: np.ndarray, y_data: np.ndarray, plot=False):
-        '''Function to fit a Gaussian to the data, returning the fitted parameters
-        (or zeros if no fit possible)'''
+        '''Function to fit a Gaussian to the data, returning the fitted
+        parameters (or zeros if no fit possible)'''
         def gaussian(x, mu, A, sigma, bias):
             return A * np.exp(-(x - mu)**2 / (2 * sigma**2)) + bias
 
@@ -153,7 +152,7 @@ class ROImulti:
         }
         try:
             popt, _ = curve_fit(gaussian, x_data, y_data,
-                               p0=initial_guess, bounds=bounds)
+                                p0=initial_guess, bounds=bounds)
             mu, A, sigma, bias = popt
 
             ss_res = np.sum(gaussian(x_data, *popt)**2)
@@ -217,8 +216,8 @@ class ROImulti:
         }
         try:
             popt, _ = curve_fit(fano, x_data, y_data,
-                               p0=initial_guess, bounds=bounds,
-                               x_scale=param_scale)
+                                p0=initial_guess, bounds=bounds,
+                                x_scale=param_scale)
 
             A, b, c, d, e = popt
 
@@ -227,7 +226,7 @@ class ROImulti:
 
             ss_res = np.sum(fano(x_data, *popt)**2)
             ss_tot = np.sum(y_data**2)
-            
+
             popt_dict['Amplitude'] = A
             popt_dict['Assymetry'] = b
             popt_dict['Resonance'] = c
@@ -263,10 +262,10 @@ class ROImulti:
                                cdf_norm,
                                data))
 
-    def filter_data(self, data: np.ndarray, threshold: float=0.0) -> np.ndarray:
+    def filter_data(self, data: np.ndarray, threshold: float = 0.0) -> np.ndarray:
         # Sort data
         data = np.sort(data)
-        
+
         # Calculate the CDF and normalise
         cdf = np.cumsum(data)
         cdf_norm = cdf / cdf[-1]
@@ -286,12 +285,12 @@ class ROImulti:
         idxs = np.where(y_data >= threshold)[0]
         if len(idxs) == 0:
             return {
-            'Analysis Method': 'Centre of peak',
-            'Lower Threshold': 0,
-            'Maximum': max_idx,
-            'Centre': 0,
-            'Upper Threshold': 0,
-            }    
+                'Analysis Method': 'Centre of peak',
+                'Lower Threshold': 0,
+                'Maximum': max_idx,
+                'Centre': 0,
+                'Upper Threshold': 0,
+            }
         return {
             'Analysis Method': 'Centre of peak',
             'Lower Threshold': idxs[0],
@@ -311,11 +310,11 @@ class ROImulti:
         return self.fit_gaussian(x_data, y_data, plot)
 
     def get_median_of_centres(self, data: np.ndarray,
-                              threshold: float=0.75/2):
+                              threshold: float = 0.75/2):
         centres = []
         for i in range(0, data.shape[1]):
             y_data = data[:, i]
-            centre = self.get_centre_of_peak(y_data, 0.75)['Centre']
+            centre = self.get_centre_of_peak(y_data, 0.95)['Centre']
             centres.append(centre)
 
         centres = self.filter_data(centres, threshold)
@@ -330,7 +329,7 @@ class ROImulti:
         }
 
     def get_median_of_gaussians(self, data: np.ndarray,
-                                threshold: float=0.75/2):
+                                threshold: float = 0.75/2):
         mus = []
         x_data = np.arange(0, data.shape[0])
         for i in range(0, data.shape[1]):
@@ -385,7 +384,7 @@ class ROImulti:
 
         if 'median' in method:
             self.subROIs = 1
-        
+
         ROI_x_size = np.shape(self.im)[1]
         subROI_size = ROI_x_size // self.subROIs
         transposed_im = np.transpose(self.im)
@@ -404,30 +403,30 @@ class ROImulti:
                     transposed_im[(i*subROI_size):((i+1)*subROI_size)])
 
             if method == 'fano of mean':
-                self.logger.info(f'... using simple Fano fit')
+                self.logger.info('... using simple Fano fit')
                 result.update(self.get_fano_of_mean(subROI))
             elif method == 'gaussian of mean':
-                self.logger.info(f'... using simple Gaussian fit')
+                self.logger.info('... using simple Gaussian fit')
                 result.update(self.get_gaussian_of_mean(subROI))
             elif method == 'centre of peak':
-                self.logger.info(f'... using simple maximum of centre fit')
+                self.logger.info('... using simple maximum of centre fit')
                 y_data = np.mean(subROI, axis=1)
-                result.update(self.get_centre_of_peak(y_data, 0.75))
+                result.update(self.get_centre_of_peak(y_data, 0.95))
             elif method == 'median of gaussians':
-                self.logger.info(f'... using multi-Fano fit')
+                self.logger.info('... using multi-Fano fit')
                 result.update(self.get_median_of_gaussians(subROI, 0.75/2))
             elif method == 'median of fanos':
-                self.logger.info(f'... using multi-Gaussian fit')
+                self.logger.info('... using multi-Gaussian fit')
                 result.update(self.get_median_of_fanos(subROI, 0.75/2))
             elif method == 'median of centres':
-                self.logger.info(f'... using multi-Centre fit')
+                self.logger.info('... using multi-Centre fit')
                 result.update(self.get_median_of_centres(subROI, 0.75/2))
             else:
                 self.logger.info((f'... no or incorrect analsysis method '
                                   f'selected, using find maximum analysis '
                                   f'method'))
                 y_data = np.mean(subROI, axis=1)
-                result.update(self.get_centre_of_peak(y_data, 0.75))
+                result.update(self.get_centre_of_peak(y_data, 0.95))
 
             result['image path'] = im_path
 
