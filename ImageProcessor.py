@@ -192,13 +192,27 @@ class ImageProcessor:
         """
         self.logger.debug(f'...update_fig({self}, {xdata}, {ydata})')
         if len(self.xs) == 1:
+
+            x0 = self.xs[0]
+            x1 = self.xs[0]
+            if xdata > self.xs[0]:
+                x1 = xdata
+            else:
+                x0 = xdata
+            y0 = self.ys[0]
+            y1 = self.ys[0]
+            if ydata > self.ys[0]:
+                y1 = ydata
+            else:
+                y0 = ydata
+
             if self.mode == 'rotate':
                 self.angle = np.degrees(np.tan((ydata-self.ys[0]) /
                                                (xdata-self.xs[0])))
                 temp = self.im.rotate(self.angle)
                 self.ax2.imshow(temp)
             elif self.mode == 'crop':
-                temp = self.im.crop((self.xs[0], self.ys[0], xdata, ydata))
+                temp = self.im.crop((x0, y0, x1, y1))
                 self.ax2.imshow(temp)
             elif self.mode == 'resonance':
                 self.ax2.hlines(y=ydata, xmin=self.xs[0], xmax=xdata,
