@@ -227,10 +227,10 @@ def process_images(logger, params, image_files, roi_array):
     for idx, im_path in enumerate(image_files):
         print(f'Processing image {idx + 1}')
         logger.info(f'...Processing image <{im_path}>')
-        im = get_image(logger, params, im_path)
+        # im = get_image(logger, params, im_path)
         for roi in roi_array:
             # roi.set_initial_ROI(im)
-            roi.create_ROI_data(im)
+            # roi.create_ROI_data(im)
             roi.process_ROI(params['analysis'], idx, im_path)
 
 
