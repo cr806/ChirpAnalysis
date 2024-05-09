@@ -452,11 +452,17 @@ class ROImulti:
         self.logger.debug(f"""set_initial_values({self}, amp={amp},
                           assym={assym}, res={res}, gamma={gamma}, off={off},
                           FWHM={FWHM}, r2={r2})""")
-        self.initial_values[0] = np.mean(amp)
-        self.initial_values[1] = np.mean(assym)
-        self.initial_values[2] = np.mean(res)
-        self.initial_values[3] = np.mean(gamma)
-        self.initial_values[4] = np.mean(off)
+        self.initial_values = [0, 0, 0, 0, 0]
+        if amp:
+            self.initial_values[0] = np.mean(amp)
+        if assym:
+            self.initial_values[1] = np.mean(assym)
+        if res:
+            self.initial_values[2] = np.mean(res)
+        if gamma:
+            self.initial_values[3] = np.mean(gamma)
+        if off:
+            self.initial_values[4] = np.mean(off)
 
         if self.reference_data is None:
             self.reference_data = [amp,
