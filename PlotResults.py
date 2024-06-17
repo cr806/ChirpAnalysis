@@ -2,9 +2,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 file_details = [['CentreOfPeak', 'MedianOfCentres', 'Centre'],
-               ['Gaussian', 'MedianOfGaussian', 'Mu'],
-               ['Fano', 'MedianOfFano', 'Resonance']
-               ]
+                ['Gaussian', 'MedianOfGaussian', 'Mu'],
+                ['Fano', 'MedianOfFano', 'Resonance']]
 
 for file1, file2, column in file_details:
     save_name = f'Libra_20230810-000004-{file1}.png'
@@ -27,8 +26,11 @@ for file1, file2, column in file_details:
     ax1.set_ylim([190, 280])
     ax1.set_title('SubROI analysis')
 
-    ax2.plot(x_data,data2['Median'])
-    ax2.fill_between(x_data, data2['First Quartile'], data2['Third Quartile'], alpha=0.2)
+    ax2.plot(x_data, data2['Median'])
+    ax2.fill_between(x_data,
+                     data2['First Quartile'],
+                     data2['Third Quartile'],
+                     alpha=0.2)
     ax2.set_ylim([190, 280])
     ax2.set_title('Median analysis')
     fig.suptitle(f'Analysis method: {file1}')
