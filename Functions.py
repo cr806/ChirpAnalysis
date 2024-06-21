@@ -155,6 +155,7 @@ def register_ROIs(logger, params, image_files):
             details = {
                 'message': (f'ROI {len(roi_array)}'),
                 'patches': rectangles,
+                'image_align': params['image_align'],
             }
             roi.set_initial_ROI(im, details)
             roi.create_ROI_data(im)
@@ -256,7 +257,7 @@ def save_data(logger, params, roi_array):
     df = pd.DataFrame(all_data)
     df = df.sort_values(by=['ROI', 'ID', 'subROI'])
     df = df.reset_index(drop=True)
-    
+
     initial_cols = ['ROI', 'ID', 'subROI']
     new_col_order = initial_cols + [col for col in df.columns
                                     if col not in initial_cols]
@@ -265,7 +266,7 @@ def save_data(logger, params, roi_array):
     df.to_csv(join(save_path, f'{save_name}.csv'),
               sep=',',
               index=False)
-    
+
     logger.info('...Data saved')
 
 

@@ -76,12 +76,15 @@ class ROImulti:
         self.im = im
 
         if self.first:
+            raw_im = self.im
+            if info['image_align'] == 'horizontal':
+                raw_im = self.im.rotate(-90, expand=True)
             if self.angle is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
                 details = {
                     'mode': 'rotate',
                     'figure': figure,
-                    'im': self.im,
+                    'im': raw_im,
                 }
                 image_rotator = ImageProcessor(self.log_data, details)
                 self.angle = image_rotator.get_angle()
@@ -90,7 +93,7 @@ class ROImulti:
             if self.roi is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6),
                                       gridspec_kw={'width_ratios': [3, 1]})
-                temp = self.im.rotate(self.angle)
+                temp = raw_im.rotate(self.angle)
                 details = {
                     'mode': 'crop',
                     'figure': figure,

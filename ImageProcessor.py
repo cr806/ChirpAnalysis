@@ -51,7 +51,7 @@ class ImageProcessor:
         if self.mode == 'rotate':
             self.logger.info('Image rotate')
             self.fig.suptitle(
-                'Rotate: Select two horizontal points \n '
+                'Rotate: Select two points that lie on a horizontal plane \n '
                 'Press <Enter> when finished', fontsize='xx-large')
         elif self.mode == 'crop':
             self.logger.info('Image crop')
