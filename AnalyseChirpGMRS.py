@@ -45,6 +45,6 @@ while True:
         break
 
     if params['sleep_time'] > 0:
-        print(f"Waiting for {params['sleep_time']} minutes")
-        logger.info(f"...Sleeping for {params['sleep_time']} minutes")
+        print(f'Waiting for {params['sleep_time']} minutes')
+        logger.info(f'...Sleeping for {params['sleep_time']} minutes')
         time.sleep(params['sleep_time'] * 60)

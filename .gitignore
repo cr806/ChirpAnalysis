@@ -1,5 +1,6 @@
 **/Version01
 **/RawImages
+**/.venv
 **/.my_venv
 **/ChristinaData
 **/.vscode
@@ -8,6 +9,7 @@
 **/TestScripts
 **/Libra*
 **/ExtractROIs
+**/Chris_test
 .DS_Store
 requirements.txt
 Makefile

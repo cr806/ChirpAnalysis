@@ -178,6 +178,7 @@ def register_ROIs(logger, params, image_files):
             details = {
                 'message': (f'Press "q" after last ROI. - ROI {len(roi_array)}'),
                 'patches': rectangles,
+                'image_align': params['image_align'],
             }
             roi.set_initial_ROI(im, details)
             roi.create_ROI_data(im)
