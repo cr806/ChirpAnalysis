@@ -4,7 +4,7 @@ import logging
 from scipy.optimize import curve_fit
 from ImageProcessor import ImageProcessor
 
-from typing import List, Tuple
+from typing import Tuple
 
 
 class ROImulti:
@@ -265,7 +265,10 @@ class ROImulti:
                                cdf_norm,
                                data))
 
-    def filter_data(self, data: np.ndarray, threshold: float = 0.0) -> np.ndarray:
+    def filter_data(self,
+                    data: np.ndarray,
+                    threshold: float = 0.0
+                    ) -> np.ndarray:
         # Sort data
         data = np.sort(data)
 
@@ -321,14 +324,14 @@ class ROImulti:
             centres.append(centre)
 
         centres = self.filter_data(centres, threshold)
-        Z, F, M, T, O = self.get_quartiles(centres)
+        Z, F, M, T, Of = self.get_quartiles(centres)
         return {
             'Analysis Method': 'Centre of Peak',
             'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
-            'Maximum value': O,
+            'Maximum value': Of,
         }
 
     def get_median_of_gaussians(self, data: np.ndarray,
@@ -341,14 +344,14 @@ class ROImulti:
             mus.append(mu)
 
         mus = self.filter_data(mus, threshold)
-        Z, F, M, T, O = self.get_quartiles(mus)
+        Z, F, M, T, Of = self.get_quartiles(mus)
         return {
             'Analysis Method': 'Gaussian',
             'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
-            'Maximum value': O,
+            'Maximum value': Of,
         }
 
     def get_median_of_fanos(self, data: np.ndarray, threshold: float = 0.75/2):
@@ -360,14 +363,14 @@ class ROImulti:
             res.append(r)
 
         res = self.filter_data(res, threshold)
-        Z, F, M, T, O = self.get_quartiles(res)
+        Z, F, M, T, Of = self.get_quartiles(res)
         return {
             'Analysis Method': 'Fano',
             'Lowest value': Z,
             'First Quartile': F,
             'Median': M,
             'Third Quartile': T,
-            'Maximum value': O,
+            'Maximum value': Of,
         }
 
     def process_ROI(self, method, idx, im, im_path, plot=False):
