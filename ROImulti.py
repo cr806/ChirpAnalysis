@@ -62,7 +62,7 @@ class ROImulti:
             Usage:
             Call this method if ROI coordinates and correction angle are
             unknown, method will plot image and ask user to select points for
-            anlge correction, it will rotate the image (the image data is not
+            angle correction, it will rotate the image (the image data is not
             overwritten however) and then ask the user to select points to
             define the ROI (the image will will not be cropped at this point
             only the ROI data will be stored), finally the user will be asked
