@@ -103,6 +103,7 @@ def get_simulation_params(logger, config_filepath):
                 logger.info('No angle provided')
             try:
                 params['roi_ranges'] = json.loads(config['Image']['rois'])
+                params['num_of_ROIs'] = len(params['roi_ranges'])
             except KeyError:
                 logger.info('No ROI coordinates provided')
             try:

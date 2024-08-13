@@ -14,8 +14,6 @@ params = func.get_simulation_params(logger, config_filepath)
 params['log_filepath'] = log_filepath
 params['log_level'] = log_level
 
-params['save_path']
-
 # Creates the save directory if it doesn't already exist.
 try:
     os.makedirs(params['save_path'], exist_ok=True)
