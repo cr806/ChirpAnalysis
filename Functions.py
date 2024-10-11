@@ -207,7 +207,7 @@ def get_image_filenames(logger, params, filenames_old):
     image_path = params['image_folder']
     to_be_processed = [item for item in listdir(image_path)
                        if join(image_path, item) not in filenames_old
-                       and item[-3:] == params['image_type']]
+                       and params['image_type'] in item[-4:]]
     logger.debug(f'...Files to be processed : {len(to_be_processed)}')
 
     image_files = [join(image_path, f)
@@ -349,7 +349,7 @@ def get_image(logger, params, im_path):
             im = Image.fromarray(im8)
         im = ImageOps.grayscale(im)
         logger.debug('Images found to PNG format')
-    elif im_path.split('.')[-1] == 'tif' or im_path.split('.')[1] == 'tiff':
+    elif im_path.split('.')[-1] == 'tif' or im_path.split('.')[-1] == 'tiff':
         im = Image.open(im_path)
         logger.debug('Images found to TIFF format')
     elif im_path.split('.')[-1] == 'csv':
