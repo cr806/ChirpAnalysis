@@ -77,8 +77,6 @@ class ROImulti:
 
         if self.first:
             raw_im = self.im
-            if info['image_align'] == 'horizontal':
-                raw_im = self.im.rotate(-90, expand=True)
             if self.angle is None:
                 figure = plt.subplots(1, 2, figsize=(12, 6))
                 details = {
